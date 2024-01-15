@@ -6,3 +6,9 @@
     object-position: center;
     border: 1px solid #ccc;
 }
+
+.home-cards{
+    display: flex;
+   margin: 70px 20px 100px  50px;
+
+}

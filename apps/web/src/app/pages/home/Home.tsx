@@ -5,11 +5,12 @@ import image3 from '../../../../public/images/3.jpg';
 import image4 from '../../../../public/images/4.jpg';
 import './Home.css'; // Import the CSS file
 import Card from '../../card/Card';
+import doc from '../../../../public/images/doc.jpg';
 
 const Home: React.FC = () => {
 
   const [userData, setUserData] = useState({
-    image: image1,
+    image: doc,
     name: 'Dr.D.K Gupta',
     specialization: 'Dermatology.',
   });
@@ -52,7 +53,7 @@ const Home: React.FC = () => {
           {/* Add more carousel items as needed */}
         </div>
       </div>
-      <div>
+      <div className='home-cards'>
         
         <Card 
             image={userData.image}

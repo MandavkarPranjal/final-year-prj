@@ -1,10 +1,9 @@
 .card{
-    display: inline;
     background-color: rgb(255, 255, 255);
-    height: 280px;
-    width: 195px;
-    border: 2px solid black;
+    height: 100px;
+    width: 220px;
     border-radius: 10px;
+    margin:  50px 50px  70px 70px   ;
 }
 
 .image{
@@ -15,7 +14,7 @@
 
 .name{
     padding: 0 5px;
-    font-size: 23px;
+    font-size: 20px;
 }
 
 .spl{

@@ -18,22 +18,6 @@ const Card: React.FC<CardProps> = ({ image, name, specialization }) => {
 };
 
 
-//     const App: React.FC = () => {
-//       const [userData, setUserData] = useState({
-//         image: 'logo192.png',
-//        name: '',
-//         specialization: 'this this',
-//       });
-   
-//       return (
-//         <Card
-//           image={userData.image}
-//           name={userData.name}
-//           specialization={userData.specialization}
-//         />
-     
- 
-//   );
 
 
 export default Card;
