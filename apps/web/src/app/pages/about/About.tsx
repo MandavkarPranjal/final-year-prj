@@ -2,7 +2,7 @@ import React from 'react';
 
 const About: React.FC = () => {
   return (
-    <div>
+    <div className='about-text'>
       <h1>Welcome to [Hospital Name]</h1>
     <img src="/images/hospital-building.jpg" alt="Hospital Building" />
 

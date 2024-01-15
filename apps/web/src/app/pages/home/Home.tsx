@@ -43,6 +43,7 @@ const Home: React.FC = () => {
 
   return (
     <div>
+      <h1 className="text-center">Welcome to Doctor's Appointment</h1>
       <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner">
           <div className="carousel-item active">
@@ -51,11 +52,32 @@ const Home: React.FC = () => {
           {/* Add more carousel items as needed */}
         </div>
       </div>
-      <Card
-          image={userData.image}
-          name={userData.name}
-          specialization={userData.specialization}
-        />
+      <div>
+        
+        <Card 
+            image={userData.image}
+            name={userData.name}
+            specialization={userData.specialization}
+          />
+        
+        <Card 
+            image={userData.image}
+            name={userData.name}
+            specialization={userData.specialization}
+          />
+        
+        <Card 
+            image={userData.image}
+            name={userData.name}
+            specialization={userData.specialization}
+          />
+        
+        <Card 
+            image={userData.image}
+            name={userData.name}
+            specialization={userData.specialization}
+          />
+      </div>
     </div>
   );
 };

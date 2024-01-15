@@ -1,4 +1,5 @@
 .card{
+    display: inline;
     background-color: rgb(255, 255, 255);
     height: 280px;
     width: 195px;
