@@ -1,0 +1,53 @@
+{
+  "name": "app-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/app/api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/app/api",
+        "main": "apps/app/api/src/main.ts",
+        "tsConfig": "apps/app/api/tsconfig.app.json",
+        "assets": ["apps/app/api/src/assets"],
+        "webpackConfig": "apps/app/api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "app-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "app-api:build:development"
+        },
+        "production": {
+          "buildTarget": "app-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/app/api/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
