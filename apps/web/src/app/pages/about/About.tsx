@@ -1,10 +1,9 @@
 import React from 'react';
-
 const About: React.FC = () => {
   return (
     <div className='about-text'>
       <h1>Welcome to [Hospital Name]</h1>
-    <img src="/images/hospital-building.jpg" alt="Hospital Building" />
+    <img className= "hospital-img" src="../../../../public/images/hospital.jpg" alt="Hospital Building" />
 
     <p>
       Where compassionate care meets cutting-edge medical expertise. At [Hospital Name], we are dedicated to providing exceptional healthcare services with a commitment to the well-being of our community.

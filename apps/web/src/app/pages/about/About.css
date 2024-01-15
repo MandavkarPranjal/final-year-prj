@@ -3,3 +3,9 @@
 h1{
     font-family: 'Bebas Neue', sans-serif;
 }
+
+.hospital-img{
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+}

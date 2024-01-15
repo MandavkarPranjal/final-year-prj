@@ -32,8 +32,8 @@ const Login: React.FC = () => {
 
 
     <div className="container mt-4">
-      <div className="w-50">
-        <form className="card p-4 mt-3" onSubmit={handleSubmit}>
+      <div className="w-20">
+        <form className="card p-4 m-10 w-50  " onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address

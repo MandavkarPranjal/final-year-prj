@@ -9,6 +9,6 @@
 
 .home-cards{
     display: flex;
-   margin: 70px 20px 100px  50px;
-
+    margin : 50px  0px 100px 0px ;
+   justify-content: space-around;
 }
