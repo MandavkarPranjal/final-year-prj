@@ -1,0 +1,9 @@
+.img-slider {
+    width: 50%;
+    height: 50%;
+    margin: 0 0 0 329px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 3%;
+    border: 1px solid #ccc;
+}
