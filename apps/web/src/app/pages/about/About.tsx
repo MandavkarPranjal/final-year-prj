@@ -1,28 +1,74 @@
 import React from 'react';
+import './About.css';
+import Rectangle from '../../../../public/images/Rectangle.jpg';
+import Rectangle_53 from '../../../../public/images/Rectangle_53.jpg';
+import call from '../../../../public/images/call.png';
+import time from '../../../../public/images/time.png';
+import location from '../../../../public/images/location.png';
+import mail from '../../../../public/images/mail.png';
+
 const About: React.FC = () => {
   return (
-    <div className='about-text'>
-      <h1>Welcome to [Hospital Name]</h1>
-    <img className= "hospital-img" src="../../../../public/images/hospital.jpg" alt="Hospital Building" />
+    <div className="main">
 
-    <p>
-      Where compassionate care meets cutting-edge medical expertise. At [Hospital Name], we are dedicated to providing exceptional healthcare services with a commitment to the well-being of our community.
-    </p>
+        <img className='abt_img' src={Rectangle} alt="" />
+        <div className="abt_text">
+        <p className='hosp_name'>WELCOME TO 'HOSPITAL NAME'</p>
+        <p className='hosp_intro'>Best Care for Your <br />
+Good Health</p>
+ <div className="spl">
+<ul className='abt_list'>
+  <li>A Passion for Healing</li>
+  <li>5-Star Care</li>
+  <li>Always Caring</li>
+</ul>
 
-    <p>
-      Our state-of-the-art facility is equipped with the latest technology and staffed by a team of highly skilled and compassionate healthcare professionals. From our board-certified physicians to our dedicated nurses and support staff, every member of our team is committed to delivering personalized and comprehensive care.
-    </p>
+<ul className='abt_list2'>
+<li>A Legacy of Excellence</li>
+  <li>All our best</li>
+  <li>Believe in Us</li>
+</ul>
+</div>
 
-    <p>
-      <strong>Our mission</strong> is to promote health and wellness by providing accessible, high-quality medical services in a patient-centered environment. We believe in treating each individual with dignity, respect, and empathy, ensuring that our patients feel supported throughout their healthcare journey.
-    </p>
+<p className='abt_content1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis error possimus nulla <br /> voluptatem ducimus eligendi vel quod cupiditate nemo illum in, est, deserunt fugit eius suscipit, <br /> voluptate ratione! Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam minus veritatis <br /> voluptates neque perferendis nisi illo ipsum. Facilis at possimus sed iste laborum eaque incidunt <br /> labore, vero, doloribus esse error.</p>
 
-    <img src="/images/medical-team.jpg" alt="Medical Team" />
+<p className='abt_content2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis error possimus nulla <br /> voluptatem ducimus eligendi vel quod cupiditate nemo illum in, est, deserunt fugit eius veritatis </p>
+</div>
+
+<img className='abt_img2' src={Rectangle_53} alt="" />
+
+<p className='dr_text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo maxime non ex mollitia ipsam possimus natus <br />aspernatur ratione velit voluptatibus placeat fuga quod, hic aliquid modi molestiae officiis saepe beatae. <br />
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo maxime non ex mollitia ipsam possimus natus <br /> aspernatur ratione velit voluptatibus placeat fuga quod, hic aliquid modi molestiae officiis saepe beatae.</p>
+
+<p className='contact1'>GET IN TOUCH</p>
+<p className='contact2'>CONTACT</p>
+
+<div className="contact">
+
+<div className="emergncy">
+  <img src={call} alt="" />
+    <p className='emg_text'>Emergency</p>
+</div>
+
+<div className="loc">
+  <img src={location} alt="" />
+<p className='loct_text'>Location</p>
+</div>
+
+<div className="e-mail">
+  <img src={mail} alt="" />
+<p className='mail_text'>EMAIL</p>
+</div>
+
+<div className="working">
+  <img src={time} alt="" />
+<p className='work_text'>WORKING HOUR</p>
+</div>
+</div>
+
+
+</div>
     
-    <p>
-      Thank you for considering [Hospital Name] as your healthcare destination. Whether you need preventive care, managing a chronic condition, or facing a medical emergency, we are here for you, dedicated to providing the highest standard of care. Your health is our priority.
-    </p>
-    </div>
   );
 };
 

@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
-import Navbar from './navbar/Navbar';
-import Footer from './footer/Footer';  
-import Home from './pages/home/Home';  
-import Login from './pages/login/login';
-import Booking from './pages/booking/Booking';  
-import Contact from './pages/contact/Contact';  
-import About from './pages/about/About'; 
-import './navbar/Navbar.css';
-import './footer/Footer.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import { Route, BrowserRouter as Router, Routes, } from 'react-router-dom';
 import './app.css';
+import Footer from './footer/Footer';
+import './footer/Footer.css';
+import Header from './header/head';
+import './header/header.css';
+import Navbar from './navbar/Navbar';
+import './navbar/Navbar.css';
+import About from './pages/about/About';
+import Booking from './pages/booking/Booking';
+import Contact from './pages/contact/Contact';
+import Home from './pages/home/Home';
+import Login from './pages/login/login';
 
 const App: React.FC = () => {
 
@@ -18,6 +20,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <div>
+        <Header />
         <Navbar />
 
         <Routes>
@@ -29,7 +32,7 @@ const App: React.FC = () => {
         </Routes>
         
 
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );

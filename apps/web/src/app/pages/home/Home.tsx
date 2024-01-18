@@ -3,9 +3,12 @@ import image1 from '../../../../public/images/1.jpg';
 import image2 from '../../../../public/images/2.jpg';
 import image3 from '../../../../public/images/3.jpg';
 import image4 from '../../../../public/images/4.jpg';
+import background from '../../../../public/images/background.jpg';
+import landscape from '../../../../public/images/landscape.jpeg';
 import './Home.css'; // Import the CSS file
 import Card from '../../card/Card';
 import doc from '../../../../public/images/doc.jpg';
+
 
 const Home: React.FC = () => {
 
@@ -15,44 +18,37 @@ const Home: React.FC = () => {
     specialization: 'Dermatology.',
   });
 
+  
 
-  const [currentImage, setCurrentImage] = useState<number>(1);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentImage((prevImage) => (prevImage % 4) + 1); // Cycling through images 1 to 5
-    }, 8459);
-
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
-  }, []);
-
-  const getImageSource = () => {
-    // Replace this logic with the appropriate logic for your image sources
-    switch (currentImage) {
-      case 1:
-        return image1;
-      case 2:
-        return image2;
-      case 3:
-        return image3;
-      case 4:
-        return image4;
-      default:
-        return '';
-    }
-  };
-
+  
   return (
-    <div>
-      <h1 className="text-center">Welcome to Doctor's Appointment</h1>
-      <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img src={getImageSource()} className="img-slider" alt="..." />
-          </div>
-          {/* Add more carousel items as needed */}
-        </div>
-      </div>
+  <div className='home'>
+
+    <div className="home_img">
+    <img className='main_img' src={background} alt="" />
+    <div className="img_text">
+      <p className='caring'>Caring for Life</p>
+      <p className='leading'>Leading the Way <br />
+      in Medical Excellence</p>
+    </div>
+    </div>
+
+    <div className="intro">
+      <p className='welcome'>Welcome to Meddical</p>
+      <p className='welcome_two'>A Great Place to Receive Care</p>
+      <p className='welcome_content'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta aut excepturi <br /> atque earum provident quaerat sed labore vitae repudiandae <br /> qui quod  molestias ducimus numquam at consequatur fuga, nobis repellendus. </p> 
+
+      <img className='intro_img' src={landscape} alt="" />
+    </div>
+
+    <div className="service">
+      <p className='service_small'>Care you can believe in</p>
+      <p className='service_big'>Our Services</p>
+    </div>
+    
+
+      
       <div className='home-cards'>
         
         <Card 

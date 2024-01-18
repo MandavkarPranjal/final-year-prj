@@ -1,0 +1,65 @@
+.head{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+}
+
+.hospital{
+    margin-top: 10px;
+    font-size: x-large;
+}
+
+.number{
+    display: inline;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    margin-left: 750px;
+    margin-top: 10px; 
+}
+
+.num{
+    display: contents;
+}
+
+.phone{
+    font-size: 13px; 
+    color: #159EEC;
+}
+
+.work{
+    display: inline;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    margin-left: 40px;
+    margin-top: 10px; 
+}
+
+.hour{
+    display: contents;
+
+}
+
+.time{
+    font-size: 13px; 
+    color: #159EEC;
+}
+
+.address{
+    
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    margin-left: 40px;
+    margin-top: 10px; 
+}
+
+.location{
+    display: contents;
+}
+
+.main_add{
+    font-size: 13px; 
+    color: #159EEC;
+}
