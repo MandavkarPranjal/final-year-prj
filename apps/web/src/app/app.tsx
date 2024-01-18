@@ -21,7 +21,6 @@ const App: React.FC = () => {
     <Router>
       <div>
         <Navbar />
-
         <Routes>
         <Route path="/"  Component={Home} />
           <Route path="/login" Component={Login} />
@@ -29,8 +28,6 @@ const App: React.FC = () => {
           <Route path="/contact" Component={Contact} />
           <Route path="/about" Component={About} />
         </Routes>
-        
-
         <Footer />
       </div>
     </Router>
