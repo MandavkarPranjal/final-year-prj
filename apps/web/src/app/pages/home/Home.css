@@ -45,7 +45,7 @@
     color: #159EEC;
     text-align: center;
     font-family: "Work Sans";
-    font-size: 18px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -58,7 +58,7 @@
     color: var(--Primary, #1F2B6C);
     text-align: center;
     font-family: "Yeseva One";
-    font-size: 32px;
+    font-size: 38px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -68,7 +68,7 @@
     color: var(--Black, #212124);
     text-align: center;
     font-family: "Work Sans";
-    font-size: 20px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: 140%; 
@@ -76,9 +76,9 @@
 
 .intro_img{
     width: 1300px;
-    height: 400px;
-    margin-left: 100px;
-    border-radius: 25px;
+    height: 450px;
+    margin-left: 110px;
+    border-radius: 20px;
 }
 
 .service_small{
@@ -94,13 +94,89 @@
     margin-top: 40px;
 }
 
-.service_big{
+.service_small{
     color: var(--Primary, #1F2B6C);
     text-align: center;
     font-family: "Yeseva One";
     font-size: 32px;
     font-style: normal;
-    font-weight: 400;
     line-height: normal;
 }
 
+.serv1{
+    font-family: "Work Sans";
+font-size: 26px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+margin-left: 200px;
+font-size: 40px;
+}
+
+.sple{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.sple_img{
+    margin-left: 300px;
+}
+
+.abt_list{
+    display: block;
+    margin-left: 13px;
+    
+}
+
+.abt_list li{
+   list-style: disc;
+   color: #000000;
+   font-family: "Work Sans";
+   font-size: 22px;
+   font-style: normal;
+   font-weight: 450;
+   letter-spacing: 1.5px;
+   line-height: 35px;
+   line-height: 50px;
+}
+
+.abt_list2{
+    display: block;
+    margin-left: 50px;
+
+}
+
+.abt_list2 li{
+    list-style: disc;
+    color: #000;
+    font-family: "Work Sans";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 450;
+    letter-spacing: 1.5px;
+    line-height: 50px;
+ }
+
+ .serv2{
+    display: flex;
+    width: 600px;
+    margin-left: 190px;
+    font-size: 20px;
+ }
+
+ .sple_img2{
+    position:absolute;
+    top: 1850px;
+    left: 1070px;
+    height: 250px;
+    width: 327px;
+}
+
+.serv2_text2{
+    display: flex;
+    width: 600px;
+    margin-left: 190px;
+    font-size: 20px;
+}
+ 

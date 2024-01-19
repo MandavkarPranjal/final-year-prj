@@ -1,0 +1,129 @@
+.first_img{
+    position: absolute;
+    width: 1520px;
+    opacity: 0.5;
+}
+
+.service{
+    position: relative;
+    top: 126px;
+    left: 151px;
+    color: var(--Primary, #1F2B6C);
+font-family: "Yeseva One";
+font-size: 48px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin-left: 70px;
+
+}
+
+.content1{
+    margin-top: 300px;
+}
+
+.up{
+    display: flex;
+    margin-top: 70px;
+}
+
+.card_one{
+    margin-left: 50px;
+    height: 480px;
+    width: 300px;
+    margin-top: 0;
+    margin-left: 270px;
+    border: 1px solid #000000;
+    
+}
+
+.card_one img{
+    width: 296px;
+    height: 300px;
+}
+
+.free{
+    color: var(--Black, #1F2B6C);
+    font-family: "Work Sans";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; 
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.content{
+    color: var(--Black, #212124);
+    font-family: "Work Sans";
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.card_two{
+    margin-left: 50px;
+    height: 480px;
+    width: 300px;
+    margin-top: 0;
+    border: 1px solid #000000;
+}
+
+.card_two img{
+    width: 296px;
+    height: 300px;
+}
+
+.card_three{
+    margin-left: 50px;
+    height: 480px;
+    width: 300px;
+    border: 1px solid #000000;
+}
+
+.card_three img{
+    width: 296px;
+    height: 300px;
+}
+
+.always{
+    color: var(--Secondary, #159EEC);
+text-align: center;
+font-family: "Work Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+letter-spacing: 2.88px;
+text-transform: uppercase;
+margin-top: 140px;
+}
+
+.spl_text{
+    color: var(--Primary, #1F2B6C);
+text-align: center;
+font-family: "Yeseva One";
+font-size: 32px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.spl1{
+    display: flex;
+    margin-top: 70px;
+    justify-content: space-evenly;
+    margin-bottom: 100px;
+}
+
+.Neurology img{
+    height: 70px;
+}
+
+.neuro{
+    font-size: larger;
+    color: #212124;
+}
