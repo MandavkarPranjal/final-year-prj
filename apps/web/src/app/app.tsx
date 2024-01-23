@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
-import Navbar from './navbar/Navbar';
+import { Navbar } from './navbar/Navbar';
 import Footer from './footer/Footer';  
 import Home from './pages/home/Home';  
 import Login from './pages/login/login';
 import Booking from './pages/booking/Booking';  
 import Contact from './pages/contact/Contact';  
 import About from './pages/about/About'; 
-import './navbar/Navbar.css';
+import './navbar/style.sass';
 import './footer/Footer.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -16,11 +16,11 @@ const App: React.FC = () => {
 
 
   return (
-    <Router>
+    // <Router>
       <div>
         <Navbar />
 
-        <Routes>
+        {/* <Routes>
         <Route path="/"  Component={Home} />
           <Route path="/login" Component={Login} />
           <Route path="/booking" Component={Booking} />
@@ -29,9 +29,9 @@ const App: React.FC = () => {
         </Routes>
         
 
-        <Footer />
+        <Footer /> */}
       </div>
-    </Router>
+    // </Router>
   );
 };
 

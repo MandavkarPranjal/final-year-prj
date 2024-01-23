@@ -1,18 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button } from "../button/Button";
+import "./style.sass";
 
-const Navbar: React.FC = () => {
+export const Navbar = (): JSX.Element => {
   return (
-    <nav>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/login">Login</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/booking">Booking Appointment</Link></li>
-      </ul>
-    </nav>
+    <div className="navbar">
+      <div className="frame">
+        <div className="div">Home</div>
+        <div className="text-wrapper-2">About us</div>
+        <div className="text-wrapper-2">Services</div>
+        <div className="text-wrapper-2">Doctors</div>
+        <div className="text-wrapper-2">News</div>
+        <div className="text-wrapper-2">Contact</div>
+      </div>
+      <div className="group">
+        <img className="img" alt="Group" src="group-175.svg" />
+        <Button text="Appointment" />
+      </div>
+    </div>
   );
 };
-
-export default Navbar;
