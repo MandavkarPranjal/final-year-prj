@@ -15,6 +15,7 @@ import Home from './pages/home/Home';
 import Login from './pages/login/login';
 import Service from './pages/service/service';
 import './pages/service/service.css';
+import AppointmentForm from './form/Form';
 
 const App: React.FC = () => {
 
@@ -32,6 +33,7 @@ const App: React.FC = () => {
           <Route path="/contact" Component={Contact} />
           <Route path="/about" Component={About} />
           <Route path="/service" Component={Service} />
+          <Route path="/Form" Component={AppointmentForm} />
         </Routes>
         
 

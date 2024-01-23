@@ -7,7 +7,7 @@ nav {
   
   ul {
     list-style-type: none;
-    margin: 0;
+    margin-top: 15px;
     padding: 0;
     display: flex;
   }
@@ -19,17 +19,20 @@ nav {
   a {
     text-decoration: none;
     color: white;
-    font-weight: semi-bold;
+    font-weight: 600;
     font-size: 22px;
+    text-align: center;
   }
 
+
+  
   .book_btn{
     display: inline-flex;
-    padding: 13px 35px;
+    padding: 15px 30px;
     align-items: flex-start;
     gap: 10px;
     border-radius: 50px;
-    background: var(--Accent, #BFD2F8);
-    margin-left: 900px;
+    background: var(--Accent, #91afed);
+    margin-left: 785px;
+    font-weight: 600;
   }
-  
