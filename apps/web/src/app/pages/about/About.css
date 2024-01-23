@@ -3,9 +3,23 @@
 h1{
     font-family: 'Bebas Neue', sans-serif;
 }
+.main-div{
 
+    display: flex;
+   
+}
+.about-div{
+    display: flex;
+    width: 40%;
+   
+}
 .hospital-img{
-    width: 100%;
+    width: 40%;
+}
+    
+/* .hospital-img{
+    width: 100px;
     height: 50%;
     object-fit: cover;
-}
+} */
+

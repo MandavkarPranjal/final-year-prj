@@ -21,7 +21,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage % 4) + 1); // Cycling through images 1 to 5
-    }, 8459);
+    }, 3000);
 
     return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, []);
@@ -44,7 +44,7 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-center">Welcome to Doctor's Appointment</h1>
+      <h1 className="text-center">Welcome to Our Hospital</h1>
       <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner">
           <div className="carousel-item active">
