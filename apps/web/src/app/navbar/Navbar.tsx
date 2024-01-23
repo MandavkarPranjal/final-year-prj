@@ -1,7 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button } from "../button/Button";
+import "./style.sass";
 
-const Navbar: React.FC = () => {
+export const Navbar = (): JSX.Element => {
   return (
     <nav>
       <ul>
@@ -22,5 +23,3 @@ const Navbar: React.FC = () => {
     
   );
 };
-
-export default Navbar;

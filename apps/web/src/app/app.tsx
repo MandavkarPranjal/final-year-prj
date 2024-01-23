@@ -20,12 +20,12 @@ const App: React.FC = () => {
 
 
   return (
-    <Router>
+    // <Router>
       <div>
         <Header />
         <Navbar />
 
-        <Routes>
+        {/* <Routes>
         <Route path="/"  Component={Home} />
           <Route path="/login" Component={Login} />
           <Route path="/booking" Component={Booking} />
@@ -35,9 +35,9 @@ const App: React.FC = () => {
         </Routes>
         
 
-        <Footer />
+        <Footer /> */}
       </div>
-    </Router>
+    // </Router>
   );
 };
 
