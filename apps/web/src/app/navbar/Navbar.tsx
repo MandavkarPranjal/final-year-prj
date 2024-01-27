@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import the Link component from react-router-dom
 import { Button } from "../button/Button";
 import "./style.sass";
 
@@ -11,7 +12,6 @@ export const Navbar = (): JSX.Element => {
         <li><Link to="/contact">Contact</Link></li>
         <li><Link to="/about">About</Link></li>
         <li><Link to="/service">Service</Link></li>
-        
       </ul>
 
       <div className="book">

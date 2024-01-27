@@ -6,7 +6,7 @@ import Footer from './footer/Footer';
 import './footer/Footer.css';
 import Header from './header/head';
 import './header/header.css';
-import Navbar from './navbar/Navbar';
+import { Navbar } from './navbar/Navbar';
 import './navbar/Navbar.css';
 import About from './pages/about/About';
 import Booking from './pages/booking/Booking';
