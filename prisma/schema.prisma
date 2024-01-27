@@ -18,6 +18,6 @@ model appointment {
   age         Int
   gender      String
   phoneNumber String   @unique
-  // bookingDate DateTime
+  bookingDate String
   bookingTime String
 }
