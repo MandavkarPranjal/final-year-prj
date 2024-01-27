@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import './Form.css';
 import axios from 'axios';
 import { resolve } from 'path';
+import Rectangle from '../../../public/images/Rectangle.jpg';
 
 const validationSchema = yup.object({
 
@@ -37,12 +38,13 @@ const AppointmentForm: React.FC = ({}) => {
       age: '',
       gender: '',
       phoneNumber: '',
-      // bookingDate: '',
+      bookingDate: '',
       bookingTime: '',
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       // Handle form submission logic here
+      
       console.log(values);
       const response = await axios.post('http://localhost:3000/api/appointment', {
             firstName: values.firstName,
@@ -87,8 +89,14 @@ const AppointmentForm: React.FC = ({}) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <div className="super">
+    <div className='main-cont'>
+    <div className='form-container'>
+    <form className='form' onSubmit={handleSubmit}>
+
+      <div className="g-one">
+        <p className='headings'>Appointment Form</p>
+      <div className='firstNme'>
         <label htmlFor="firstName">First Name:</label>
         <input
           type="text"
@@ -100,7 +108,7 @@ const AppointmentForm: React.FC = ({}) => {
         {errors.firstName && <div>{errors.firstName}</div>}
       </div>
 
-      <div>
+      <div className='lastNme'>
         <label htmlFor="lastName">Last Name:</label>
         <input
           type="text"
@@ -112,7 +120,7 @@ const AppointmentForm: React.FC = ({}) => {
         {errors.lastName && <div>{errors.lastName}</div>}
       </div>
 
-      <div>
+      <div className='addres'>
         <label htmlFor="address">Address:</label>
         <input
           type="text"
@@ -124,7 +132,7 @@ const AppointmentForm: React.FC = ({}) => {
         {errors.address && <div>{errors.address}</div>}
       </div>
 
-      <div>
+      <div className='age'>
         <label htmlFor="age">Age:</label>
         <input
           type="text"
@@ -135,8 +143,10 @@ const AppointmentForm: React.FC = ({}) => {
         />
         {errors.age && <div>{errors.age}</div>}
       </div>
+      </div>
 
-      <div>
+    <div className="g-two">
+      <div className='gender'>
         <label htmlFor="gender">Gender:</label>
         <input
           type="text"
@@ -148,7 +158,7 @@ const AppointmentForm: React.FC = ({}) => {
         {errors.gender && <div>{errors.gender}</div>}
       </div>
 
-      <div>
+      <div className='phn'>
         <label htmlFor="phoneNumber">Phone Number:</label>
         <input
           type="text"
@@ -160,7 +170,7 @@ const AppointmentForm: React.FC = ({}) => {
         {errors.phoneNumber && <div>{errors.phoneNumber}</div>}
       </div>
 
-      {/* <div>
+      <div className='date'>
         <label htmlFor="bookingDate">Booking Date:</label>
         <input
           type="date"
@@ -170,9 +180,9 @@ const AppointmentForm: React.FC = ({}) => {
           value={values.bookingDate}
         />
         {errors.bookingDate && <div>{errors.bookingDate}</div>}
-      </div>  */}
+      </div> 
 
-       <div>
+       <div className='timeing'>
         <label htmlFor="bookingTime">Booking Time:</label>
         <select
           id="bookingTime"
@@ -187,9 +197,19 @@ const AppointmentForm: React.FC = ({}) => {
         </select>
         {errors.bookingTime && <div>{errors.bookingTime}</div>}
       </div>
+      </div>
+      
 
-      <button type="submit">Submit</button>
+
+      <button className='submit_btn' type="submit">Submit</button>
     </form>
+    </div>
+    <div className='img-container'>
+        <img className='book_img' src={Rectangle} alt="img" />
+    </div>
+
+    </div>
+    </div>
   );
 };
 
