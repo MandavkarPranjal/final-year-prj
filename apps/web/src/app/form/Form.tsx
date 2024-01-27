@@ -15,7 +15,7 @@ const validationSchema = yup.object({
   address: yup.string().required('Address is required'),
   gender: yup.string().required('Gender is required'),
   phoneNumber: yup.number().required('Phone Number is required'),
-  // bookingDate: yup.date().required('Booking Date is required').min(new Date(), 'Invalid Date'),
+  bookingDate: yup.date().required('Booking Date is required').min(new Date(), 'Invalid Date'),
   bookingTime: yup.string().required('Booking Time is required'),
 
 });
@@ -97,10 +97,10 @@ const AppointmentForm: React.FC = ({}) => {
       <div className="g-one">
         <p className='headings'>Appointment Form</p>
       <div className='firstNme'>
-        <label htmlFor="firstName">First Name:</label>
         <input
           type="text"
           id="firstName"
+          placeholder='First Name'
           name="firstName"
           onChange={handleChange}
           value={values.firstName}
@@ -109,10 +109,11 @@ const AppointmentForm: React.FC = ({}) => {
       </div>
 
       <div className='lastNme'>
-        <label htmlFor="lastName">Last Name:</label>
+
         <input
           type="text"
           id="lastName"
+          placeholder='Last Name'
           name="lastName"
           onChange={handleChange}
           value={values.lastName}
@@ -121,10 +122,11 @@ const AppointmentForm: React.FC = ({}) => {
       </div>
 
       <div className='addres'>
-        <label htmlFor="address">Address:</label>
+
         <input
           type="text"
           id="ad"
+          placeholder='Address'
           name="address"
           onChange={handleChange}
           value={values.address}
@@ -133,10 +135,10 @@ const AppointmentForm: React.FC = ({}) => {
       </div>
 
       <div className='age'>
-        <label htmlFor="age">Age:</label>
         <input
           type="text"
           id="age"
+          placeholder='Age'
           name="age"
           onChange={handleChange}
           value={values.age}
@@ -147,10 +149,11 @@ const AppointmentForm: React.FC = ({}) => {
 
     <div className="g-two">
       <div className='gender'>
-        <label htmlFor="gender">Gender:</label>
+        
         <input
           type="text"
           id="gender"
+          placeholder='Gender'
           name="gender"
           onChange={handleChange}
           value={values.gender}
@@ -159,10 +162,11 @@ const AppointmentForm: React.FC = ({}) => {
       </div>
 
       <div className='phn'>
-        <label htmlFor="phoneNumber">Phone Number:</label>
+        
         <input
           type="text"
           id="phoneNumber"
+          placeholder='Phone Number'
           name="phoneNumber"
           onChange={handleChange}
           value={values.phoneNumber}
@@ -171,10 +175,11 @@ const AppointmentForm: React.FC = ({}) => {
       </div>
 
       <div className='date'>
-        <label htmlFor="bookingDate">Booking Date:</label>
+
         <input
           type="date"
           id="bookingDate"
+      
           name="bookingDate"
           onChange={handleChange}
           value={values.bookingDate}
@@ -183,7 +188,7 @@ const AppointmentForm: React.FC = ({}) => {
       </div> 
 
        <div className='timeing'>
-        <label htmlFor="bookingTime">Booking Time:</label>
+
         <select
           id="bookingTime"
           name="bookingTime"

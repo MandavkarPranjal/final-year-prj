@@ -6,10 +6,9 @@ import Footer from './footer/Footer';
 import './footer/Footer.css';
 import Header from './header/head';
 import './header/header.css';
-import { Navbar } from './navbar/Navbar';
+import Navbar from './navbar/Navbar';
 import './navbar/Navbar.css';
 import About from './pages/about/About';
-import Booking from './pages/booking/Booking';
 import Contact from './pages/contact/Contact';
 import Home from './pages/home/Home';
 import Login from './pages/login/login';
@@ -29,7 +28,6 @@ const App: React.FC = () => {
         <Routes>
         <Route path="/"  Component={Home} />
           <Route path="/login" Component={Login} />
-          <Route path="/booking" Component={Booking} />
           <Route path="/contact" Component={Contact} />
           <Route path="/about" Component={About} />
           <Route path="/service" Component={Service} />
