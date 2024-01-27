@@ -11,6 +11,7 @@ class AppointmentDTO{
   age: number;
   gender: string;
   phoneNumber: string;
+  bookingDate: string;
   bookingTime: string;
 }
 
@@ -28,7 +29,7 @@ export class AppService {
     age: number,
     gender: string,
     phoneNumber: string,
-    // bookingDate: Date,
+    bookingDate: string,
     bookingTime: string
   }){
 

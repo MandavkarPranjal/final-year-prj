@@ -19,7 +19,7 @@ export class AppController {
     age: number,
     gender: string,
     phoneNumber: string,
-    // bookingDate: Date,
+    bookingDate: string,
     bookingTime: string
   }) {
     return this.appService.bookAnAppointment(data);
