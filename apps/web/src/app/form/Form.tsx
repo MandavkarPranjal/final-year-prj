@@ -53,6 +53,7 @@ const AppointmentForm: React.FC = ({}) => {
             age: Number(values.age),
             gender: values.gender,
             phoneNumber: values.phoneNumber,
+            bookingDate: values.bookingDate,
             bookingTime: values.bookingTime
       })
 
@@ -64,6 +65,7 @@ const AppointmentForm: React.FC = ({}) => {
   console.log(errors);
 
   const addAppointment = async (values: any) => {
+    console.log(values.bookingDate);
     if (typeof addAppointment === 'function') {
         addAppointment(values);
         // onClose();
@@ -78,6 +80,7 @@ const AppointmentForm: React.FC = ({}) => {
             age: Number(values.age),
             gender: values.gender,
             phoneNumber: values.phoneNumber,
+            bookingDate: values.bookingDate,
             bookingTime: values.bookingTime
         });
         console.log('Server response:', response.data);
