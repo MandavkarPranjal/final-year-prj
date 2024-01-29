@@ -1,59 +1,79 @@
 import React, { useState, useEffect } from 'react';
-import image1 from '../../../../public/images/1.jpg';
-import image2 from '../../../../public/images/2.jpg';
-import image3 from '../../../../public/images/3.jpg';
-import image4 from '../../../../public/images/4.jpg';
+import background from '../../../../public/images/background.jpg';
+import landscape from '../../../../public/images/landscape.jpeg';
+import Rectangle14 from '../../../../public/images/Rectangle14.jpg';
+import Rectangle34 from '../../../../public/images/Rectangle34.jpg';
 import './Home.css'; // Import the CSS file
-import Card from '../../card/Card';
-import doc from '../../../../public/images/doc.jpg';
-
-const Home: React.FC = () => {
-
-  const [userData, setUserData] = useState({
-    image: doc,
-    name: 'Dr.D.K Gupta',
-    specialization: 'Dermatology.',
-  });
 
 
-  const [currentImage, setCurrentImage] = useState<number>(1);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentImage((prevImage) => (prevImage % 4) + 1); // Cycling through images 1 to 5
-    }, 3000);
+ const Home: React.FC = () => {
 
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
-  }, []);
+//   const [userData, setUserData] = useState({
+//     image: doc,
+//     name: 'Dr.D.K Gupta',
+//     specialization: 'Dermatology.',
+//   });
 
-  const getImageSource = () => {
-    // Replace this logic with the appropriate logic for your image sources
-    switch (currentImage) {
-      case 1:
-        return image1;
-      case 2:
-        return image2;
-      case 3:
-        return image3;
-      case 4:
-        return image4;
-      default:
-        return '';
-    }
-  };
-
+  
   return (
-    <div>
-      <h1 className="text-center">Welcome to Our Hospital</h1>
-      <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img src={getImageSource()} className="img-slider" alt="..." />
-          </div>
-          {/* Add more carousel items as needed */}
-        </div>
-      </div>
-      <div className='home-cards'>
+  <div className='home'>
+
+    <div className="home_img">
+    <img className='main_img' src={background} alt="" />
+    <div className="img_text">
+      <p className='caring'>Caring for Life</p>
+      <p className='leading'>Leading the Way <br />
+      in Medical Excellence</p>
+    </div>
+    </div>
+
+    <div className="intro">
+      <p className='welcome'>Welcome to Meddical</p>
+      <p className='welcome_two'>A Great Place to Receive Care</p>
+      <p className='welcome_content'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta aut excepturi <br /> atque earum provident quaerat sed labore vitae repudiandae <br /> qui quod  molestias ducimus numquam at consequatur fuga, nobis repellendus. </p> 
+
+      <img className='intro_img' src={landscape} alt="" />
+    </div>
+        
+
+        <p className='service_small'>Care you can believe in</p>
+        <p className='service_small'>Our Services</p>
+
+
+        <div className="serv1">
+        <p>A passion for putting patients first.</p>
+        <div className="sple">
+<ul className='abt_list'>
+  <li>A Passion for Healing</li>
+  <li>5-Star Care</li>
+  <li>Always Caring</li>
+</ul>
+
+<ul className='abt_list2'>
+<li>A Legacy of Excellence</li>
+  <li>All our best</li>
+  <li>Believe in Us</li>
+</ul>
+<img className='sple_img' src={Rectangle14} alt="" />
+</div>
+
+</div>
+
+<div className="serv2">
+
+<p className='serv2_text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br /> Quisquam, voluptatum Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus nulla debitis molestiae minus eaque impedit quia porro, voluptatem exercitationem eveniet modi. Quia ipsam unde neque ipsum quibusdam. Eos, voluptatem laborum..</p>
+
+
+</div>
+<p className='serv2_text2'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic ipsa, earum vero molestiae incidunt inventore delectus, quo eum magni impedit voluptates nostrum perspiciatis consequatur reiciendis non, similique asperiores magnam odit.</p>
+<img className='sple_img2' src={Rectangle14} alt="" />
+
+ 
+    
+
+      
+      {/* <div className='home-cards'>
         
         <Card 
             image={userData.image}
@@ -78,9 +98,9 @@ const Home: React.FC = () => {
             name={userData.name}
             specialization={userData.specialization}
           />
-      </div>
+      </div> */}
     </div>
   );
-};
+ };
 
 export default Home;

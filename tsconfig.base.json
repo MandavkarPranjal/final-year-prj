@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@hms/api/form": ["api/form/src/index.ts"],
+      "@hms/form": ["form/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

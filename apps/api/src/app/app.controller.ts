@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 
 import { AppService } from './app.service';
 
@@ -6,8 +6,25 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
+  @Get('all')
   getData() {
     return this.appService.getData();
   }
+
+  @Post('appointment')
+  bookAnAppointment(@Body() data:{
+    firstName: string,
+    lastName: string,
+    address: string,
+    age: number,
+    gender: string,
+    phoneNumber: string,
+    bookingDate: string,
+    bookingTime: string
+  }) {
+    return this.appService.bookAnAppointment(data);
+  }
+
+
+  
 }
