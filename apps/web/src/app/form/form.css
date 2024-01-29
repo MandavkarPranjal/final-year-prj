@@ -17,7 +17,7 @@ body{
   }
   
   input {
-    width: 220px;
+    width: 300px;
     height: 40px;
     padding: 8px;
     border: 1px solid #ccc;
@@ -39,7 +39,7 @@ body{
   }
 
   .headings{
-    margin-left: 200px;
+    margin-left: 168px;
     font-size: 40px;
     
   }
@@ -47,78 +47,53 @@ body{
   .firstNme{
   
     display: inline-block;
-    margin-left: 90px;
-    margin-right: 60px;
+    margin-left: 20px;
+    margin-right: 25px;
     margin-top: 20px;
-    /* font-size: large;
-    position: relative; */
-    left: 100px;
   }
 
   .lastNme{
-    
+    margin-top: 20px;
     display: inline-block;
-    /* position: absolute;
-    font-size: large;
-    left: 420px;
-    top: 219px; */
   }
 
   .addres{
-    /* position: relative;
-    top: 30px;
-    left: 100px;*/
-    margin-left: 90px; 
-    margin-right: 60px;
+    margin-left: 20px; 
+    margin-right: 25px;
     display: inline-block;
     font-size: large;
   }
   
   .age{
-    /* position: absolute;
-    left: 420px;
-    top: 370px; */
     display: inline-block;
     font-size: large;
   }
 
   .gender{
-    /* position: relative;
-    left: 100px;
-    top: 50px; */
     display: inline-block;
-    margin-left: 90px;
-    margin-right: 60px;
+    margin-left: 20px;
+    margin-right: 25px;
     font-size: large;
   }
 
   .phn{
-    /* position: absolute;
-    left: 420px;
-    top:470px; */
     display: inline-block;
     font-size: large;
   }
 
   .timeing{
-    /* position: relative;
-    left: 100px;
-    top:80px;
-    margin-bottom: 150px; */
     display: inline-block;
     font-size: large;
-    
   }
 
   .date{
     display: inline-block;
-    margin-left: 90px;
-    margin-right: 60px;
+    margin-left: 20px;
+    margin-right: 25px;
 
   }
 
   .submit_btn{
-    
     margin-left: 180px;
     font-size: large;
     width: 300px;
@@ -138,14 +113,10 @@ body{
     background-color: white;
     width: 700px;
     height: 550px;
-    margin-top: 10px;
+    margin-top: 20px;
    margin-left: 120px;
   }
 
-  :after:form-container
-  {
-    height: 750px;
-  }
 
   .img-container{
     margin-top: 20px;
@@ -160,4 +131,5 @@ body{
   .g-two{
     display: block;
     margin-left: 13px;
+    margin-top: -18px;
   }
