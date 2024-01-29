@@ -14,7 +14,7 @@ const validationSchema = yup.object({
   age: yup.number().positive('Age must be a positive number').integer('Age must be an integer').required('Age is required'),
   address: yup.string().required('Address is required'),
   gender: yup.string().required('Gender is required'),
-  phoneNumber: yup.number().required('Phone Number is required').min(1000000000, 'Phone Number must be at least 10 digits')
+  phoneNumber: yup.number().required('Phone Number is required').min(1000000000, 'Phone Number must be at least 10 digits').max(9999999999, 'must contain 10 digits Only')
 
   ,
   bookingDate: yup.date().required('Booking Date is required').min(new Date(), 'Invalid Date'),
