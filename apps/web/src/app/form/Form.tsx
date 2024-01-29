@@ -14,7 +14,9 @@ const validationSchema = yup.object({
   age: yup.number().positive('Age must be a positive number').integer('Age must be an integer').required('Age is required'),
   address: yup.string().required('Address is required'),
   gender: yup.string().required('Gender is required'),
-  phoneNumber: yup.number().required('Phone Number is required'),
+  phoneNumber: yup.number().required('Phone Number is required').min(1000000000, 'Phone Number must be at least 10 digits')
+
+  ,
   bookingDate: yup.date().required('Booking Date is required').min(new Date(), 'Invalid Date'),
   bookingTime: yup.string().required('Booking Time is required'),
 
@@ -30,7 +32,7 @@ const timeSlots = [
 ];
 
 const AppointmentForm: React.FC = ({}) => {
-  const  {values,errors,touched,handleChange,handleSubmit}= useFormik({
+  const  {values,errors,touched,handleChange ,handleBlur,handleSubmit,setTouched}= useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
@@ -42,7 +44,11 @@ const AppointmentForm: React.FC = ({}) => {
       bookingTime: '',
     },
     validationSchema: validationSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values ,{ resetForm }) => {
+
+        setTouched({});
+        await addAppointment(values);
+        resetForm();
       // Handle form submission logic here
       
       console.log(values);
@@ -103,9 +109,12 @@ const AppointmentForm: React.FC = ({}) => {
           placeholder='First Name'
           name="firstName"
           onChange={handleChange}
+          onBlur={() => handleBlur('firstName')}
           value={values.firstName}
         />
-        {errors.firstName && <div>{errors.firstName}</div>}
+        {/* {errors.firstName && <div>{errors.firstName}</div>} */}
+        {touched.firstName && errors.firstName && <div>{errors.firstName}</div>}
+
       </div>
 
       <div className='lastNme'>
@@ -116,9 +125,11 @@ const AppointmentForm: React.FC = ({}) => {
           placeholder='Last Name'
           name="lastName"
           onChange={handleChange}
+          onBlur={() => handleBlur('lastName')}
           value={values.lastName}
         />
-        {errors.lastName && <div>{errors.lastName}</div>}
+        {/* {errors.lastName && <div>{errors.lastName}</div>} */}
+        {touched.lastName && errors.lastName && <div>{errors.lastName}</div>}
       </div>
 
       <div className='addres'>
@@ -129,9 +140,12 @@ const AppointmentForm: React.FC = ({}) => {
           placeholder='Address'
           name="address"
           onChange={handleChange}
+          onBlur={() => handleBlur('address')}
           value={values.address}
         />
-        {errors.address && <div>{errors.address}</div>}
+        {/* {errors.address && <div>{errors.address}</div>} */}
+        {touched.address && errors.address && <div>{errors.address}</div>}
+
       </div>
 
       <div className='age'>
@@ -141,9 +155,11 @@ const AppointmentForm: React.FC = ({}) => {
           placeholder='Age'
           name="age"
           onChange={handleChange}
+          onBlur={() => handleBlur('age')}
           value={values.age}
         />
-        {errors.age && <div>{errors.age}</div>}
+        {/* {errors.age && <div>{errors.age}</div>} */}
+        {touched.age && errors.age && <div>{errors.age}</div>}
       </div>
       </div>
 
@@ -156,9 +172,12 @@ const AppointmentForm: React.FC = ({}) => {
           placeholder='Gender'
           name="gender"
           onChange={handleChange}
+          onBlur={() => handleBlur('gender')}
           value={values.gender}
         />
-        {errors.gender && <div>{errors.gender}</div>}
+        {/* {errors.gender && <div>{errors.gender}</div>} */}
+        {touched.gender && errors.gender && <div>{errors.gender}</div>}
+
       </div>
 
       <div className='phn'>
@@ -169,9 +188,11 @@ const AppointmentForm: React.FC = ({}) => {
           placeholder='Phone Number'
           name="phoneNumber"
           onChange={handleChange}
+          onBlur={() => handleBlur('phoneNumber')}
           value={values.phoneNumber}
         />
-        {errors.phoneNumber && <div>{errors.phoneNumber}</div>}
+        {/* {errors.phoneNumber && <div>{errors.phoneNumber}</div>} */}
+        {touched.phoneNumber && errors.phoneNumber && <div>{errors.phoneNumber}</div>}
       </div>
 
       <div className='date'>
@@ -179,12 +200,13 @@ const AppointmentForm: React.FC = ({}) => {
         <input
           type="date"
           id="bookingDate"
-      
           name="bookingDate"
           onChange={handleChange}
+          onBlur={() => handleBlur('bookingDate')}
           value={values.bookingDate}
         />
-        {errors.bookingDate && <div>{errors.bookingDate}</div>}
+        {/* {errors.bookingDate && <div>{errors.bookingDate}</div>} */}
+        {touched.bookingDate && errors.bookingDate && <div>{errors.bookingDate}</div>}
       </div> 
 
        <div className='timeing'>
@@ -193,6 +215,7 @@ const AppointmentForm: React.FC = ({}) => {
           id="bookingTime"
           name="bookingTime"
           onChange={handleChange}
+          onBlur={() => handleBlur('bookingTime')}
           value={values.bookingTime}
         >
           <option value="" disabled>Select a time</option>
@@ -200,7 +223,9 @@ const AppointmentForm: React.FC = ({}) => {
             <option key={slot} value={slot}>{slot}</option>
           ))}
         </select>
-        {errors.bookingTime && <div>{errors.bookingTime}</div>}
+        {/* {errors.bookingTime && <div>{errors.bookingTime}</div>} */}
+        {touched.bookingTime && errors.bookingTime && <div>{errors.bookingTime}</div>}
+
       </div>
       </div>
       
