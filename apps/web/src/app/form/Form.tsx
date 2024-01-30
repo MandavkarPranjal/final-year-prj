@@ -68,7 +68,7 @@ const AppointmentForm: React.FC = ({}) => {
     onSubmit: async (values, { resetForm }) => {
       setTouched({});
       //  await addAppointment(values);
-      resetForm();
+      resetForm();+3
       // Handle form submission logic here
 
       console.log(values);
