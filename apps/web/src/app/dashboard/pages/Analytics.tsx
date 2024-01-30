@@ -29,7 +29,7 @@ export default function Analytics() {
                       <CardContent>
                         <Typography
                           gutterBottom
-                          variant="p"
+                          variant="body1"
                           component="div"
                           sx={{ color: "#f0fcfc", padding: "7px 0px" }}
                         >
@@ -59,7 +59,7 @@ export default function Analytics() {
                       <CardContent>
                         <Typography
                           gutterBottom
-                          variant="p"
+                          variant="body1"
                           component="div"
                           sx={{ color: "#f0fcfc", padding: "7px 0px" }}
                         >
@@ -88,7 +88,7 @@ export default function Analytics() {
                       <CardContent>
                         <Typography
                           gutterBottom
-                          variant="p"
+                          variant="body1"
                           component="div"
                           sx={{ color: "#f0fcfc", padding: "7px 0px" }}
                         >
@@ -118,7 +118,7 @@ export default function Analytics() {
                       <CardContent>
                         <Typography
                           gutterBottom
-                          variant="p"
+                          variant="body1"
                           component="div"
                           sx={{ color: "#f0fcfc", padding: "7px 0px" }}
                         >

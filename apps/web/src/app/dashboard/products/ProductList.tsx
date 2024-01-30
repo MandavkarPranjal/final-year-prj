@@ -13,15 +13,15 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import { db } from "../firebase-config";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
+// import { db } from "../firebase-config";
+// import {
+//   collection,
+//   getDocs,
+//   addDoc,
+//   updateDoc,
+//   deleteDoc,
+//   doc,
+// } from "firebase/firestore";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Swal from "sweetalert2";
@@ -51,7 +51,7 @@ export default function ProductsList() {
   // const [rows, setRows] = useState([]);
   const rows = useAppStore((state) => state.rows);
   const setRows = useAppStore((state) => state.setRows);
-  const empCollectionRef = collection(db, "products");
+  // const empCollectionRef = collection(db, "products");
 
   const [formid, setFormid] = useState("");
   const [open, setOpen] = useState(false);
@@ -61,65 +61,69 @@ export default function ProductsList() {
   const handleClose = () => setOpen(false);
   const handleEditClose = () => setEditOpen(false);
 
-  useEffect(() => {
-    getUsers();
-  }, []);
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
 
-  const getUsers = async () => {
-    const data = await getDocs(empCollectionRef);
-    setRows(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
+  // const getUsers = async () => {
+  //   const data = await getDocs(empCollectionRef);
+  //   setRows(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  // };
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (event: any, newPage: any) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = (event: any) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
-  const deleteUser = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.value) {
-        deleteApi(id);
-      }
-    });
-  };
+  function filterData(v: null): void {
+    throw new Error("Function not implemented.");
+  }
 
-  const deleteApi = async (id) => {
-    const userDoc = doc(db, "products", id);
-    await deleteDoc(userDoc);
-    Swal.fire("Deleted!", "Your file has been deleted.", "success");
-    getUsers();
-  };
+  // const deleteUser = (id: any) => {
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, delete it!",
+  //   }).then((result) => {
+  //     if (result.value) {
+  //       deleteApi(id);
+  //     }
+  //   });
+  // };
 
-  const filterData = (v) => {
-    if (v) {
-      setRows([v]);
-    } else {
-      getUsers();
-    }
-  };
+  // const deleteApi = async (id) => {
+  //   const userDoc = doc(db, "products", id);
+  //   await deleteDoc(userDoc);
+  //   Swal.fire("Deleted!", "Your file has been deleted.", "success");
+  //   getUsers();
+  // };
 
-  const editData = (id, name, price, category) => {
-    const data = {
-      id: id,
-      name: name,
-      price: price,
-      category: category
-    };
-    setFormid(data);
-    handleEditOpen();
-  };
+  // const filterData = (v) => {
+  //   if (v) {
+  //     setRows([v]);
+  //   } else {
+  //     getUsers();
+  //   }
+  // };
+
+  // const editData = (id, name, price, category) => {
+  //   const data = {
+  //     id: id,
+  //     name: name,
+  //     price: price,
+  //     category: category
+  //   };
+  //   setFormid(data);
+  //   handleEditOpen();
+  // };
 
   return (
     <>
@@ -164,8 +168,8 @@ export default function ProductsList() {
               id="combo-box-demo"
               options={rows}
               sx={{ width: 300 }}
-              onChange={(e, v) => filterData(v)}
-              getOptionLabel={(rows) => rows.name || ""}
+              // onChange={(e, v) => filterData(v)}
+              // getOptionLabel={(rows) => rows.name || ""}
               renderInput={(params) => (
                 <TextField {...params} size="small" label="Search Products" />
               )}
@@ -209,43 +213,52 @@ export default function ProductsList() {
                 {rows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
+                    function editData(id: any, name: any, price: any, category: any) {
+                      throw new Error("Function not implemented.");
+                    }
+
+                    function deleteUser(id: any) {
+                      throw new Error("Function not implemented.");
+                    }
+
                     return (
-                      <TableRow
-                        hover
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={row.code}
-                      >
-                        <TableCell align="left">{row.name}</TableCell>
-                        <TableCell align="left">{String(row.price)}</TableCell>
-                        <TableCell align="left">{row.category}</TableCell>
-                        <TableCell align="left">{String(row.date)}</TableCell>
-                        <TableCell align="left">
-                          <Stack spacing={2} direction="row">
-                            <EditIcon
-                              style={{
-                                fontSize: "20px",
-                                color: "blue",
-                                cursor: "pointer",
-                              }}
-                              className="cursor-pointer"
-                              onClick={() => {
-                                editData(row.id, row.name, row.price, row.category);
-                              }}
-                            />
-                            <DeleteIcon
-                              style={{
-                                fontSize: "20px",
-                                color: "darkred",
-                                cursor: "pointer",
-                              }}
-                              onClick={() => {
-                                deleteUser(row.id);
-                              }}
-                            />
-                          </Stack>
-                        </TableCell>
-                      </TableRow>
+                      <></>
+                      // <TableRow
+                      //   hover
+                      //   role="checkbox"
+                      //   tabIndex={-1}
+                      //   key={row.code}
+                      // >
+                      //   <TableCell align="left">{row.name}</TableCell>
+                      //   <TableCell align="left">{String(row.price)}</TableCell>
+                      //   <TableCell align="left">{row.category}</TableCell>
+                      //   <TableCell align="left">{String(row.date)}</TableCell>
+                      //   <TableCell align="left">
+                      //     <Stack spacing={2} direction="row">
+                      //       <EditIcon
+                      //         style={{
+                      //           fontSize: "20px",
+                      //           color: "blue",
+                      //           cursor: "pointer",
+                      //         }}
+                      //         className="cursor-pointer"
+                      //         onClick={() => {
+                      //           editData(row.id, row.name, row.price, row.category);
+                      //         }}
+                      //       />
+                      //       <DeleteIcon
+                      //         style={{
+                      //           fontSize: "20px",
+                      //           color: "darkred",
+                      //           cursor: "pointer",
+                      //         }}
+                      //         onClick={() => {
+                      //           deleteUser(row.id);
+                      //         }}
+                      //       />
+                      //     </Stack>
+                      //   </TableCell>
+                      // </TableRow>
                     );
                   })}
               </TableBody>

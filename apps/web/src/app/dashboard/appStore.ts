@@ -1,12 +1,18 @@
 import create from "zustand";
 import { persist } from "zustand/middleware";
 
-let appStore = (set) => ({
+interface AppStoreState {
+  dopen: boolean;
+  rows: any[];
+  setRows: (rows: any[]) => void;
+  updateDopen: (dopen: boolean) => void;
+}
+
+const appStore = persist<AppStoreState>((set) => ({
   dopen: true,
   rows: [],
-  setRows: (rows) => set((state) => ({ rows: rows })),
-  updateDopen: (dopen) => set((state) => ({ dopen: dopen })),
-});
+  setRows: (rows) => set((state) => ({ ...state, rows })),
+  updateDopen: (dopen) => set((state) => ({ ...state, dopen })),
+}), { name: "cdot_store_api" });
 
-appStore = persist(appStore, { name: "cdot_store_api" });
 export const useAppStore = create(appStore);

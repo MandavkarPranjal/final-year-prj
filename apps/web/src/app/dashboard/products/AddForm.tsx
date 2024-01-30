@@ -8,34 +8,34 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import InputAdornment from "@mui/material/InputAdornment";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
-import { collection, addDoc, getDocs } from "firebase/firestore";
-import { db } from "../firebase-config";
+// import { collection, addDoc, getDocs } from "firebase/firestore";
+// import { db } from "../firebase-config";
 import Swal from "sweetalert2";
 import { useAppStore } from "../appStore";
 
-export default function AddForm({ closeEvent }) {
+export default function AddForm({ closeEvent }: { closeEvent: () => void }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
-  const empCollectionRef = collection(db, "products");
+  // const empCollectionRef = collection(db, "products");
   const setRows = useAppStore((state) => state.setRows);
 
-  const createUser = async () => {
-    await addDoc(empCollectionRef, {
-      name: name,
-      price: Number(price),
-      category: category,
-      date: String(new Date()),
-    });
-    getUsers();
-    closeEvent();
-    Swal.fire("Submitted!", "Your file has been submitted.", "success");
-  };
+  // const createUser = async () => {
+  //   await addDoc(empCollectionRef, {
+  //     name: name,
+  //     price: Number(price),
+  //     category: category,
+  //     date: String(new Date()),
+  //   });
+  //   getUsers();
+  //   closeEvent();
+  //   Swal.fire("Submitted!", "Your file has been submitted.", "success");
+  // };
 
-  const getUsers = async () => {
-    const data = await getDocs(empCollectionRef);
-    setRows(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
+  // const getUsers = async () => {
+  //   const data = await getDocs(empCollectionRef);
+  //   setRows(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  // };
 
   const currencies = [
     {
@@ -56,15 +56,15 @@ export default function AddForm({ closeEvent }) {
     },
   ];
 
-  const handleNameChange = (event) => {
+  const handleNameChange = (event: any) => {
     setName(event.target.value);
   };
 
-  const handlePriceChange = (event) => {
+  const handlePriceChange = (event: any) => {
     setPrice(event.target.value);
   };
 
-  const handleCategoryChange = (event) => {
+  const handleCategoryChange = (event: any) => {
     setCategory(event.target.value);
   };
 
@@ -132,7 +132,7 @@ export default function AddForm({ closeEvent }) {
         </Grid>
         <Grid item xs={12}>
           <Typography variant="h5" align="center">
-            <Button variant="contained" onClick={createUser}>
+            <Button variant="contained" /*onClick={createUser}*/>
               Submit
             </Button>
           </Typography>

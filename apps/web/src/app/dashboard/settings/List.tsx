@@ -38,7 +38,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
     fontSize: theme.typography.pxToRem(15),
     marginRight: theme.spacing(1),
     color: "#141414",
-    fontWeight: "400",
+    // fontWeight: "400",
     "&.Mui-selected": {
       color: "#0c828f",
     },
@@ -48,7 +48,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
   })
 );
 
-function TabPanel(props) {
+function TabPanel(props: { [x: string]: any; children: any; value: any; index: any; }) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -74,7 +74,7 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-function a11yProps(index) {
+function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
@@ -84,7 +84,7 @@ function a11yProps(index) {
 export default function List() {
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (event: any, newValue: React.SetStateAction<number>) => {
     setValue(newValue);
   };
 

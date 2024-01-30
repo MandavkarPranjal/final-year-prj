@@ -54,7 +54,7 @@ export default function Account() {
     },
   ];
 
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     setState({
       ...state,
       [event.target.name]: event.target.checked,
