@@ -44,7 +44,7 @@ const timeSlots = [
   // Add more time slots as needed
 ];
 
-const AppointmentForm: React.FC = ({}) => {
+const AppointmentForm: React.FC = ({ }) => {
   const {
     values,
     errors,

@@ -5,6 +5,7 @@ body{
 
 .form{ 
     height: 500px;
+    
   }
   
   div {
@@ -104,17 +105,21 @@ body{
   }
   
 .main-cont{
-  display: flex 
+  display: flex;
+  background-color: #c6dcf3;
 }
 
   .form-container{
     display: inline;
-    border: #0056b3 2px solid;
-    background-color: white;
+    border: #000000 2px solid;
+    /* background-image: url('https://img.freepik.com/premium-vector/light-blue-background-sky-blue-background_851674-52.jpg'); */
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    border-radius: 10px;
     width: 700px;
     height: 550px;
     margin-top: 20px;
-   margin-left: 120px;
+    margin-left: 120px;
   }
 
 
