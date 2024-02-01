@@ -10,8 +10,6 @@ const service: React.FC = () => {
             <img className="first_img" src={service1} alt="" />
             <p className="service">Our Services</p>
 
-            
-
             <div className="content1">
         <div className="up">
                 <div className="card_one">
@@ -44,7 +42,6 @@ const service: React.FC = () => {
             <div className="main_serv">
         <p className="always">Always caring</p>
         <p className="spl_text">Our Specialties</p>
-
 
         <div className="spl1">
 
@@ -94,16 +91,11 @@ const service: React.FC = () => {
 
             </div>
 
-
             </div>
-
-
 
           
         </div>
     );
 };
-
-
 
 export default service;

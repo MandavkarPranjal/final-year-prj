@@ -5,7 +5,6 @@
 // import Analytics from "./pages/Analytics";
 // import Settings from "./pages/Settings";
 
-
 // export default function Dashboard() {
 //   return (
 //    <>
@@ -23,23 +22,26 @@
 
 
 import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Home from './pages/Home';
+import { Routes, Route, BrowserRouter, Link} from 'react-router-dom';
+import dashHome from './pages/dashHome';
 import Products from './pages/Products';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
+import Home from '@mui/icons-material/Home';
 
 const Dashboard: React.FC = () => {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/settings" element={<Settings />} />
-        </Routes>
-      </BrowserRouter>
+    <h1>this is Dashboard</h1>
+    
+    
+          <ul>
+            <li><Link to="/home">Home</Link></li>
+            <li><Link to="/home">Home</Link></li>
+            <li><Link to="/home">Home</Link></li>
+            <li><Link to="/home">Home</Link></li>
+          </ul>
+        
     </>
   );
 };

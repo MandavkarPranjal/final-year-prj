@@ -158,9 +158,10 @@ import CreditCardIcon from "@mui/icons-material/CreditCard";
 import VBarChart from "../charts/VBarChart";
 import CountUp from 'react-countup';
 
-export default function Home(): JSX.Element {
-  return (
+export default function dashHome(): JSX.Element {
+  return (  
     <>
+    {/* <h1>Inside dashboard home</h1> */}
       <div className="bgcolor">
         <Navbar />
         <Box height={70} />

@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import the Link component from react-router-dom
+import { Link } from "react-router-dom";
 import { Button } from "../button/Button";
 import "./style.sass";
-import Dashboard from "../dashboard/dashboard";
+
 
 export const Navbar = (): JSX.Element => {
   return (
@@ -15,12 +15,13 @@ export const Navbar = (): JSX.Element => {
         <li><Link to="/service">Service</Link></li>
         <li><Link to="/dashboard">Dashboard</Link></li>
       </ul>
+      
       <div className="book">
         <button className="book_btn">Book Appointment</button>
       </div>
 
     </nav>
 
-    
+
   );
 };
