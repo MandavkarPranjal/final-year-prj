@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Navbar from "../components/Navbar";
 import List from "../settings/List";
 
-export default function Settings() {
+export default function Settings(): JSX.Element  {
   return (
     <>
       <div className="bgcolor">

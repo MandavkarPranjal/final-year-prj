@@ -8,6 +8,7 @@ import Header from './header/head';
 import './header/header.css';
 import { Navbar } from './navbar/Navbar';
 import './navbar/Navbar.css';
+import Dashboard from './dashboard/dashboard';
 import About from './pages/about/About';
 import Booking from './pages/booking/Booking';
 import Contact from './pages/contact/Contact';
@@ -20,24 +21,25 @@ const App: React.FC = () => {
 
 
   return (
-    // <Router>
+    <Router>
       <div>
         <Header />
         <Navbar />
 
-        {/* <Routes>
+        <Routes>
         <Route path="/"  Component={Home} />
           <Route path="/login" Component={Login} />
           <Route path="/booking" Component={Booking} />
           <Route path="/contact" Component={Contact} />
           <Route path="/about" Component={About} />
           <Route path="/service" Component={Service} />
+          <Route path='/dashboard'Component={Dashboard}/>
         </Routes>
         
 
-        <Footer /> */}
+        <Footer />
       </div>
-    // </Router>
+    </Router>
   );
 };
 
