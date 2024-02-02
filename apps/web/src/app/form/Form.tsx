@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import './Form.css';
 import axios from 'axios';
 import { resolve } from 'path';
-import Rectangle from './../../public/images/Rectangle.jpg';
+import Rectangle from '../../../public/images/Rectangle.jpg';
 
 const validationSchema = yup.object({
   firstName: yup

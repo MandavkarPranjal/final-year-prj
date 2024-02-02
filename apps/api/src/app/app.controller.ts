@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
+  @Get('all')
   getData() {
     return this.appService.getData();
   }
@@ -24,4 +24,7 @@ export class AppController {
   }) {
     return this.appService.bookAnAppointment(data);
   }
+
+
+  
 }

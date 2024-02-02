@@ -1,0 +1,140 @@
+Add this CSS to your component or include it in your global styles
+body{
+  width: auto;
+}
+
+.form{ 
+    height: 500px;
+    
+  }
+  
+  div {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: flex;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 300px;
+    height: 40px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #e3e7f6;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .headings{
+    margin-left: 168px;
+    font-size: 40px;
+    
+  }
+
+  .firstNme{
+  
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 25px;
+    margin-top: 20px;
+  }
+
+  .lastNme{
+    margin-top: 20px;
+    display: inline-block;
+  }
+
+  .addres{
+    margin-left: 20px; 
+    margin-right: 25px;
+    display: inline-block;
+    font-size: large;
+  }
+  
+  .age{
+    display: inline-block;
+    font-size: large;
+  }
+
+  .gender{
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 25px;
+    font-size: large;
+  }
+
+  .phn{
+    display: inline-block;
+    font-size: large;
+  }
+
+  .timeing{
+    display: inline-block;
+    font-size: large;
+  }
+
+  .date{
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 25px;
+
+  }
+
+  .submit_btn{
+    margin-left: 180px;
+    font-size: large;
+    width: 300px;
+  }
+
+  .book_img{
+    height: 540px;
+  }
+  
+.main-cont{
+  display: flex;
+  background-color: #c6dcf3;
+}
+
+  .form-container{
+    display: inline;
+    border: #000000 2px solid;
+    /* background-image: url('https://img.freepik.com/premium-vector/light-blue-background-sky-blue-background_851674-52.jpg'); */
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    border-radius: 10px;
+    width: 700px;
+    height: 550px;
+    margin-top: 20px;
+    margin-left: 120px;
+  }
+
+
+  .img-container{
+    margin-top: 20px;
+    margin-left: 100px;
+  }
+  
+  .g-one{
+    display: block;
+    margin-left: 13px;
+  }
+
+  .g-two{
+    display: block;
+    margin-left: 13px;
+    margin-top: -18px;
+  }

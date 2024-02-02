@@ -13,13 +13,13 @@ class AppointmentDTO{
   phoneNumber: string;
   bookingDate: string;
   bookingTime: string;
-
 }
 
 @Injectable()
 export class AppService {
-  getData(): { message: string } {
-    return { message: 'Hello API' };
+  async getData(){
+    const appointment : AppointmentDTO[] = await prisma.appointment.findMany();
+    return appointment;
   }
 
   async bookAnAppointment(data: {
@@ -37,7 +37,7 @@ export class AppService {
         data: data
     })
 
-    console.log('Appointment created')
+    console.log('Appointment Booked')
 
     return patient;
   }
