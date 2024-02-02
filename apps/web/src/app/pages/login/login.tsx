@@ -7,6 +7,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
+import signin from '../../../../public/images/signin.png';
 
 type Login = {
   email: string;
@@ -49,7 +50,7 @@ const Login = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit: SubmitHandler<Login> = async (values) => {
+  const onSubmit: SubmitHandler<Login> = async (values : any) => {
     try {
       await verifyLogin(values.email, values.password, navigate);
     } catch (error) {
@@ -62,17 +63,15 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div>
-        {/* <img src={logo} alt="Logo" className="logo" /> */}
-      </div>
+    <div >
+      <div className="signup-body">
       <form className="Signin-Form" onSubmit={handleSubmit(onSubmit)}>
         <div className="login-head">
           <Typography variant="h3">Sign in</Typography>
         </div>
         <br />
         <div className="sub-head">
-          {/* <p>Please login to continue to your account.</p> */}
+          
         </div>
         <div className="button-row">
           <TextField
@@ -98,6 +97,8 @@ const Login = () => {
           </Button>
         </div>
       </form>
+
+      </div>
     </div>
   );
 };

@@ -13,7 +13,7 @@ const Contact: React.FC = () => {
       <div className="full-form">
       <input
           type="text"
-          id="firstName"
+          id="firstName1"
           placeholder="First Name"
           name="firstName"  
       />
