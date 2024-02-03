@@ -1,23 +1,22 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
-import Dashboard from './dashboard/dashboard';
-import NxWelcome from './nx-welcome';
-
-import { Route, BrowserRouter as Router ,Routes, Link} from 'react-router-dom';
-
+import { ColorModeContext, useMode } from "./theme";
+import { CssBaseline, ThemeProvider } from "@mui/material"; // Import the Theme type
+import Topbar from "./global/topbar/topbar";
 export function App() {
-  return (
-    <Router>
-      {/* <NxWelcome title='pranjal'/> */}
-      <Dashboard />
-      {/* <div>
-        <Routes>
-          <Route path="/" Component={Dashboard} />
-        </Routes>
-      </div> */}
+  const [theme, colorMode] = useMode();
 
-    </Router>
-    
+  return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={(outerTheme) => ({ ...outerTheme, ...theme })}>
+        <CssBaseline /> 
+          <div className='app'>
+            <main className="content">
+              <Topbar />
+              
+            </main>
+          </div>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+
   );
 }
 
