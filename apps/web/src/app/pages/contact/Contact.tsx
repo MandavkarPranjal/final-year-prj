@@ -9,39 +9,49 @@ const Contact: React.FC = () => {
   return (
     <div className='main-container'>
     
-      <div className="main-form">
-      <div className="full-form">
-      <input
-          type="text"
-          id="firstName1"
-          placeholder="First Name"
-          name="firstName"  
-      />
-      <input
-          type="text"
-          id="e-mail"
-          placeholder="E-Mail"
-          name="E-mail"  
-      />
-      <div className="cont-form">
-         <input
-          type="text"
-          id="subject"
-          placeholder="Subject"
-          name="subject"  
-      />
-      <div className="second">
-      <input
-          type="text"
-          id="message"
-          placeholder="Message"
-          name="message"  
-      />
+    <div className="schedule">
+      <div className='sch-title'>Schedule Hours</div>
+      
+
+    <div className="sch-body">
+      <div className="day">Monday</div>
+      <div className="Time">09:00 AM - 07:00 PM </div>
+
       </div>
-</div>
-</div>
-<button className='form-submit'>submit</button>
-</div>
+
+      <div className="sch-body">
+      <div className="day">Tuesday</div>
+      <div className="Time">09:00 AM - 07:00 PM </div>
+      </div>
+
+      <div className="sch-body">
+      <div className="day">Wensday</div>
+      <div className="Time">09:00 AM - 07:00 PM </div>
+      </div>
+
+      <div className="sch-body">
+      <div className="day">Thrusday</div>
+      <div className="Time">09:00 AM - 07:00 PM </div>
+      </div>
+
+      <div className="sch-body">
+      <div className="day">Friday  </div>
+      <div className="FTime">09:00 AM - 07:00 PM </div>
+      </div>
+      
+      <div className="sch-body">
+      <div className="day">Saturday</div>
+      <div className="Time">09:00 AM - 07:00 PM </div>
+      </div>
+
+      <div className="sch-body">
+      <div className="day">Sunday</div>
+      <div className="Time">09:00 AM - 07:00 PM </div>
+      </div>
+
+      
+      
+    </div>
 
 
      <div className="main_conct">
@@ -52,7 +62,7 @@ const Contact: React.FC = () => {
 
 
 <div className="main-div">
-<div className="contact">
+<div className="contac">
 
 <div className="emergncy">
   <img src={call} alt="" />

@@ -75,6 +75,9 @@ const Login = () => {
         </div>
         <div className="button-row">
           <TextField
+          sx={{
+            width: 370,
+          }}
             className="email"
             label="Email"
             variant="outlined"
@@ -84,6 +87,9 @@ const Login = () => {
             helperText={errors.email?.message}
           />
           <TextField
+           sx={{
+            width: 370,
+          }}
             className="password"
             label="Password"
             variant="outlined"
