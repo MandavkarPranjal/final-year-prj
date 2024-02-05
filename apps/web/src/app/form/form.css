@@ -1,4 +1,4 @@
-Add this CSS to your component or include it in your global styles
+
 body{
   width: auto;
 }
@@ -132,4 +132,6 @@ body{
     display: block;
     margin-left: 13px;
     margin-top: -18px;
-  }
+  } 
+
+ 

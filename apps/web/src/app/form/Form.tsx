@@ -1,10 +1,16 @@
+
 import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import './Form.css';
 import axios from 'axios';
-import { resolve } from 'path';
 import Rectangle from '../../../public/images/Rectangle.jpg';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 
 const validationSchema = yup.object({
   firstName: yup
@@ -67,10 +73,7 @@ const AppointmentForm: React.FC = ({}) => {
     validationSchema: validationSchema,
     onSubmit: async (values, { resetForm }) => {
       setTouched({});
-      //  await addAppointment(values);
-      resetForm();+3
-      // Handle form submission logic here
-
+      resetForm();
       console.log(values);
       const response = await axios.post(
         'http://localhost:3000/api/appointment',
@@ -85,43 +88,9 @@ const AppointmentForm: React.FC = ({}) => {
           bookingTime: values.bookingTime,
         }
       );
-
-      // console.log(response);
-      // addAppointment(values);
       return response;
     },
   });
-  console.log(errors);
-
-  // const addAppointment = async (values: any) => {
-  //   console.log(values.bookingDate);
-  //   if (typeof addAppointment === 'function') {
-  //     addAppointment(values);
-  //     // onClose();
-  //   } else {
-  //     console.error('addNewUser is not a function');
-  //   }
-  //   try {
-  //     const response = await axios.post(
-  //       'http://localhost:3000/api/appointment',
-  //       {
-  //         firstName: values.firstName,
-  //         lastName: values.lastName,
-  //         address: values.address,
-  //         age: Number(values.age),
-  //         gender: values.gender,
-  //         phoneNumber: values.phoneNumber,
-  //         bookingDate: values.bookingDate,
-  //         bookingTime: values.bookingTime,
-  //       }
-  //     );
-  //     console.log('Server response:', response.data);
-
-  //     //       // You can update your state or perform other actions based on the response if necessary
-  //   } catch (error) {
-  //     console.log('errror', error);
-  //   }
-  // };
 
   return (
     <div className="super">
@@ -130,142 +99,118 @@ const AppointmentForm: React.FC = ({}) => {
           <form className="form" onSubmit={handleSubmit}>
             <div className="g-one">
               <p className="headings">Appointment Form</p>
-              <div className="firstNme">
-                <input
-                  type="text"
-                  id="firstName"
-                  placeholder="First Name"
-                  name="firstName"
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('firstName')}
-                  value={values.firstName}
-                />
-                {/* {errors.firstName && <div>{errors.firstName}</div>} */}
-                {touched.firstName && errors.firstName && (
-                  <div>{errors.firstName}</div>
-                )}
-              </div>
+              <TextField
+                type="text"
+                id="firstName"
+                label="First Name"
+                name="firstName"
+                onChange={handleChange}
+                onBlur={() => handleBlur('firstName')}
+                value={values.firstName}
+                error={touched.firstName && !!errors.firstName}
+                helperText={touched.firstName && errors.firstName}
+              />
 
-              <div className="lastNme">
-                <input
-                  type="text"
-                  id="lastName"
-                  placeholder="Last Name"
-                  name="lastName"
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('lastName')}
-                  value={values.lastName}
-                />
-                {/* {errors.lastName && <div>{errors.lastName}</div>} */}
-                {touched.lastName && errors.lastName && (
-                  <div>{errors.lastName}</div>
-                )}
-              </div>
+              <TextField
+                type="text"
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                onChange={handleChange}
+                onBlur={() => handleBlur('lastName')}
+                value={values.lastName}
+                error={touched.lastName && !!errors.lastName}
+                helperText={touched.lastName && errors.lastName}
+              />
 
-              <div className="addres">
-                <input
-                  type="text"
-                  id="ad"
-                  placeholder="Address"
-                  name="address"
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('address')}
-                  value={values.address}
-                />
-                {/* {errors.address && <div>{errors.address}</div>} */}
-                {touched.address && errors.address && (
-                  <div>{errors.address}</div>
-                )}
-              </div>
+              <TextField
+                type="text"
+                id="address"
+                label="Address"
+                name="address"
+                onChange={handleChange}
+                onBlur={() => handleBlur('address')}
+                value={values.address}
+                error={touched.address && !!errors.address}
+                helperText={touched.address && errors.address}
+              />
 
-              <div className="age">
-                <input
-                  type="text"
-                  id="age"
-                  placeholder="Age"
-                  name="age"
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('age')}
-                  value={values.age}
-                />
-                {/* {errors.age && <div>{errors.age}</div>} */}
-                {touched.age && errors.age && <div>{errors.age}</div>}
-              </div>
+              <TextField
+                type="text"
+                id="age"
+                label="Age"
+                name="age"
+                onChange={handleChange}
+                onBlur={() => handleBlur('age')}
+                value={values.age}
+                error={touched.age && !!errors.age}
+                helperText={touched.age && errors.age}
+              />
             </div>
 
             <div className="g-two">
-              <div className="gender">
-                <input
-                  type="text"
-                  id="gender"
-                  placeholder="Gender"
-                  name="gender"
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('gender')}
-                  value={values.gender}
-                />
-                {/* {errors.gender && <div>{errors.gender}</div>} */}
-                {touched.gender && errors.gender && <div>{errors.gender}</div>}
-              </div>
+              <TextField
+                type="text"
+                id="gender"
+                label="Gender"
+                name="gender"
+                onChange={handleChange}
+                onBlur={() => handleBlur('gender')}
+                value={values.gender}
+                error={touched.gender && !!errors.gender}
+                helperText={touched.gender && errors.gender}
+              />
 
-              <div className="phn">
-                <input
-                  type="text"
-                  id="phoneNumber"
-                  placeholder="Phone Number"
-                  name="phoneNumber"
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('phoneNumber')}
-                  value={values.phoneNumber}
-                />
-                {/* {errors.phoneNumber && <div>{errors.phoneNumber}</div>} */}
-                {touched.phoneNumber && errors.phoneNumber && (
-                  <div>{errors.phoneNumber}</div>
-                )}
-              </div>
+              <TextField
+                type="text"
+                id="phoneNumber"
+                label="Phone Number"
+                name="phoneNumber"
+                onChange={handleChange}
+                onBlur={() => handleBlur('phoneNumber')}
+                value={values.phoneNumber}
+                error={touched.phoneNumber && !!errors.phoneNumber}
+                helperText={touched.phoneNumber && errors.phoneNumber}
+              />
 
-              <div className="date">
-                <input
-                  type="date"
-                  id="bookingDate"
-                  name="bookingDate"
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('bookingDate')}
-                  value={values.bookingDate}
-                />
-                {/* {errors.bookingDate && <div>{errors.bookingDate}</div>} */}
-                {touched.bookingDate && errors.bookingDate && (
-                  <div>{errors.bookingDate}</div>
-                )}
-              </div>
+              <TextField
+                type="date"
+                id="bookingDate"
+                // label="Booking Date"
+                name="bookingDate"
+                onChange={handleChange}
+                onBlur={() => handleBlur('bookingDate')}
+                value={values.bookingDate}
+                error={touched.bookingDate && !!errors.bookingDate}
+                helperText={touched.bookingDate && errors.bookingDate}
+              />
 
-              <div className="timeing">
-                <select
+              <FormControl fullWidth>
+                <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
+                <Select
+                  labelId="bookingTimeLabel"
                   id="bookingTime"
                   name="bookingTime"
                   onChange={handleChange}
                   onBlur={() => handleBlur('bookingTime')}
                   value={values.bookingTime}
+                  error={touched.bookingTime && !!errors.bookingTime}
                 >
-                  <option value="" disabled>
+                  <MenuItem value="" disabled>
                     Select a time
-                  </option>
+                  </MenuItem>
                   {timeSlots.map((slot) => (
-                    <option key={slot} value={slot}>
+                    <MenuItem key={slot} value={slot}>
                       {slot}
-                    </option>
+                    </MenuItem>
                   ))}
-                </select>
-                {/* {errors.bookingTime && <div>{errors.bookingTime}</div>} */}
-                {touched.bookingTime && errors.bookingTime && (
-                  <div>{errors.bookingTime}</div>
-                )}
-              </div>
+                </Select>
+              </FormControl>
             </div>
 
-            <button className="submit_btn" type="submit">
+            <Button variant="contained" color="primary" type="submit">
               Submit
-            </button>
+            </Button>
           </form>
         </div>
         <div className="img-container">
