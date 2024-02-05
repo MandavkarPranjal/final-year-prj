@@ -278,7 +278,6 @@
 
 // export default AppointmentForm;
 
-
 import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -291,6 +290,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import './form.css';
+import { FormHelperText } from '@mui/material';
 
 const validationSchema = yup.object({
   firstName: yup
@@ -307,7 +307,7 @@ const validationSchema = yup.object({
     .integer('Age must be an integer')
     .required('Age is required'),
   address: yup.string().required('Address is required'),
-  gender: yup.string().required('Gender is required'),
+  email: yup.string().required('email is required'),
   phoneNumber: yup
     .number()
     .required('Phone Number is required')
@@ -319,6 +319,8 @@ const validationSchema = yup.object({
     .required('Booking Date is required')
     .min(new Date(), 'Invalid Date'),
   bookingTime: yup.string().required('Booking Time is required'),
+  Specialization: yup.string().required('Specialization is required'),
+  Gender: yup.string().required('gender is required'),
 });
 
 const timeSlots = [
@@ -327,6 +329,23 @@ const timeSlots = [
   '11:00 AM - 12:00 PM',
   '1:00 PM - 2:00 PM',
   '2:00 PM - 3:00 PM',
+  // Add more time slots as needed
+];
+
+const Specialization = [
+  'Dentist',
+  'Cardiologist',
+  'Dermatologist',
+  'Gynecologist',
+  'Neurologist',
+  // Add more time slots as needed
+];
+
+const Gender = [
+  'Male',
+  'Female',
+  'Other',
+
   // Add more time slots as needed
 ];
 
@@ -345,9 +364,11 @@ const AppointmentForm: React.FC = ({}) => {
       lastName: '',
       address: '',
       age: '',
-      gender: '',
+      email: '',
+      Gender: '',
       phoneNumber: '',
       bookingDate: '',
+      Specialization: '',
       bookingTime: '',
     },
     validationSchema: validationSchema,
@@ -362,9 +383,11 @@ const AppointmentForm: React.FC = ({}) => {
           lastName: values.lastName,
           address: values.address,
           age: Number(values.age),
-          gender: values.gender,
+          email: values.email,
+          Gender: values.Gender,
           phoneNumber: values.phoneNumber,
           bookingDate: values.bookingDate,
+          Specialization: values.Specialization,
           bookingTime: values.bookingTime,
         }
       );
@@ -406,10 +429,10 @@ const AppointmentForm: React.FC = ({}) => {
                 helperText={touched.lastName && errors.lastName}
               />
 
-              <TextField 
-              sx={{
-                marginRight: 10,
-              }}
+              <TextField
+                sx={{
+                  marginRight: 10,
+                }}
                 type="text"
                 id="address"
                 label="Address"
@@ -436,19 +459,18 @@ const AppointmentForm: React.FC = ({}) => {
 
             <div className="g-two">
               <TextField
-              sx={{
-                marginRight: 10,
-               
-              }}
+                sx={{
+                  marginRight: 10,
+                }}
                 type="text"
-                id="gender"
-                label="Gender"
-                name="gender"
+                id="email"
+                label="Email"
+                name="Email"
                 onChange={handleChange}
-                onBlur={() => handleBlur('gender')}
-                value={values.gender}
-                error={touched.gender && !!errors.gender}
-                helperText={touched.gender && errors.gender}
+                onBlur={() => handleBlur('email')}
+                value={values.email}
+                error={touched.email && !!errors.email}
+                helperText={touched.email && errors.email}
               />
 
               <TextField
@@ -466,7 +488,7 @@ const AppointmentForm: React.FC = ({}) => {
               <TextField
                 type="date"
                 id="bookingDate"
-             // label="Booking Date"
+                // label="Booking Date"
                 name="bookingDate"
                 onChange={handleChange}
                 onBlur={() => handleBlur('bookingDate')}
@@ -475,15 +497,67 @@ const AppointmentForm: React.FC = ({}) => {
                 helperText={touched.bookingDate && errors.bookingDate}
               />
 
-              <FormControl fullWidth>
-                <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
-                <Select
+              <FormControl
                 sx={{
                   width: 275,
-                  marginLeft: 0,
-                  
-                  
+                  marginLeft: 10,
                 }}
+              >
+                <InputLabel id="specilzation">Specialization</InputLabel>
+                <Select
+                  labelId="Specialization"
+                  id="Specialization"
+                  name="Specialization"
+                  onChange={handleChange}
+                  onBlur={() => handleBlur('Specialization')}
+                  value={values.Specialization}
+                  error={touched.Specialization && !!errors.Specialization}
+                >
+                  <MenuItem value="" disabled>
+                    Select Specialization
+                  </MenuItem>
+                  {Specialization.map((slot) => (
+                    <MenuItem key={slot} value={slot}>
+                      {slot}
+                    </MenuItem>
+                  ))}
+                </Select>
+                <FormHelperText error>{errors.Specialization}</FormHelperText>
+              </FormControl>
+
+              <FormControl>
+                <InputLabel id="Gender">Gender</InputLabel>
+                <Select
+                  sx={{
+                    width: 275,
+                  }}
+                  labelId="Gender"
+                  id="Gender"
+                  name="Gender"
+                  onChange={handleChange}
+                  onBlur={() => handleBlur('Gender')}
+                  value={values.Gender}
+                  error={touched.Gender && !!errors.Gender}
+                >
+                  <MenuItem value="" disabled></MenuItem>
+                  {Gender.map((slot) => (
+                    <MenuItem key={slot} value={slot}>
+                      {slot}
+                    </MenuItem>
+                  ))}
+                </Select>
+                <FormHelperText error>{errors.Gender}</FormHelperText>
+              </FormControl>
+
+              <FormControl
+                sx={{
+                  width: 275,
+                  marginLeft: 10,
+                }}
+              >
+                <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
+                <Select
+                  
                   labelId="bookingTimeLabel"
                   id="bookingTime"
                   name="bookingTime"
@@ -501,17 +575,18 @@ const AppointmentForm: React.FC = ({}) => {
                     </MenuItem>
                   ))}
                 </Select>
+                <FormHelperText error>{errors.bookingTime}</FormHelperText>
               </FormControl>
             </div>
 
-            <Button 
-            variant="contained"
-            color="primary" 
-            type="submit"
-            sx={{
-              marginLeft: 32,
-              width: 150
-            }}
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              sx={{
+                marginLeft: 32,
+                width: 150,
+              }}
             >
               Submit
             </Button>
