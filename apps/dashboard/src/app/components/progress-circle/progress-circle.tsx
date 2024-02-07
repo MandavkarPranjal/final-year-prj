@@ -1,14 +1,23 @@
-import styles from './progress-circle.module.css';
+import { Box , useTheme} from "@mui/material";
+import { tokens } from "../../theme";
 
-/* eslint-disable-next-line */
-export interface ProgressCircleProps {}
+const ProgressCircle = ({progress="0.75", size="40"}) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const angle = Number(progress) * 360;
 
-export function ProgressCircle(props: ProgressCircleProps) {
   return (
-    <div className={styles['container']}>
-      <h1>Welcome to ProgressCircle!</h1>
-    </div>
-  );
+    <Box 
+      sx={{
+        background: `radial-gradient(${colors.primary[400]} 55%, transparent 56%),
+          conic-gradient(transparent 0deg ${angle}deg, ${colors.blueAccent[500]} ${angle}deg 360deg),
+          ${colors.greenAccent[500]}`,
+        borderRadius: "50%",
+        width: `${size}px`,
+        height: `${size}px`,
+      }}
+    />
+  )
 }
 
 export default ProgressCircle;

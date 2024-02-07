@@ -28,8 +28,9 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
         onClick={() => setSelected(title)}
         icon={icon}
       >
+        <Link to={to} style={{textDecoration: 'none', color: 'inherit'}}>
         <Typography>{title}</Typography>
-        <Link to={to}/>
+        </Link>
       </MenuItem>
     );
   };
@@ -200,13 +201,6 @@ const Sidebar = () => {
               title="Pie Chart"
               to="/pie"
               icon={<PieChartOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Line Chart"
-              to="/line"
-              icon={<TimelineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
