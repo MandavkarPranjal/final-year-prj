@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private prisma: PrismaService, private jwt: JwtService) {}
   
   async signup(createAuthDto: CreateAuthDto) {
-    const { email, password } = createAuthDto;
+    const { email, password,phoneNumber,firstName,lastName,address_1,address_2 } = createAuthDto;
     const foundUser = await this.prisma.user.findUnique({where: {email}})
 
     if(foundUser) {
@@ -24,7 +24,12 @@ export class AuthService {
     const user = await this.prisma.user.create({
       data: {
         email,
-        hashedPassword
+        hashedPassword,
+        firstName,
+        lastName,
+        phoneNumber,
+        address_1,
+        address_2
       }
     })
 
@@ -73,4 +78,37 @@ export class AuthService {
 
     return this.jwt.signAsync(payload, {secret: jwtSecret})
   }
+
+//---------------------------------Create user function---------------------------------
+
+  async  createUser(createAuthDto: CreateAuthDto){
+    const { email, password,phoneNumber,firstName,lastName,address_1,address_2 } = createAuthDto;
+
+    const foundUser = await this.prisma.user.findUnique({where: {email}})
+
+    if(foundUser) {
+      throw new BadRequestException('user already exists')
+    }
+
+    const hashedPassword = await this.hashPassword(password);
+    
+    const user = await this.prisma.user.create({
+      data: {
+        email,
+        hashedPassword,
+        phoneNumber, 
+        firstName,
+        lastName,
+        address_1,
+        address_2
+      }
+    })
+
+
+    return (" user created successfully");
+  }
+
+
+
+
 }
