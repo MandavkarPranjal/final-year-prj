@@ -28,8 +28,9 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
         onClick={() => setSelected(title)}
         icon={icon}
       >
-        <Typography>{title}</Typography>
-        <Link to={to}/>
+        <Link to={to} style={{textDecoration: 'none', color: 'inherit'}}>
+           <Typography>{title}</Typography>
+        </Link>
       </MenuItem>
     );
   };
