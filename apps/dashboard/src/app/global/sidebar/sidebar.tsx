@@ -56,8 +56,8 @@ const Sidebar = () => {
         "& .ps-menu-button:hover": {
           color: "#868dfb !important",
         },
-        "& .ps-menu-button.active": {
-          color: "#6870fa !important",
+        "& .ps-active": {
+          color: "#94e2cd !important",
         },
       }}
     >
