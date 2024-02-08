@@ -61,15 +61,12 @@ const Specialization = [
   'Gastroenterologists',
   'Pediatricians',
   'Oncologist'
-  // Add more time slots as needed
 ];
 
 const gender = [
   'Male',
   'Female',
   'Other',
-
-  // Add more time slots as needed
 ];
 
 const AppointmentForm: React.FC = ({}) => {

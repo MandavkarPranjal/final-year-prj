@@ -31,7 +31,7 @@ Good Health</p>
 <p className='abt_content2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis error possimus nulla <br /> voluptatem ducimus eligendi vel quod cupiditate nemo illum in, est, deserunt fugit eius veritatis </p>
 </div>
 
-<img className='abt_img2' src={Rectangle_53} alt="" />
+<img  className='abt_img2' src={Rectangle_53} alt="" />
 
 <p className='dr_text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo maxime non ex mollitia ipsam possimus natus <br />aspernatur ratione velit voluptatibus placeat fuga quod, hic aliquid modi molestiae officiis saepe beatae. <br />
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo maxime non ex mollitia ipsam possimus natus <br /> aspernatur ratione velit voluptatibus placeat fuga quod, hic aliquid modi molestiae officiis saepe beatae.</p>
