@@ -8,10 +8,8 @@ import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import TrafficIcon from "@mui/icons-material/Traffic";
 import BarChart from "../../components/bar-chart/bar-chart";
-import PieChart from "../../components/pie-chart/pie-chart";
 import StatBox from "../../components/stat-box/stat-box";
 import ProgressCircle from "../../components/progress-circle/progress-circle";
-import { L } from "@fullcalendar/list/internal-common";
 import LineChart from "../../components/line-chart/line-chart";
 
 const Dashboard = () => {
