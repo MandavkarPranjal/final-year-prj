@@ -11,19 +11,19 @@ const Contacts = () => {
 
   const columns: GridColDef[] = [
     {field: 'id', headerName:'ID', flex: 0.5},
-    {field: "registrarId", headerName: "Registrar ID", flex: 1},
     {field: 'name', headerName:'Name', flex: 1, cellClassName: 'name-column--cell'},
     {field: 'age', headerName:'Age', headerAlign: "left", align: "left"},
     {field: 'phone', headerName:'Phone Number', flex: 1 },
     {field: 'email', headerName:'Email', flex: 1 },
     {field: 'address' , headerName: 'Address', flex: 1},
-    {field: 'city' ,headerName: 'City', flex: 1},
-    {field: 'zipCode' ,headerName: 'ZipCode', flex: 1},
+    {field: 'Specialization' ,headerName: 'Specialization', flex: 1},
+    {field: "BookingDate", headerName: "BookingDate", flex: 1},
+    {field: 'BookingTime' ,headerName: 'BookinTime', flex: 1},
   ]; 
 
   return (
     <Box m="20px">
-      <Header title="CONTACTS" subtitle="List of Contacts for Future Reference"/>
+      <Header title="APPOINTMENTS" subtitle="List of Appointments "/>
       <Box
         m="40px 0 0 0"
         height="75vh"
