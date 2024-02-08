@@ -1,5 +1,6 @@
 import React from 'react';
 import './contact.css';
+import contactImg from '../../../../public/images/contactImg.jpg';
 import call from '../../../../public/images/call.png';
 import time from '../../../../public/images/time.png';
 import location from '../../../../public/images/location.png';
@@ -8,6 +9,11 @@ import mail from '../../../../public/images/mail.png';
 const Contact: React.FC = () => {
   return (
     <div className='main-container'>
+
+      <img className='cont-img' src={contactImg} alt="" />
+
+      <div className="cont-body">
+        <p className="contact-text">Contact</p>
     
     <div className="schedule">
       <div className='sch-title'>Schedule Hours</div>
@@ -95,6 +101,7 @@ const Contact: React.FC = () => {
 </div>
 </div>
 </div>
+    </div>
     </div>
     </div>
   );

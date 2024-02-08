@@ -13,14 +13,17 @@ export class AppController {
 
   @Post('appointment')
   bookAnAppointment(@Body() data:{
-    firstName: string,
-    lastName: string,
-    address: string,
-    age: number,
-    gender: string,
-    phoneNumber: string,
-    bookingDate: string,
-    bookingTime: string
+    firstName: string;
+  lastName: string;
+  address: string;
+  age: number;
+  email: string;
+  phoneNumber: string;
+  bookingDate: string;
+  Specialization: string; 
+  gender: string;
+  bookingTime: string;
+  
   }) {
     return this.appService.bookAnAppointment(data);
   }

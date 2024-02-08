@@ -50,22 +50,22 @@ const service: React.FC = () => {
 
             <div className="Neurology">
                 <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <p className="neuro">Neurologist</p>  
             </div>
 
             <div className="Neurology">
                 <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <p className="neuro">Dermatologist</p>  
             </div>
 
             <div className="Neurology">
                 <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <p className="neuro">Cardiologist</p>  
             </div>
 
             <div className="Neurology">
                 <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <p className="neuro">Dentist</p>  
             </div>  
 
             </div>
@@ -74,22 +74,22 @@ const service: React.FC = () => {
 
             <div className="Neurology">
                 <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <p className="neuro">Gynecologist</p>  
             </div>
 
             <div className="Neurology">
                 <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <p className="neuro">Gastroenterologists</p>  
             </div>
 
             <div className="Neurology">
                 <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <p className="neuro">Oncologist</p>  
             </div>
 
             <div className="Neurology">
                 <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <p className="neuro">Pediatricians</p>  
             </div>  
 
             </div>

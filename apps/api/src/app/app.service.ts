@@ -9,10 +9,13 @@ class AppointmentDTO{
   lastName: string;
   address: string;
   age: number;
-  gender: string;
+  email: string;
   phoneNumber: string;
   bookingDate: string;
+  Specialization: string; 
+  gender: string;
   bookingTime: string;
+  
 }
 
 @Injectable()
@@ -23,14 +26,17 @@ export class AppService {
   }
 
   async bookAnAppointment(data: {
-    firstName: string,
-    lastName: string,
-    address: string,
-    age: number,
-    gender: string,
-    phoneNumber: string,
-    bookingDate: string,
-    bookingTime: string
+    firstName: string;
+  lastName: string;
+  address: string;
+  age: number;
+  email: string;
+  phoneNumber: string;
+  bookingDate: string;
+  Specialization: string; 
+  gender: string;
+  bookingTime: string;
+  
   }){
 
     const patient = await prisma.appointment.create({
