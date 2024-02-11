@@ -6,6 +6,7 @@ import Rectangle34 from '../../../../public/images/Rectangle34.jpg';
 import './Home.css'; // Import the CSS file
 
 
+
  const Home: React.FC = () => {
 
 //   const [userData, setUserData] = useState({

@@ -21,3 +21,24 @@ model appointment {
   bookingDate String
   bookingTime String
 }
+
+model user {
+  id              String @id @default(uuid())
+  hashedPassword  String
+  firstName       String
+  lastName        String
+  email           String @unique
+  phoneNumber     String @unique
+  address         String
+  role            String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt()
+  doctors         doctor[]
+}
+
+model doctor {
+  id              String @id @default(uuid())
+  specialty       String
+  userId          String
+  user            user @relation(fields: [userId], references: [id])
+}

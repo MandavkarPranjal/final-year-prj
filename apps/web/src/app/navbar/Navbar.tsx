@@ -1,9 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom"; // Import the Link component from react-router-dom
-import { Button } from "../button/Button";
-import "./style.sass";
+import React ,{useState}from 'react';
+import { Link } from 'react-router-dom';
+import AppointmentForm from '.././form/Form';
 
-export const Navbar = (): JSX.Element => {
+
+
+const Navbar: React.FC = () => {
+  const [showAppointmentForm, setShowAppointmentForm] = useState(false)
+  const handleclick = () => {
+    setShowAppointmentForm(true);
+  };
+
   return (
     <nav>
       <ul>
@@ -15,11 +21,11 @@ export const Navbar = (): JSX.Element => {
       </ul>
 
       <div className="book">
-        <button className="book_btn">Book Appointment</button>
+        <button className="book_btn" onClick={handleclick}><Link to="/Form">Book Appointment</Link></button>
       </div>
-
+      
     </nav>
-
-    
   );
 };
+
+export default Navbar;
