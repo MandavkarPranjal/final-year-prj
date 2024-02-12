@@ -1,3 +1,7 @@
+.main{
+    overflow: hidden;
+}
+
 .first_img{
     position: absolute;
     width: 1520px;
@@ -37,6 +41,14 @@ margin-left: 70px;
     
 }
 
+.card_one:hover{
+    transform: translate(-20px, -0px);
+    transition: 0.5s;
+    box-shadow: 0px 10px 11px -1px rgba(140, 199, 220, 0.8),
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 3px 0px rgba(0, 0, 0, .12);
+}
+
 .card_one img{
     width: 296px;
     height: 300px;
@@ -72,6 +84,14 @@ margin-left: 70px;
     border: 1px solid #000000;
 }
 
+.card_two:hover{
+    transform: translate(-10px, -8px);
+    transition: 0.5s;
+    box-shadow: 0px 10px 11px -1px rgba(140, 199, 220, 0.8),
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 3px 0px rgba(0, 0, 0, .12);
+}
+
 .card_two img{
     width: 296px;
     height: 300px;
@@ -82,6 +102,14 @@ margin-left: 70px;
     height: 480px;
     width: 300px;
     border: 1px solid #000000;
+}
+
+.card_three:hover{
+    transform: translate(20px, -0px);
+    transition: 0.5s;
+    box-shadow: 0px 10px 11px -1px rgba(140, 199, 220, 0.8),
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 3px 0px rgba(0, 0, 0, .12);
 }
 
 .card_three img{
@@ -115,15 +143,29 @@ line-height: normal;
 .spl1{
     display: flex;
     margin-top: 70px;
-    justify-content: space-evenly;
+    justify-content: space-around;
     margin-bottom: 100px;
 }
 
 .Neurology img{
     height: 70px;
+    margin-left: 10px;
 }
 
 .neuro{
     font-size: larger;
     color: #212124;
+    margin-left: 1px;
+}
+
+.dentist{
+    font-size: larger;
+    color: #212124;
+    margin-left: 20px;
+}
+
+.radio{
+    font-size: larger;
+    color: #212124;
+    margin-left: 10px;
 }

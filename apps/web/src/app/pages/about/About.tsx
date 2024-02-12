@@ -6,10 +6,11 @@ import './About.css';
 import abt_landscape from '../../../../public/images/abt_landscape.jpg';
 import Rectangle from '../../../../public/images/Rectangle.jpg';
 import Rectangle_53 from '../../../../public/images/Rectangle_53.jpg';
-import call from '../../../../public/images/call.png';
-import time from '../../../../public/images/time.png';
-import location from '../../../../public/images/location.png';
-import mail from '../../../../public/images/mail.png';
+import blood from '../../../../public/images/blood.png';
+import kidney from '../../../../public/images/kidney.png';
+import tent from '../../../../public/images/tent.png';
+import social from '../../../../public/images/social.png';
+import transition from '../../transition';
 
 const About = () => {
 
@@ -31,15 +32,15 @@ Good Health</p>
 <p className='abt_content2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis error possimus nulla <br /> voluptatem ducimus eligendi vel quod cupiditate nemo illum in, est, deserunt fugit eius veritatis </p>
 </div>
 
-<img className='abt_img2' src={Rectangle_53} alt="" />
+<img  className='abt_img2' src={Rectangle_53} alt="" />
 
 <p className='dr_text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo maxime non ex mollitia ipsam possimus natus <br />aspernatur ratione velit voluptatibus placeat fuga quod, hic aliquid modi molestiae officiis saepe beatae. <br />
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo maxime non ex mollitia ipsam possimus natus <br /> aspernatur ratione velit voluptatibus placeat fuga quod, hic aliquid modi molestiae officiis saepe beatae.</p>
 
 
 
-<p className='contact1'>GET IN TOUCH</p>
-<p className='contact2'>CONTACT</p>
+<p className='contact-1'>GET IN TOUCH</p>
+<p className='contact-2'>CONTACT</p>
 
 <div className="dr_imgs">
 
@@ -61,7 +62,6 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo maxime non ex moll
   specialization='Dermatology'
 />
 
-
 </div>
 
 <div className="main_conct">
@@ -73,29 +73,29 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo maxime non ex moll
 <div className="contact">
 
 <div className="emergncy">
-  <img src={call} alt="" />
-    <p className='emg_text'>Emergency</p>
+  <img className='contImg' src={blood} alt="" />
+    <p className='emg_text'>Blood Bank</p>
     <p className='emg_text2'>(237) 681-812-255</p>
     <p className='emg_text2'>(237) 666-331-894</p>
 </div>
 
 <div className="loc">
-  <img src={location} alt="" />
-<p className='loct_text'>Location</p>
-<p className='loct_text2'>0123 Some place</p>
-<p className='loct_text2'>9876 Some country</p>
+  <img className='contImg' src={kidney} alt="" />
+<p className='loct_text'>Organ Donation</p>
+<p className='loct_text2'>(237) 666-331-894</p>
+<p className='loct_text2'>(237) 681-812-255</p>
 </div>
 
 <div className="e-mail">
-  <img src={mail} alt="" />
-<p className='mail_text'>EMAIL</p>
-<p className='mail_text2'>fildineeesoe@gmil.com</p>
-<p className='mail_text2'>myebstudios@gmail.com</p>
+  <img className='contImg' src={tent} alt="" />
+<p className='mail_text'>Health Camp</p>
+<p className='mail_text2'>Our location</p>
+<p className='mail_text2'>Random Places</p>
 </div>
 
 <div className="working">
-  <img src={time} alt="" />
-<p className='work_text'>WORKING HOUR</p>
+  <img className='contImg' src={social} alt="" />
+<p className='work_text'>Social Services</p>
 <p className='work_text2'>Mon-Sat 09:00-20:00</p>
 <p className='work_text2'>Sunday Emergency only</p>
 </div>
@@ -105,4 +105,4 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo maxime non ex moll
 );
   };
   
-  export default About;
+  export default transition(About);

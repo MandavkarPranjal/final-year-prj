@@ -11,7 +11,6 @@ const service: React.FC = () => {
             <img className="first_img" src={service1} alt="" />
             <p className="service">Our Services</p>
 
-            
 
             <div className="content1">
         <div className="up">
@@ -50,23 +49,23 @@ const service: React.FC = () => {
         <div className="spl1">
 
             <div className="Neurology">
-                <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <img className="spl-img" src={vector} alt="" />
+                <p className="neuro">Neurologist</p>  
             </div>
 
             <div className="Neurology">
-                <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <img className="spl-img" src={vector} alt="" />
+                <p className="neuro">Dermatologist</p>  
             </div>
 
             <div className="Neurology">
-                <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <img className="spl-img" src={vector} alt="" />
+                <p className="neuro">Cardiologist</p>  
             </div>
 
             <div className="Neurology">
-                <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <img className="spl-img" src={vector} alt="" />
+                <p className="dentist">Dentist</p>  
             </div>  
 
             </div>
@@ -74,23 +73,23 @@ const service: React.FC = () => {
             <div className="spl1">
 
             <div className="Neurology">
-                <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <img className="spl-img" src={vector} alt="" />
+                <p className="neuro">Gynecologist</p>  
             </div>
 
             <div className="Neurology">
-                <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <img className="spl-img" src={vector} alt="" />
+                <p className="radio">Radiology</p>  
             </div>
 
             <div className="Neurology">
-                <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <img className="spl-img" src={vector} alt="" />
+                <p className="neuro">Oncologist</p>  
             </div>
 
             <div className="Neurology">
-                <img src={vector} alt="" />
-                <p className="neuro">Neurology</p>  
+                <img className="spl-img" src={vector} alt="" />
+                <p className="neuro">Pediatricians</p>  
             </div>  
 
             </div>

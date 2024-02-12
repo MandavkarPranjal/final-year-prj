@@ -25,16 +25,16 @@ const App: React.FC = () => {
       <div>
         <Header />
         <Navbar />
+        <AnimatePresence mode="wait">
 
-        <AnimatePresence mode='wait'>
-          <Routes>
-          <Route path="/"  Component={Home} />
-            <Route path="/login" Component={Login} />
-            <Route path="/contact" Component={Contact} />
-            <Route path="/about" Component={About} />
-            <Route path="/service" Component={Service} />
-            <Route path="/Form" Component={AppointmentForm} />
-          </Routes>
+        <Routes>
+        <Route path="/"  Component={Home} />
+          <Route path="/login" Component={Login} />
+          <Route path="/contact" Component={Contact} />
+          <Route path="/about" Component={About} />
+          <Route path="/service" Component={Service} />
+          <Route path="/Form" Component={AppointmentForm} />
+        </Routes>
         </AnimatePresence>
         
 

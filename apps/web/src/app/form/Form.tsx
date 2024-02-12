@@ -2,7 +2,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import './Form.css';
 import axios from 'axios';
 import Rectangle from '../../../public/images/Rectangle.jpg';
 import transition from '../transition';
@@ -12,6 +11,9 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
+import './form.css';
+import { FormHelperText } from '@mui/material';
+import transition from '../transition';
 
 const validationSchema = yup.object({
   firstName: yup
@@ -28,7 +30,7 @@ const validationSchema = yup.object({
     .integer('Age must be an integer')
     .required('Age is required'),
   address: yup.string().required('Address is required'),
-  gender: yup.string().required('Gender is required'),
+  email: yup.string().email('Invalid email address').required('email is required'),
   phoneNumber: yup
     .number()
     .required('Phone Number is required')
@@ -40,6 +42,8 @@ const validationSchema = yup.object({
     .required('Booking Date is required')
     .min(new Date(), 'Invalid Date'),
   bookingTime: yup.string().required('Booking Time is required'),
+  Specialization: yup.string().required('Specialization is required'),
+  Gender: yup.string().required('gender is required'),
 });
 
 const timeSlots = [
@@ -49,6 +53,23 @@ const timeSlots = [
   '1:00 PM - 2:00 PM',
   '2:00 PM - 3:00 PM',
   // Add more time slots as needed
+];
+
+const Specialization = [
+  'Dentist',
+  'Cardiologist',
+  'Dermatologist',
+  'Gynecologist',
+  'Neurologist',
+  'Gastroenterologists',
+  'Pediatricians',
+  'Oncologist'
+];
+
+const gender = [
+  'Male',
+  'Female',
+  'Other',
 ];
 
 const AppointmentForm: React.FC = ({}) => {
@@ -66,9 +87,11 @@ const AppointmentForm: React.FC = ({}) => {
       lastName: '',
       address: '',
       age: '',
+      email: '',
       gender: '',
       phoneNumber: '',
       bookingDate: '',
+      Specialization: '',
       bookingTime: '',
     },
     validationSchema: validationSchema,
@@ -76,19 +99,21 @@ const AppointmentForm: React.FC = ({}) => {
       setTouched({});
       resetForm();
       console.log(values);
-      const response = await axios.post('http://localhost:3000/appointment/create', {
-            firstName: values.firstName,
-            lastName: values.lastName,
-            address: values.address,
-            age: Number(values.age),
-            gender: values.gender,
-            phoneNumber: values.phoneNumber,
-            bookingDate: values.bookingDate,
-            bookingTime: values.bookingTime
-      })
-
-      // console.log(response);
-      // addAppointment(values);
+      const response = await axios.post(
+        'http://localhost:3000/appointment/create',
+        {
+          firstName: values.firstName,
+          lastName: values.lastName,
+          address: values.address,
+          age: Number(values.age),
+          email: values.email,
+          phoneNumber: values.phoneNumber,
+          bookingDate: values.bookingDate,
+          Specialization: values.Specialization,
+          gender: values.gender,
+          bookingTime: values.bookingTime,
+        }
+      );
       return response;
     },
   });
@@ -101,8 +126,12 @@ const AppointmentForm: React.FC = ({}) => {
             <div className="g-one">
               <p className="headings">Appointment Form</p>
               <TextField
+                sx={{
+                  marginLeft: 2,
+                  marginRight: 10
+                }}
                 type="text"
-                id="firstName"
+                id="firstNme"
                 label="First Name"
                 name="firstName"
                 onChange={handleChange}
@@ -125,6 +154,10 @@ const AppointmentForm: React.FC = ({}) => {
               />
 
               <TextField
+                sx={{
+                  marginRight: 10,
+                  marginLeft: 2
+                }}
                 type="text"
                 id="address"
                 label="Address"
@@ -151,15 +184,19 @@ const AppointmentForm: React.FC = ({}) => {
 
             <div className="g-two">
               <TextField
+                sx={{
+                  marginRight: 10,
+                  marginLeft: 2,
+                }}
                 type="text"
-                id="gender"
-                label="Gender"
-                name="gender"
+                id="email"
+                label="Email"
+                name="email"
                 onChange={handleChange}
-                onBlur={() => handleBlur('gender')}
-                value={values.gender}
-                error={touched.gender && !!errors.gender}
-                helperText={touched.gender && errors.gender}
+                onBlur={() => handleBlur('email')}
+                value={values.email}
+                error={touched.email && !!errors.email}
+                helperText={touched.email && errors.email}
               />
 
               <TextField
@@ -175,6 +212,10 @@ const AppointmentForm: React.FC = ({}) => {
               />
 
               <TextField
+              sx={{
+                
+                marginLeft: 2,
+              }}
                 type="date"
                 id="bookingDate"
                 // label="Booking Date"
@@ -186,9 +227,70 @@ const AppointmentForm: React.FC = ({}) => {
                 helperText={touched.bookingDate && errors.bookingDate}
               />
 
-              <FormControl fullWidth>
+              <FormControl
+                sx={{
+                  width: 275,
+                  marginLeft: 10,
+                }}
+              >
+                <InputLabel id="specilzation">Specialization</InputLabel>
+                <Select
+                  labelId="Specialization"
+                  id="Specialization"
+                  name="Specialization"
+                  onChange={handleChange}
+                  onBlur={() => handleBlur('Specialization')}
+                  value={values.Specialization}
+                  error={touched.Specialization && !!errors.Specialization}
+                >
+                  <MenuItem value="" disabled>
+                    Select Specialization
+                  </MenuItem>
+                  {Specialization.map((slot) => (
+                    <MenuItem key={slot} value={slot}>
+                      {slot}
+                    </MenuItem>
+                  ))}
+                </Select>
+                <FormHelperText error>{errors.Specialization}</FormHelperText>
+              </FormControl>
+
+              <FormControl>
+                <InputLabel id="gender">Gender</InputLabel>
+                <Select
+                  sx={{
+                    width: 275,
+                    marginLeft: 2,
+                  }}
+                  labelId="Gender"
+                  id="gender"
+                  name="gender"
+                  onChange={handleChange}
+                  onBlur={() => handleBlur('gender')}
+                  value={values.gender}
+                  error={touched.gender && !!errors.gender}
+                >
+                  <MenuItem value="" disabled></MenuItem>
+                  {gender.map((slot) => (
+                    <MenuItem key={slot} value={slot}>
+                      {slot}
+                    </MenuItem>
+                  ))}
+                </Select>
+                <FormHelperText error>{errors.gender}</FormHelperText>
+              </FormControl>
+
+              <FormControl
+                sx={{
+                  width: 275,
+                  marginLeft: 12,
+                  
+                  
+                }}
+              >
                 <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
                 <Select
+                  
                   labelId="bookingTimeLabel"
                   id="bookingTime"
                   name="bookingTime"
@@ -206,10 +308,19 @@ const AppointmentForm: React.FC = ({}) => {
                     </MenuItem>
                   ))}
                 </Select>
+                <FormHelperText error>{errors.bookingTime}</FormHelperText>
               </FormControl>
             </div>
 
-            <Button variant="contained" color="primary" type="submit">
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              sx={{
+                marginLeft: 32,
+                width: 150,
+              }}
+            >
               Submit
             </Button>
           </form>

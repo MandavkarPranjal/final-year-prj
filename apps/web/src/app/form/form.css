@@ -5,6 +5,7 @@ body{
 
 .form{ 
     height: 500px;
+    
   }
   
   div {
@@ -36,7 +37,7 @@ body{
   
   button:hover {
     background-color: #0056b3;
-  }
+  } 
 
   .headings{
     margin-left: 168px;
@@ -44,54 +45,53 @@ body{
     
   }
 
-  .firstNme{
-  
-    display: inline-block;
-    margin-left: 20px;
-    margin-right: 25px;
-    margin-top: 20px;
-  }
 
-  .lastNme{
-    margin-top: 20px;
-    display: inline-block;
-  }
+/* Apply styles to all TextField components */
+.MuiFormControl-root {
+  margin-bottom: 20px;
+  margin-right: 50px;
+  width: 40%;
+} 
 
-  .addres{
-    margin-left: 20px; 
-    margin-right: 25px;
-    display: inline-block;
-    font-size: large;
-  }
-  
-  .age{
-    display: inline-block;
-    font-size: large;
-  }
 
-  .gender{
-    display: inline-block;
-    margin-left: 20px;
-    margin-right: 25px;
-    font-size: large;
-  }
+/* Style input field */
+/* .MuiInputBase-input {
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+} */
 
-  .phn{
-    display: inline-block;
-    font-size: large;
-  }
+/* Style error text */
+/* .MuiFormHelperText-root {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+} */
 
-  .timeing{
-    display: inline-block;
-    font-size: large;
-  }
+/* Style label */
+/* .MuiInputLabel-root {
+  font-size: 14px;
+  color: #333;
+} */
 
-  .date{
-    display: inline-block;
-    margin-left: 20px;
-    margin-right: 25px;
+/* Style focused label */
+/* .MuiInputLabel-shrink {
+  transform: translate(0, -18px) scale(0.75);
+} */
 
-  }
+/* Style select input */
+.MuiSelect-root {
+  width: 100%;
+}
+
+/* Style submit button */
+.MuiButton-root {
+  margin-top: 20px;
+} */
+
+
 
   .submit_btn{
     margin-left: 180px;
@@ -104,17 +104,19 @@ body{
   }
   
 .main-cont{
-  display: flex 
+  display: flex;
+ 
 }
 
   .form-container{
     display: inline;
-    border: #0056b3 2px solid;
-    background-color: white;
+    border: #000000 2px solid;
+    background-size: cover;
+    border-radius: 10px;
     width: 700px;
-    height: 550px;
+    height: 620px;
     margin-top: 20px;
-   margin-left: 120px;
+    margin-left: 120px;
   }
 
 

@@ -1,0 +1,250 @@
+.cont-body{
+    display: flex;
+}
+
+.cont-img{
+    height: 330px;
+    width: 1520px;
+    opacity: 0.5;
+}
+
+.contact-text{
+    position: absolute;
+    top: -230px;
+    left: 120px;
+    font-weight: 500;
+    font-size: 50px;
+    margin-top: 550px;
+    margin-left: 30px;
+    color: #1F2B6C;
+    display: inline;
+    
+}
+
+.schedule{
+    width: 450px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 140px;
+    margin-left: 170px;
+    margin-right: 130px;
+    background-color: #1F2B6C;
+    border-radius: 20px;
+}
+
+.sch-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: -10px;
+    color: aliceblue;
+    font-size: xx-large;
+
+}
+
+.sch-body{
+    display: flex;
+    color: aliceblue;
+}
+
+.day{
+    font-size: x-large;
+    margin-left: 30px;
+    margin-right: 100px;
+}
+
+.Time{
+    display: flex;
+    font-size: large;
+    margin-left: 20px;  
+}
+.FTime{
+    display: flex;
+    font-size: large;
+    margin-left: 50px;  
+}
+
+
+
+/* .main_conct{
+    margin-top: 100px;
+ } */
+
+
+
+
+ .main-div{
+    display: inline;
+ }
+
+.contac{
+    display: flex;
+    width: 650px;
+    height: 280px;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+    margin-top: -20px;
+    
+}
+
+.emergncy img{
+    margin-right: 165px;
+    margin-top: 75px;
+    margin-bottom: 15px;
+}
+
+.emergncy{
+    background-color: #BFD2F8;
+    text-align: end;
+    width: 233px;
+    height: 233px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.emg_text{
+    color: var(--Primary, #1F2B6C);
+font-family: "Work Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: uppercase;
+margin-right: 85px;
+    margin-top: 8px;
+}
+
+.emg_text2{
+    color: var(--Primary, #1F2B6C);
+font-family: "Work Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 9px; 
+margin-right: 85px;
+}
+
+
+.loc img{
+    margin-left: 30px;
+    margin-top: 75px;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.loc{
+    background-color: #BFD2F8;
+    width: 233px;
+    height: 233px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.loct_text{
+    color: var(--Accent, #1F2B6C);
+    font-family: "Work Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-left: 20px;
+    margin-top: 8px;
+}
+
+.loct_text2{
+    color: var(--Primary, #1F2B6C);
+    font-family: "Work Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 9px; 
+    margin-left: 20px;
+}
+
+.contact2{
+    display: flex;
+    width: 650px;
+    height: 280px;
+    justify-content: center;
+    gap: 64px;  
+}
+
+.e-mail img{
+    margin-left: 30px;
+    margin-top: 75px;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.e-mail{
+    background-color: #BFD2F8;
+    width: 233px;
+    height: 233px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    
+}
+
+.mail_text{
+    color: var(--Accent, #1F2B6C);
+font-family: "Work Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: uppercase;
+margin-left: 30px;
+margin-top: 8px;
+}
+
+.mail_text2{
+    color: var(--Primary, #1F2B6C);
+font-family: "Work Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 9px; 
+margin-left: 30px;
+}
+
+.working img{
+    margin-left: 30px;
+    margin-top: 75px;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.working{
+    background-color: #BFD2F8;
+    width: 233px;
+    height: 233px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.work_text{
+    color: var(--Accent, #1F2B6C);
+font-family: "Work Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: uppercase;
+margin-left: 30px;
+margin-top: 8px;
+}
+
+.work_text2{
+    color: var(--Primary, #1F2B6C);
+font-family: "Work Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 9px; 
+margin-left: 25px;
+}

@@ -16,10 +16,18 @@ font-weight: 400;
 }
 
 .abt_img{
-    position: relative;
+    /* position: relative; */
     margin-top: 55px;
     margin-left: 105px;
     border-radius: 20px;
+}
+
+.abt_img:hover{
+    transform: translate (-10px, -10px);
+    transition: 0.5s;
+    box-shadow: 0px 10px 11px -1px rgba(23, 25, 137, 0.8),
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 3px 0px rgba(0, 0, 0, .12);
 }
 
 .abt_text{
@@ -116,6 +124,7 @@ font-weight: 400;
     opacity: 0.5;
     background: #22349a;
     position: relative;
+    
  }
 
  .dr_text{
@@ -151,7 +160,7 @@ font-weight: 400;
     line-height: normal;
  }
 
- .contact1{
+ .contact-1{
     color: var(--Secondary, #159EEC);
     text-align: center;
     font-family: "Work Sans";
@@ -161,10 +170,10 @@ font-weight: 400;
     line-height: normal;
     letter-spacing: 2.88px;
     text-transform: uppercase;
-    margin-top: 50px;
+    margin-top: 50px; 
  }
 
- .contact2{
+ .contact-2{
     color: var(--Primary, #1F2B6C);
     text-align: center;
     font-family: "Yeseva One";
@@ -185,10 +194,23 @@ font-weight: 400;
 
  .card{
     margin-left: 30px;
+    
+ }
+
+ .card:hover{
+    transform: translate(-10px, -10px);
+    transition: 0.5s;
+    box-shadow: 0px 10px 11px -1px rgba(0, 0, 0, 0.8),
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 3px 0px rgba(0, 0, 0, .12);
  }
 
  .main_conct{
-    margin-top: 100px;
+    margin-top: 150px;
+ }
+
+ .cont{
+    margin-bottom: 50px;
  }
 
  .touch{
@@ -198,7 +220,7 @@ height: 10px;
 justify-content: center;
 align-items: center;
 text-transform: uppercase;
-font-size: larger;
+font-size: xx-large;
 letter-spacing: 5px;
 color: var(--Secondary, #159EEC);
  }
@@ -227,14 +249,20 @@ color: var(--Secondary, #159EEC);
     
 }
 
-.emergncy img{
+.contImg{
+    height: 50px;
+    margin-top: -50px;
+    margin-left: 40px;
+}
+
+/* .emergncy img{
     margin-right: 165px;
     margin-top: 75px;
     margin-bottom: 15px;
-}
+} */
 
 .emergncy{
-    background-color: #BFD2F8;
+    background-color: #79f142;
     text-align: end;
     width: 233px;
     height: 233px;
@@ -242,26 +270,37 @@ color: var(--Secondary, #159EEC);
     flex-shrink: 0;
 }
 
-.emg_text{
-    color: var(--Primary, #1F2B6C);
-font-family: "Work Sans";
-font-size: 18px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-text-transform: uppercase;
-margin-right: 85px;
-    margin-top: 8px;
+.emergncy:hover{
+    background-color: #83aeff;
+    color: #fff;
+    transform: translate(-10px, -10px);
+    transition: 0.5s;
+    box-shadow: 0px 10px 11px -1px rgba(23, 25, 137, 0.8),
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 3px 0px rgba(0, 0, 0, .12);
 }
 
-.emg_text2{
+.emg_text{
     color: var(--Primary, #1F2B6C);
-font-family: "Work Sans";
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 9px; 
-margin-right: 85px;
+    font-family: "Work Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-right: 85px;
+    margin-top: -58px;
+}
+
+
+.emg_text2{
+    color: var(--Primary, #fff);
+    font-family: "Work Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 9px; 
+        margin-right: 85px;
 }
 
 .loc img{
@@ -269,6 +308,17 @@ margin-right: 85px;
     margin-top: 75px;
     color: #000;
     margin-bottom: 15px;
+}
+
+.loc:hover{
+    background-color: #83aeff;
+    color: #fff;
+    transform: translate(10px, -10px);
+    transition: 0.5s;
+    box-shadow: 0px 10px 11px -1px rgba(23, 25, 137, 0.8),
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 3px 0px rgba(0, 0, 0, .12);
+
 }
 
 .loc{
@@ -281,24 +331,24 @@ margin-right: 85px;
 
 .loct_text{
     color: var(--Accent, #1F2B6C);
-font-family: "Work Sans";
-font-size: 18px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-text-transform: uppercase;
-margin-left: 20px;
-margin-top: 8px;
+    font-family: "Work Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-left: 20px;
+    margin-top: 8px;
 }
 
 .loct_text2{
     color: var(--Primary, #1F2B6C);
-font-family: "Work Sans";
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 9px; 
-margin-left: 20px;
+    font-family: "Work Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 9px; 
+    margin-left: 20px;
 }
 
 .e-mail img{
@@ -306,6 +356,16 @@ margin-left: 20px;
     margin-top: 75px;
     color: #000;
     margin-bottom: 15px;
+}
+
+.e-mail:hover{
+    background-color: #83aeff;
+    color: #fff;
+    transform: translate(-10px, -10px);
+    transition: 0.5s;
+    box-shadow: 0px 10px 11px -1px rgba(23, 25, 137, 0.8),
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 3px 0px rgba(0, 0, 0, .12);
 }
 
 .e-mail{
@@ -318,31 +378,41 @@ margin-left: 20px;
 
 .mail_text{
     color: var(--Accent, #1F2B6C);
-font-family: "Work Sans";
-font-size: 18px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-text-transform: uppercase;
-margin-left: 30px;
-margin-top: 8px;
+    font-family: "Work Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-left: 30px;
+    margin-top: 8px;
 }
 
 .mail_text2{
     color: var(--Primary, #1F2B6C);
-font-family: "Work Sans";
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 9px; 
-margin-left: 30px;
-}
+    font-family: "Work Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 9px; 
+    margin-left: 30px;
+}   
 
 .working img{
     margin-left: 30px;
     margin-top: 75px;
     margin-bottom: 15px;
     color: #000;
+}
+
+.working:hover{
+    background-color: #83aeff;
+    color: #fff;
+    transform: translate(10px, -10px);
+    transition: 0.5s;
+    box-shadow: 0px 10px 11px -1px rgba(23, 25, 137, 0.8),
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 3px 0px rgba(0, 0, 0, .12);
 }
 
 .working{
@@ -355,22 +425,22 @@ margin-left: 30px;
 
 .work_text{
     color: var(--Accent, #1F2B6C);
-font-family: "Work Sans";
-font-size: 18px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-text-transform: uppercase;
-margin-left: 30px;
-margin-top: 8px;
+    font-family: "Work Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-left: 30px;
+    margin-top: 8px;
 }
 
 .work_text2{
     color: var(--Primary, #1F2B6C);
-font-family: "Work Sans";
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 9px; 
-margin-left: 25px;
+    font-family: "Work Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 9px; 
+    margin-left: 25px;
 }
