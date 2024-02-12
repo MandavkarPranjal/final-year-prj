@@ -10,7 +10,7 @@ import skin from '../../../../public/images/skin.png';
 import cancer from '../../../../public/images/cancer.png';
 import xRay from '../../../../public/images/xRay.png';
 import './Home.css'; // Import the CSS file
-
+import transition from '../../transition';
 
 
  const Home: React.FC = () => {
@@ -175,4 +175,4 @@ import './Home.css'; // Import the CSS file
   );
  };
 
-export default Home;
+export default transition(Home);

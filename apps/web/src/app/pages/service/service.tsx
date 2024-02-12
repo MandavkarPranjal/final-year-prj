@@ -2,6 +2,7 @@ import React from "react";
 import service1 from '../../../../public/images/service1.png';
 import service2 from '../../../../public/images/service2.jpg';
 import vector from '../../../../public/images/vector.png';
+import transition from "../../transition";
 
 const service: React.FC = () => {
     return (
@@ -105,4 +106,4 @@ const service: React.FC = () => {
 
 
 
-export default service;
+export default transition(service);

@@ -10,6 +10,7 @@ import blood from '../../../../public/images/blood.png';
 import kidney from '../../../../public/images/kidney.png';
 import tent from '../../../../public/images/tent.png';
 import social from '../../../../public/images/social.png';
+import transition from '../../transition';
 
 const About = () => {
 
@@ -104,4 +105,4 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo maxime non ex moll
 );
   };
   
-  export default About;
+  export default transition(About);

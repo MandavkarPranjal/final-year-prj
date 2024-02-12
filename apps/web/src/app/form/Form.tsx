@@ -11,6 +11,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import './form.css';
 import { FormHelperText } from '@mui/material';
+import transition from '../transition';
 
 const validationSchema = yup.object({
   firstName: yup
@@ -330,4 +331,4 @@ const AppointmentForm: React.FC = ({}) => {
   );
 };
 
-export default AppointmentForm;
+export default transition(AppointmentForm);
