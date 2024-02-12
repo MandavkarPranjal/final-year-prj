@@ -16,8 +16,10 @@ model appointment {
   lastName    String
   address     String
   age         Int
+  email       String   @unique
   gender      String
   phoneNumber String   @unique
+  specialty   String
   bookingDate String
   bookingTime String
 }
