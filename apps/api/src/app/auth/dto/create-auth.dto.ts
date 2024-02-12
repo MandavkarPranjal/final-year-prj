@@ -1,6 +1,7 @@
 import { IsNotEmpty, IsString, IsEmail, Length, min, minLength } from 'class-validator';
 
 export class CreateAuthDto {
+
   @IsNotEmpty()
   @IsString()
   public firstName: string;
@@ -9,6 +10,11 @@ export class CreateAuthDto {
   @IsString()
   public lastName: string;
 
+  @IsNotEmpty()
+  @IsString()
+  @IsEmail()
+  public email: string;
+  
   @IsNotEmpty()
   @IsString()
   @Length(10,10, { message: 'Phone number has to be at least 10 chars' }) 
@@ -24,8 +30,7 @@ export class CreateAuthDto {
 
   @IsNotEmpty()
   @IsString()
-  @IsEmail()
-  public email: string;
+  public role: string;
 
   @IsNotEmpty()
   @IsString()

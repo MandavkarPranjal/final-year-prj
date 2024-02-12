@@ -24,13 +24,22 @@ model appointment {
 
 model user {
   id              String @id @default(uuid())
-  email           String @unique
   hashedPassword  String
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt()
   firstName       String
   lastName        String
-  phoneNumber     String
+  email           String @unique
+  phoneNumber     String @unique
+  role            String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt()
   address_1       String
   address_2       String
+  doctors         doctor[]
+}
+
+model doctor {
+  id              String @id @default(uuid())
+  specialty       String
+  userId          String
+  user            user @relation(fields: [userId], references: [id])
 }

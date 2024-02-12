@@ -4,6 +4,7 @@ import landscape from '../../../../public/images/landscape.jpeg';
 import Rectangle14 from '../../../../public/images/Rectangle14.jpg';
 import Rectangle34 from '../../../../public/images/Rectangle34.jpg';
 import './Home.css'; // Import the CSS file
+import transition from '../../transition';
 
 
 
@@ -103,4 +104,4 @@ import './Home.css'; // Import the CSS file
   );
  };
 
-export default Home;
+export default transition(Home);

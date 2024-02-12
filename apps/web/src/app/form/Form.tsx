@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import './Form.css';
 import axios from 'axios';
 import Rectangle from '../../../public/images/Rectangle.jpg';
+import transition from '../transition';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Select from '@mui/material/Select';
@@ -75,19 +76,19 @@ const AppointmentForm: React.FC = ({}) => {
       setTouched({});
       resetForm();
       console.log(values);
-      const response = await axios.post(
-        'http://localhost:3000/api/appointment',
-        {
-          firstName: values.firstName,
-          lastName: values.lastName,
-          address: values.address,
-          age: Number(values.age),
-          gender: values.gender,
-          phoneNumber: values.phoneNumber,
-          bookingDate: values.bookingDate,
-          bookingTime: values.bookingTime,
-        }
-      );
+      const response = await axios.post('http://localhost:3000/appointment/create', {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            address: values.address,
+            age: Number(values.age),
+            gender: values.gender,
+            phoneNumber: values.phoneNumber,
+            bookingDate: values.bookingDate,
+            bookingTime: values.bookingTime
+      })
+
+      // console.log(response);
+      // addAppointment(values);
       return response;
     },
   });
@@ -221,4 +222,4 @@ const AppointmentForm: React.FC = ({}) => {
   );
 };
 
-export default AppointmentForm;
+export default transition(AppointmentForm);
