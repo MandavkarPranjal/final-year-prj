@@ -29,9 +29,9 @@ export class AuthService {
         email,
         phoneNumber,
         role,
-        hashedPassword,
         address_1,
-        address_2
+        address_2,
+        hashedPassword,
       }
     })
 

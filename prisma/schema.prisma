@@ -24,16 +24,16 @@ model appointment {
 
 model user {
   id              String @id @default(uuid())
-  hashedPassword  String
   firstName       String
   lastName        String
   email           String @unique
   phoneNumber     String @unique
   role            String
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt()
   address_1       String
   address_2       String
+  hashedPassword  String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt()
   doctors         doctor[]
 }
 
