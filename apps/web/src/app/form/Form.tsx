@@ -6,6 +6,7 @@ import './Form.css';
 import axios from 'axios';
 import { resolve } from 'path';
 import Rectangle from '../../../public/images/Rectangle.jpg';
+import transition from '../transition';
 
 const validationSchema = yup.object({
 
@@ -46,7 +47,7 @@ const AppointmentForm: React.FC = ({}) => {
       // Handle form submission logic here
       
       console.log(values);
-      const response = await axios.post('http://localhost:3000/api/appointment', {
+      const response = await axios.post('http://localhost:3000/appointment/create', {
             firstName: values.firstName,
             lastName: values.lastName,
             address: values.address,
@@ -221,4 +222,4 @@ const AppointmentForm: React.FC = ({}) => {
   );
 };
 
-export default AppointmentForm;
+export default transition(AppointmentForm);

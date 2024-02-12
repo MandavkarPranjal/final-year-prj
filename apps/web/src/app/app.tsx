@@ -15,6 +15,7 @@ import Login from './pages/login/login';
 import Service from './pages/service/service';
 import './pages/service/service.css';
 import AppointmentForm from './form/Form';
+import { AnimatePresence } from 'framer-motion';
 
 const App: React.FC = () => {
 
@@ -25,14 +26,16 @@ const App: React.FC = () => {
         <Header />
         <Navbar />
 
-        <Routes>
-        <Route path="/"  Component={Home} />
-          <Route path="/login" Component={Login} />
-          <Route path="/contact" Component={Contact} />
-          <Route path="/about" Component={About} />
-          <Route path="/service" Component={Service} />
-          <Route path="/Form" Component={AppointmentForm} />
-        </Routes>
+        <AnimatePresence mode='wait'>
+          <Routes>
+          <Route path="/"  Component={Home} />
+            <Route path="/login" Component={Login} />
+            <Route path="/contact" Component={Contact} />
+            <Route path="/about" Component={About} />
+            <Route path="/service" Component={Service} />
+            <Route path="/Form" Component={AppointmentForm} />
+          </Routes>
+        </AnimatePresence>
         
 
         <Footer />

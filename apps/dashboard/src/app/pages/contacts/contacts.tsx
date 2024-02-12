@@ -4,26 +4,51 @@ import { tokens } from "../../theme";
 import { mockDataContacts } from "../../../data/Mockdata";
 import { useTheme } from "@mui/material";
 import Header from "../../components/header/header";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+interface Appointment {
+  id: number;
+  firstname: string;
+  lastname: string;
+  address: string;
+  age: number;
+  gender: string;
+  phoneNumber: string;
+  bookingDate: string;
+}
 
 const Contacts = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
+  const [appointment, setAppointment] = useState<Appointment[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    axios
+      .get<Appointment[]>("http://localhost:3000/appointment/all")
+      .then((res) => setAppointment(res.data))
+      .catch(err => {
+       setError(err.message);
+  });
+  }, []);
+
   const columns: GridColDef[] = [
     {field: 'id', headerName:'ID', flex: 0.5},
-    {field: "registrarId", headerName: "Registrar ID", flex: 1},
-    {field: 'name', headerName:'Name', flex: 1, cellClassName: 'name-column--cell'},
-    {field: 'age', headerName:'Age', headerAlign: "left", align: "left"},
-    {field: 'phone', headerName:'Phone Number', flex: 1 },
-    {field: 'email', headerName:'Email', flex: 1 },
+    {field: "firstName", headerName: "Firstname", flex: 1},
+    {field: 'lastName', headerName:'Lastname', flex: 1, cellClassName: 'name-column--cell'},
     {field: 'address' , headerName: 'Address', flex: 1},
-    {field: 'city' ,headerName: 'City', flex: 1},
-    {field: 'zipCode' ,headerName: 'ZipCode', flex: 1},
+    {field: 'age', headerName:'Age', headerAlign: "left", align: "left"},
+    {field: 'gender', headerName:'gender', flex: 1 },
+    {field: 'phoneNumber', headerName:'Phone Number', flex: 1 },
+    {field: 'bookingDate' ,headerName: 'Booking Date', flex: 1},
+    {field: 'bookingTime' ,headerName: 'Booking Time', flex: 1},
   ]; 
 
   return (
     <Box m="20px">
-      <Header title="CONTACTS" subtitle="List of Contacts for Future Reference"/>
+      <Header title="APPOINTMENTS" subtitle="List of all appiontments"/>
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -33,9 +58,6 @@ const Contacts = () => {
           },
           "& .MuiDataGrid-cell": {
             borderBottom: "none"
-          },
-          "& .name-column--cell": {
-            color: colors.greenAccent[300],
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.blueAccent[700],
@@ -56,7 +78,7 @@ const Contacts = () => {
         }}
       >
         <DataGrid
-          rows={mockDataContacts}
+          rows={appointment}
           columns={columns}
           components={{Toolbar: GridToolbar}}
         />
