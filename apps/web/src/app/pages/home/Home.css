@@ -1,3 +1,4 @@
+
 .home_img{
     position: relative;
   }
@@ -104,13 +105,14 @@
 }
 
 .home-serv{
+    height: 896px;
     width: 1470px;
     margin-left: 30px;
     padding: 20px 0;
     border-radius: 20px;
-    box-shadow: 0px 5px 8px -1px rgba(59, 59, 59, 0.8),
+    /* box-shadow: 0px 5px 8px -1px rgba(59, 59, 59, 0.8),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14),
-    0px 1px 3px 0px rgba(0, 0, 0, .12);
+    0px 1px 3px 0px rgba(0, 0, 0, .12); */
 }
 
 .serv1{
@@ -176,8 +178,8 @@ font-size: 40px;
  }
 
  .sple_img2{
-    position:absolute;
-    top: 1850px;
+    position:relative;
+    top: -250px;
     left: 1070px;
     height: 250px;
     width: 327px;
@@ -304,6 +306,7 @@ font-size: 40px;
 .review-logo{
     width: 40px;
     height: 40px;
+    border-radius: 50%;
 }
 
 

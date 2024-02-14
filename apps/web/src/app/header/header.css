@@ -6,8 +6,10 @@
 }
 
 .hospital{
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: x-large;
+    font-weight: 500;
+    margin-left: 20px;
 }
 
 .number{

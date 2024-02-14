@@ -51,6 +51,7 @@ const Login = () => {
   });
 
   const onSubmit: SubmitHandler<Login> = async (values : any) => {
+    console.log(values)
     try {
       await verifyLogin(values.email, values.password, navigate);
     } catch (error) {

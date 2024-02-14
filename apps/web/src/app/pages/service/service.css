@@ -169,3 +169,28 @@ line-height: normal;
     color: #212124;
     margin-left: 10px;
 }
+
+.records{
+    display: flex;
+    background-color: aqua;
+}
+
+.crd1{
+        display: inline;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        width: 350px;
+        background-color: rgb(244, 244, 239);
+        margin-right: 10px;margin-left: 100px;
+        padding: 20px;
+        border-radius: 15px;
+}
+
+.crd1-top{
+    margin-left: 80px;
+    font-size: 40px;
+}
+
+.content{
+    margin-left: 90px;
+}

@@ -52,35 +52,6 @@ body{
   margin-right: 50px;
   width: 40%;
 } 
-
-
-/* Style input field */
-/* .MuiInputBase-input {
-  font-size: 14px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-} */
-
-/* Style error text */
-/* .MuiFormHelperText-root {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
-} */
-
-/* Style label */
-/* .MuiInputLabel-root {
-  font-size: 14px;
-  color: #333;
-} */
-
-/* Style focused label */
-/* .MuiInputLabel-shrink {
-  transform: translate(0, -18px) scale(0.75);
-} */
-
 /* Style select input */
 .MuiSelect-root {
   width: 100%;
@@ -89,7 +60,7 @@ body{
 /* Style submit button */
 .MuiButton-root {
   margin-top: 20px;
-} */
+} 
 
 
 

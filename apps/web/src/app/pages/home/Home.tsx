@@ -9,6 +9,7 @@ import denatl from '../../../../public/images/dental.png';
 import skin from '../../../../public/images/skin.png';
 import cancer from '../../../../public/images/cancer.png';
 import xRay from '../../../../public/images/xRay.png';
+import review from '../../../../public/images/review.png';
 import './Home.css'; // Import the CSS file
 import transition from '../../transition';
 
@@ -38,8 +39,7 @@ import transition from '../../transition';
     <h2 className='spl-header'>Specialised departments for your every need</h2>
 <div className="spl-container">
 
-
-  <div className="c1">
+<div className="c1">
     <div className="c1-top">
     <img className='spl-logo' src={heart} alt=""/>
     <h4>Cardiology</h4>
@@ -123,7 +123,7 @@ import transition from '../../transition';
 <p className='serv2_text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br /> Quisquam, voluptatum Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus nulla debitis molestiae minus eaque impedit quia porro, voluptatem exercitationem eveniet modi. Quia ipsam unde neque ipsum quibusdam. Eos, voluptatem laborum..</p>
 </div>
 <p className='serv2_text2'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic ipsa, earum vero molestiae incidunt inventore delectus, quo eum magni impedit voluptates nostrum perspiciatis consequatur reiciendis non, similique asperiores magnam odit.</p>
-{/* <img className='sple_img2' src={Rectangle14} alt="" /> */}
+<img className='sple_img2' src={Rectangle14} alt="" />
 </div>
 
 {/* review card */}
@@ -134,7 +134,7 @@ import transition from '../../transition';
 
   <div className="r1">
     <div className="r1-top">
-     <img className='review-logo' src={xRay} alt=""/>
+     <img className='review-logo' src={review} alt=""/>
     <h4>Mr.Reddy</h4>
     </div>
 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa. </p>
@@ -144,7 +144,7 @@ import transition from '../../transition';
 
   <div className="r1">
   <div className="r1-top">
-     <img className='review-logo' src={xRay} alt=""/> 
+     <img className='review-logo' src={review} alt=""/> 
     <h4>Mr.Mandavkar</h4>
     </div>
 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa.</p>
@@ -152,7 +152,7 @@ import transition from '../../transition';
 
   <div className="r1">
   <div className="r1-top">
-     <img className='review-logo' src={xRay} alt=""/> 
+     <img className='review-logo' src={review} alt=""/> 
     <h4>Vivek Gupta</h4>
     </div>
 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa. </p>
@@ -160,8 +160,8 @@ import transition from '../../transition';
 
   <div className="r1">
   <div className="r1-top">
-     <img className='review-logo' src={xRay} alt=""/> 
-    <h4>Vivek Gupta</h4>
+     <img className='review-logo' src={review} alt=""/> 
+    <h4>Mrs Gupta</h4>
     </div>
 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa. </p>
   </div>

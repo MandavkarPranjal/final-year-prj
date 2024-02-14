@@ -5,7 +5,7 @@ const head: React.FC = () => {
   return (
     <div className='head'>
     <header>
-      <p className='hospital'>HOSPITAL NAME</p>
+      <p className='hospital'>WELL APPOINT</p>
     </header>
     <div className='number'>
     <p className='num'>NUMBER <br /></p>

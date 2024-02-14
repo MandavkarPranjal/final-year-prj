@@ -1,5 +1,7 @@
+
+
 import React from 'react';
-import { useFormik } from 'formik';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import axios from 'axios';
 import Rectangle from '../../../public/images/Rectangle.jpg';
@@ -9,39 +11,53 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-import './form.css';
 import { FormHelperText } from '@mui/material';
-import transition from '../transition';
+import { yupResolver } from '@hookform/resolvers/yup';
+import './form.css';
 
+// Define the shape of the form values
+type AppointmentFormValues = {
+  firstName: string;
+  lastName: string;
+  address: string;
+  age: number;
+  email: string;
+  phoneNumber: string;
+  bookingDate: string;
+  Specialization: string;
+  gender: string;
+  bookingTime: string;
+};
+
+// Define validation schema using yup
 const validationSchema = yup.object({
   firstName: yup
     .string()
-    .matches(/^[A-Za-z]+$/, 'First Name must only contain letters')
-    .required('First Name is required'),
+    .required('First Name is required')
+    .matches(/^[A-Za-z]+$/, 'First Name must only contain letters'),
   lastName: yup
     .string()
-    .matches(/^[A-Za-z]+$/, 'Last Name must only contain letters')
-    .required('Last Name is required'),
+    .required('Last Name is required')
+    .matches(/^[A-Za-z]+$/, 'Last Name must only contain letters'),
   age: yup
     .number()
     .positive('Age must be a positive number')
     .integer('Age must be an integer')
     .required('Age is required'),
   address: yup.string().required('Address is required'),
-  email: yup.string().email('Invalid email address').required('email is required'),
+  email: yup
+    .string()
+    .email('Invalid email address')
+    .required('Email is required'),
   phoneNumber: yup
-    .number()
+    .string()
     .required('Phone Number is required')
-    .min(1000000000, 'Phone Number must be at least 10 digits')
-    .max(9999999999, 'must contain 10 digits Only'),
-
-  bookingDate: yup
-    .date()
-    .required('Booking Date is required')
-    .min(new Date(), 'Invalid Date'),
+    .min(10, 'Phone Number must be at least 10 digits')
+    .max(10, 'Must contain 10 digits only'),
+  bookingDate: yup.string().required('Booking Date is required'),
   bookingTime: yup.string().required('Booking Time is required'),
   Specialization: yup.string().required('Specialization is required'),
-  Gender: yup.string().required('gender is required'),
+  gender: yup.string().required('Gender is required'),
 });
 
 const timeSlots = [
@@ -53,7 +69,7 @@ const timeSlots = [
   // Add more time slots as needed
 ];
 
-const Specialization = [
+const SpecializationOptions = [
   'Dentist',
   'Cardiologist',
   'Dermatologist',
@@ -61,244 +77,180 @@ const Specialization = [
   'Neurologist',
   'Gastroenterologists',
   'Pediatricians',
-  'Oncologist'
+  'Oncologist',
 ];
 
-const gender = [
-  'Male',
-  'Female',
-  'Other',
-];
+const genderOptions = ['Male', 'Female', 'Other'];
 
-const AppointmentForm: React.FC = ({}) => {
+const AppointmentForm: React.FC = () => {
+  // Destructure react-hook-form functions
   const {
-    values,
-    errors,
-    touched,
-    handleChange,
-    handleBlur,
     handleSubmit,
-    setTouched,
-  } = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      address: '',
-      age: '',
-      email: '',
-      gender: '',
-      phoneNumber: '',
-      bookingDate: '',
-      Specialization: '',
-      bookingTime: '',
-    },
-    validationSchema: validationSchema,
-    onSubmit: async (values, { resetForm }) => {
-      setTouched({});
-      resetForm();
-      console.log(values);
+    register,
+    formState: { errors },
+  } = useForm<AppointmentFormValues>({
+    resolver: yupResolver(validationSchema),
+  });
+
+  // Define the function to be called on form submission
+  const onSubmit: SubmitHandler<AppointmentFormValues> = async (values) => {
+    console.log(values);
+    console.log('Form submitted');
+
+    try {
       const response = await axios.post(
         'http://localhost:3000/api/appointment',
-        {
-          firstName: values.firstName,
-          lastName: values.lastName,
-          address: values.address,
-          age: Number(values.age),
-          email: values.email,
-          phoneNumber: values.phoneNumber,
-          bookingDate: values.bookingDate,
-          Specialization: values.Specialization,
-          gender: values.gender,
-          bookingTime: values.bookingTime,
-        }
+        values
       );
-      return response;
-    },
-  });
+      console.log('API response:', response.data);
+      // Handle success or further actions here
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Handle errors or display error messages to the user
+    }
+  };
 
   return (
     <div className="super">
       <div className="main-cont">
         <div className="form-container">
-          <form className="form" onSubmit={handleSubmit}>
+          {/* The onSubmit function will be called when the form is submitted */}
+          <form className="form" onSubmit={handleSubmit(onSubmit)}>
+            {/* Section One: Personal Information */}
             <div className="g-one">
               <p className="headings">Appointment Form</p>
               <TextField
-                sx={{
-                  marginLeft: 2,
-                  marginRight: 10
-                }}
+              sx={{
+                marginRight: 6,
+                marginLeft: 4
+              }}
                 type="text"
-                id="firstNme"
+                id="firstName"
                 label="First Name"
-                name="firstName"
-                onChange={handleChange}
-                onBlur={() => handleBlur('firstName')}
-                value={values.firstName}
-                error={touched.firstName && !!errors.firstName}
-                helperText={touched.firstName && errors.firstName}
+                {...register('firstName')}
+                error={!!errors.firstName}
+                helperText={errors.firstName?.message}
               />
 
               <TextField
                 type="text"
                 id="lastName"
                 label="Last Name"
-                name="lastName"
-                onChange={handleChange}
-                onBlur={() => handleBlur('lastName')}
-                value={values.lastName}
-                error={touched.lastName && !!errors.lastName}
-                helperText={touched.lastName && errors.lastName}
-              />
-
-              <TextField
-                sx={{
-                  marginRight: 10,
-                  marginLeft: 2
-                }}
-                type="text"
-                id="address"
-                label="Address"
-                name="address"
-                onChange={handleChange}
-                onBlur={() => handleBlur('address')}
-                value={values.address}
-                error={touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-              />
-
-              <TextField
-                type="text"
-                id="age"
-                label="Age"
-                name="age"
-                onChange={handleChange}
-                onBlur={() => handleBlur('age')}
-                value={values.age}
-                error={touched.age && !!errors.age}
-                helperText={touched.age && errors.age}
-              />
-            </div>
-
-            <div className="g-two">
-              <TextField
-                sx={{
-                  marginRight: 10,
-                  marginLeft: 2,
-                }}
-                type="text"
-                id="email"
-                label="Email"
-                name="email"
-                onChange={handleChange}
-                onBlur={() => handleBlur('email')}
-                value={values.email}
-                error={touched.email && !!errors.email}
-                helperText={touched.email && errors.email}
-              />
-
-              <TextField
-                type="text"
-                id="phoneNumber"
-                label="Phone Number"
-                name="phoneNumber"
-                onChange={handleChange}
-                onBlur={() => handleBlur('phoneNumber')}
-                value={values.phoneNumber}
-                error={touched.phoneNumber && !!errors.phoneNumber}
-                helperText={touched.phoneNumber && errors.phoneNumber}
+                {...register('lastName')}
+                error={!!errors.lastName}
+                helperText={errors.lastName?.message}
               />
 
               <TextField
               sx={{
-                
-                marginLeft: 2,
+                marginRight: 6,
+                marginLeft: 4
+              }}
+                type="text"
+                id="address"
+                label="Address"
+                {...register('address')}
+                error={!!errors.address}
+                helperText={errors.address?.message}
+              />
+
+              <TextField
+                type="number"
+                id="age"
+                label="Age"
+                {...register('age')}
+                error={!!errors.age}
+                helperText={errors.age?.message}
+              />
+            </div>
+
+            {/* Section Two: Contact Information */}
+            <div className="g-two">
+              <TextField
+              sx={{
+                marginRight: 6,
+                marginLeft: 4
+              }}
+                type="text"
+                id="email"
+                label="Email"
+                {...register('email')}
+                error={!!errors.email}
+                helperText={errors.email?.message}
+              />
+              <TextField
+                type="text"
+                id="phoneNumber"
+                label="Phone Number"
+                {...register('phoneNumber')}
+                error={!!errors.phoneNumber}
+                helperText={errors.phoneNumber?.message}
+              />
+              <TextField
+              sx={{
+                marginRight: 6,
+                marginLeft: 4
               }}
                 type="date"
                 id="bookingDate"
                 // label="Booking Date"
-                name="bookingDate"
-                onChange={handleChange}
-                onBlur={() => handleBlur('bookingDate')}
-                value={values.bookingDate}
-                error={touched.bookingDate && !!errors.bookingDate}
-                helperText={touched.bookingDate && errors.bookingDate}
+                {...register('bookingDate')}
+                error={!!errors.bookingDate}
+                helperText={errors.bookingDate?.message}
               />
-
-              <FormControl
-                sx={{
-                  width: 275,
-                  marginLeft: 10,
-                }}
-              >
-                <InputLabel id="specilzation">Specialization</InputLabel>
+              <FormControl>
+                <InputLabel id="SpecializationLabel">Specialization</InputLabel>
                 <Select
-                  labelId="Specialization"
+                  labelId="SpecializationLabel"
                   id="Specialization"
-                  name="Specialization"
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('Specialization')}
-                  value={values.Specialization}
-                  error={touched.Specialization && !!errors.Specialization}
+                  {...register('Specialization')} // Provide a default value
+                  error={!!errors.Specialization}
                 >
                   <MenuItem value="" disabled>
                     Select Specialization
                   </MenuItem>
-                  {Specialization.map((slot) => (
-                    <MenuItem key={slot} value={slot}>
-                      {slot}
+                  {SpecializationOptions.map((option) => (
+                    <MenuItem key={option} value={option}>
+                      {option}
                     </MenuItem>
                   ))}
                 </Select>
-                <FormHelperText error>{errors.Specialization}</FormHelperText>
-              </FormControl>
-
-              <FormControl>
-                <InputLabel id="gender">Gender</InputLabel>
-                <Select
-                  sx={{
-                    width: 275,
-                    marginLeft: 2,
-                  }}
-                  labelId="Gender"
-                  id="gender"
-                  name="gender"
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('gender')}
-                  value={values.gender}
-                  error={touched.gender && !!errors.gender}
-                >
-                  <MenuItem value="" disabled></MenuItem>
-                  {gender.map((slot) => (
-                    <MenuItem key={slot} value={slot}>
-                      {slot}
-                    </MenuItem>
-                  ))}
-                </Select>
-                <FormHelperText error>{errors.gender}</FormHelperText>
               </FormControl>
 
               <FormControl
-                sx={{
-                  width: 275,
-                  marginLeft: 12,
-                  
-                  
-                }}
+              sx={{
+                marginRight: 6,
+                marginLeft: 4
+              }}
               >
-                <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
+                <InputLabel id="genderLabel">Gender</InputLabel>
                 <Select
-                  
-                  labelId="bookingTimeLabel"
-                  id="bookingTime"
-                  name="bookingTime"
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('bookingTime')}
-                  value={values.bookingTime}
-                  error={touched.bookingTime && !!errors.bookingTime}
+                  labelId="genderLabel"
+                  id="gender"
+                  {...register('gender')} // Provide a default value
+                  error={!!errors.gender}
                 >
                   <MenuItem value="" disabled>
-                    Select a time
+                    Select Gender
+                  </MenuItem>
+                  {genderOptions.map((option) => (
+                    <MenuItem key={option} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </Select>
+                <FormHelperText error>{errors.gender?.message}</FormHelperText>
+              </FormControl>
+              <FormControl>
+                <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
+                <Select
+                  labelId="bookingTimeLabel"
+                  id="bookingTime"
+                  {...register('bookingTime')}
+                  error={!!errors.bookingTime}
+                >
+                  <MenuItem value="" disabled>
+                    Select Booking Time
                   </MenuItem>
                   {timeSlots.map((slot) => (
                     <MenuItem key={slot} value={slot}>
@@ -306,10 +258,13 @@ const AppointmentForm: React.FC = ({}) => {
                     </MenuItem>
                   ))}
                 </Select>
-                <FormHelperText error>{errors.bookingTime}</FormHelperText>
+                <FormHelperText error>
+                  {errors.bookingTime?.message}
+                </FormHelperText>
               </FormControl>
             </div>
 
+            {/* Submit Button */}
             <Button
               variant="contained"
               color="primary"
@@ -323,6 +278,7 @@ const AppointmentForm: React.FC = ({}) => {
             </Button>
           </form>
         </div>
+        {/* Image Container */}
         <div className="img-container">
           <img className="book_img" src={Rectangle} alt="img" />
         </div>
@@ -331,4 +287,4 @@ const AppointmentForm: React.FC = ({}) => {
   );
 };
 
-export default transition(AppointmentForm);
+export default AppointmentForm;

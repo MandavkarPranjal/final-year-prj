@@ -93,14 +93,38 @@ const service: React.FC = () => {
             </div>  
 
             </div>
+        </div>
 
+<div className="records">
 
-            </div>
+<div className="crd1">
+    <div className="crd1-top">
+    <p>1,00,000+</p>
+    </div>
+<p className="content">Hpppy and Healthy </p>
+  </div>
 
+ 
 
+  <div className="crd1">
+  <div className="crd1-top">
+    <p>2,000+</p>
+    </div>
+<p className="content">New born</p>
+  </div>
+
+  <div className="crd1">
+  <div className="crd1-top">
+    <p>10+</p>
+    </div>
+<p className="content">Heart Transplant </p>
+  </div>
+</div>
+
+</div>
 
           
-        </div>
+        
     );
 };
 
