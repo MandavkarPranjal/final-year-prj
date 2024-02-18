@@ -16,14 +16,14 @@ model appointment {
   lastName    String
   address     String
   age         Int
+  email       String @unique
   gender      String
   phoneNumber String   @unique
-  specialty   String
   bookingDate String
   Specialization String
   bookingTime String
-  
- 
+
+
 }
 
 model user {
