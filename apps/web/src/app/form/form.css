@@ -5,6 +5,7 @@ body{
 
 .form{ 
     height: 500px;
+    padding: 25px;
     
   }
   
@@ -16,15 +17,7 @@ body{
     display: flex;
     margin-bottom: 5px;
   }
-  
-  input {
-    width: 300px;
-    height: 40px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #e3e7f6;
-  }
+
   
   button {
     background-color: #007bff;
@@ -51,10 +44,12 @@ body{
   margin-bottom: 20px;
   margin-right: 50px;
   width: 40%;
+  
 } 
 /* Style select input */
 .MuiSelect-root {
   width: 100%;
+  
 }
 
 /* Style submit button */
@@ -71,7 +66,13 @@ body{
   }
 
   .book_img{
-    height: 540px;
+    height: 610px;
+    width: 92%;
+    border-radius: 4px;
+  }
+
+  .super{
+    margin-top: 10px;
   }
   
 .main-cont{
@@ -81,19 +82,37 @@ body{
 
   .form-container{
     display: inline;
-    border: #000000 2px solid;
-    background-size: cover;
-    border-radius: 10px;
+    position: relative;
+    left: 520px;
+    /* background-color: #91afed; */
+    background-color: #e2e4f8;
+    border-radius: 5px;
     width: 700px;
     height: 620px;
     margin-top: 20px;
     margin-left: 120px;
   }
 
+  .dummy{
+    background-color: #9abcec;
+    height: 350px;
+    width: 1430px;
+    border-radius: 5px;
+    margin-left: 50px;
+    margin-bottom: 700px;
+  }
+
+  .up{
+    position: relative;
+    margin-left: 50px;
+    top: 20px;
+  }
+
 
   .img-container{
-    margin-top: 20px;
-    margin-left: 100px;
+    position: relative;
+    top: 25px;
+    left: -770px;
   }
   
   .g-one{
@@ -105,4 +124,26 @@ body{
     display: block;
     margin-left: 13px;
     margin-top: -18px;
+  }
+
+  .apptbtm{
+    display: flex;
+    margin-left: 150px;
+    margin-top: 80px;
+  }
+
+  .btm1{
+    margin-left: 110px;
+  }
+
+  .aapticon{
+    height: 100px;
+    margin-left: 65px;
+  }
+
+  .btmtxt{
+    font-size: 18px;
+    margin-left: 30px;
+    margin-top: 10px;
+    font-weight: 600;
   }

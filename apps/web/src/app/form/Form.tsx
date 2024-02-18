@@ -1,20 +1,23 @@
 
 
-import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import * as yup from 'yup';
-import axios from 'axios';
-import Rectangle from '../../../public/images/Rectangle.jpg';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
-import { FormHelperText } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { FormHelperText } from '@mui/material';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
+import axios from 'axios';
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import Rectangle from '../../../public/images/Rectangle.jpg';
+import appointment from '../../../public/images/appointment.png';
+import inTime from '../../../public/images/inTime.png';
+import doctor from '../../../public/images/doctor.png';
 import './form.css';
-
+import transition from '../transition';
 // Define the shape of the form values
 type AppointmentFormValues = {
   firstName: string;
@@ -112,6 +115,8 @@ const AppointmentForm: React.FC = () => {
 
   return (
     <div className="super">
+        <div className="dummy">
+          <h3 className='up'>Book a Appointment</h3>
       <div className="main-cont">
         <div className="form-container">
           {/* The onSubmit function will be called when the form is submitted */}
@@ -283,8 +288,27 @@ const AppointmentForm: React.FC = () => {
           <img className="book_img" src={Rectangle} alt="img" />
         </div>
       </div>
+      
+      <div className="apptbtm">
+        <div className="btm1">
+  <img className='aapticon' src={appointment} alt="" />
+  <p className='btmtxt'>Monday - Saturday</p>
+  </div>
+
+  <div className="btm1">
+  <img className='aapticon' src={inTime} alt="" />
+  <p className='btmtxt'>09.00 Am - 08.00 Pm</p>
+  </div>
+
+  <div className="btm1">
+  <img className='aapticon' src={doctor} alt="" />
+  <p className='btmtxt'>All Doctors Available</p>
+  </div>
+  </div>
+        
+      </div>
     </div>
   );
 };
 
-export default AppointmentForm;
+export default transition(AppointmentForm);

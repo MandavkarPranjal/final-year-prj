@@ -251,12 +251,11 @@ font-size: 40px;
 .review-header{
     color: var(--Secondary, #159EEC);
     text-align: center;
-    font-family: "Work Sans";
     font-size: 30px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    letter-spacing: 2.5px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     margin-top: 80px;
 

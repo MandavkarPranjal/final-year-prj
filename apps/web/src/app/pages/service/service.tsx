@@ -1,10 +1,34 @@
 import React from "react";
+import { useEffect } from 'react';
 import service1 from '../../../../public/images/service1.png';
 import service2 from '../../../../public/images/service2.jpg';
 import vector from '../../../../public/images/vector.png';
 import transition from "../../transition";
 
-const service: React.FC = () => {
+const Service: React.FC = () => {
+
+    useEffect(() => {
+        const counters = document.querySelectorAll('.value');
+        const speed = 400;
+    
+        counters.forEach((counter) => {
+        const animate = () => {
+            const value = +counter.getAttribute('data-akhi')!;
+            const data = +(counter as HTMLElement).innerText;
+
+            const time = value / speed;
+            if (data < value) {
+                (counter as HTMLElement).innerText = Math.ceil(data + time).toString();
+                setTimeout(animate, 1);
+            } else {
+                (counter as HTMLElement).innerText = value.toString();
+            }
+        };
+
+        animate();
+        });
+      }, []);
+
     return (
         <div className="main">
 
@@ -13,12 +37,12 @@ const service: React.FC = () => {
 
 
             <div className="content1">
-        <div className="up">
+        <div className="upside">
                 <div className="card_one">
                     <img src={service2} alt="" />
 
             <p className="free">Free Checkup</p>
-            <p className="content">Lorem ipsum dolor sit amet, consectetur adipiscing Quisque placerat Convallis felis vitae </p>
+            <p className="contents">Lorem ipsum dolor sit amet, consectetur adipiscing Quisque placerat Convallis felis vitae </p>
                     
                 </div>
 
@@ -26,7 +50,7 @@ const service: React.FC = () => {
                 <img src={service2} alt="" />
 
 <p className="free">Free Checkup</p>
-<p className="content">Lorem ipsum dolor sit amet, consectetur adipiscing Quisque placerat Convallis felis </p>
+<p className="contents">Lorem ipsum dolor sit amet, consectetur adipiscing Quisque placerat Convallis felis </p>
                     
                 </div>
 
@@ -34,7 +58,7 @@ const service: React.FC = () => {
                 <img src={service2} alt="" />
 
 <p className="free">Free Checkup</p>
-<p className="content">Lorem ipsum dolor sit amet, consectetur adipiscing Quisque placerat Convallis felis </p>
+<p className="contents">Lorem ipsum dolor sit amet, consectetur adipiscing Quisque placerat Convallis felis </p>
 </div>
                     
             </div>
@@ -97,28 +121,42 @@ const service: React.FC = () => {
 
 <div className="records">
 
-<div className="crd1">
-    <div className="crd1-top">
-    <p>1,00,000+</p>
-    </div>
-<p className="content">Hpppy and Healthy </p>
-  </div>
+    <h2 className="happy">Happily Served</h2>
+  <div className="recMain">
+  <div className="crd1">
+      {/* <div className="value" data-akhi="2000">
+        0
+      </div>
+    <div className="content">
+      <p>New Borns</p>
+    </div> */}
+    <p className="crdtxt">New Borns</p>
+    <div className="c-1"></div>
 
- 
+    </div>
 
   <div className="crd1">
-  <div className="crd1-top">
-    <p>2,000+</p>
-    </div>
-<p className="content">New born</p>
+      {/* <div className="value" data-akhi="1000000">
+        0
+      </div>
+    <div className="content">
+      <p>Happy and healthy Customers</p>
+    </div> */}
+    <p className="crdtxt">Happy and healthy Customers</p>
+    <div className="c2"></div>
   </div>
 
   <div className="crd1">
-  <div className="crd1-top">
-    <p>10+</p>
-    </div>
-<p className="content">Heart Transplant </p>
+      {/* <div className="value" data-akhi="350">
+        0
+      </div>
+    <div className="content">
+      <p>Cancer Recovery</p>
+    </div> */}
+    <p className="crdtxt">Cancer Recovery</p>
+    <div className="c3"></div>
   </div>
+</div>
 </div>
 
 </div>
@@ -130,4 +168,4 @@ const service: React.FC = () => {
 
 
 
-export default transition(service);
+export default transition(Service);

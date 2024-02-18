@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
      <hr />
       <div className="fotter">
         <div className="f-spl">
-          <h3>Specialities</h3>
+          <h3 className='fhead'>Specialities</h3>
           <p>Cardiology</p>
           <p>Neurology</p>
           <p>Dermatology</p>
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="goto">
-          <h3>Go To</h3>
+          <h3 className='fhead'>Go To</h3>
          <a href="#">Home</a>
          <a href="contact">Contact</a>
          <a href="about">About Us</a>
@@ -28,13 +28,13 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="appt">
-          <h3>Meet Doctor</h3>
+          <h3 className='fhead'>Meet Doctor</h3>
           <a href="form">Take a Appointment</a>
         </div>
 
         <div className="links">
-          <h3>Connect with Us</h3>
-          <a href="">Linkdin</a>
+          <h3 className='fhead'>Connect with Us</h3>
+          <a href="">Twitter</a>
           <a href="">Youtube</a>
           <a href="">Facebook</a>
           <a href="">Instagram</a>
