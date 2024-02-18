@@ -15,7 +15,7 @@ import Login from './pages/login/login';
 import Service from './pages/service/service';
 import './pages/service/service.css';
 import AppointmentForm from './form/Form';
-import {AnimatePresence} from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 const App: React.FC = () => {
 

@@ -1,11 +1,11 @@
 import React from 'react';
+import transition from '../../transition';
 import './contact.css';
 import contactImg from '../../../../public/images/contactImg.jpg';
 import call from '../../../../public/images/call.png';
 import time from '../../../../public/images/time.png';
 import location from '../../../../public/images/location.png';
 import mail from '../../../../public/images/mail.png';
-import transition from '../../transition';
 
 const Contact: React.FC = () => {
   return (

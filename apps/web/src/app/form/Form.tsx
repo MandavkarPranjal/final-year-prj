@@ -102,7 +102,7 @@ const AppointmentForm: React.FC = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:3000/api/appointment',
+        'http://localhost:3000/appointment/create',
         values
       );
       console.log('API response:', response.data);
@@ -220,6 +220,7 @@ const AppointmentForm: React.FC = () => {
                     </MenuItem>
                   ))}
                 </Select>
+                <FormHelperText error>{errors.Specialization?.message}</FormHelperText>
               </FormControl>
 
               <FormControl
@@ -246,6 +247,7 @@ const AppointmentForm: React.FC = () => {
                 </Select>
                 <FormHelperText error>{errors.gender?.message}</FormHelperText>
               </FormControl>
+              
               <FormControl>
                 <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
                 <Select

@@ -14,6 +14,7 @@ import './Home.css'; // Import the CSS file
 import transition from '../../transition';
 
 
+
  const Home: React.FC = () => {
   
   return (
