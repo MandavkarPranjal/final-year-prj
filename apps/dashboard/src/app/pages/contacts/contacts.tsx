@@ -45,7 +45,7 @@ const Contacts = () => {
     {field: 'Specialization' ,headerName: 'Specialization', flex: 1},
     {field: 'bookingDate' ,headerName: 'Booking Date', flex: 1},
     {field: 'bookingTime' ,headerName: 'Booking Time', flex: 1},
-  ]; 
+  ];
 
   return (
     <Box m="20px">
