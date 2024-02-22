@@ -8,6 +8,8 @@
   import Header from "../../components/header/header";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 interface Team{
   id: string;
@@ -43,6 +45,7 @@ interface Team{
       {field: 'phoneNumber', headerName:'Phone Number', flex: 1 },
       {field: 'address_1', headerName:'Address1', flex: 1, cellClassName: 'name-column--cell'},
       {field: 'address_2', headerName:'Address2', flex: 1, cellClassName: 'name-column--cell'},
+      
       {field: 'role', headerName:'Role', flex: 1,headerAlign: "center", align: "center", renderCell: ({row: {role}}) => {
         return (
           <Box
@@ -67,6 +70,30 @@ interface Team{
           </Box>
         )
       } },
+      {
+        field: 'actions',
+        headerName: 'Actions',
+        flex: 1,
+        renderCell: (params) => (
+          <div>
+            <EditIcon
+              // onClick={() => handleEditOpenModal(params.row)}
+              // color="primary"
+              sx={{ cursor: 'pointer', fontSize: 25, marginRight: 1.5 }}
+            >
+              Edit
+            </EditIcon>
+            <DeleteIcon
+              // onClick={() => handleDeleteOpenModal(params.row)}
+              // color="secondary"
+              sx={{ cursor: 'pointer', fontSize: 25 }}
+            >
+              Delete
+            </DeleteIcon>
+          </div>
+        ),
+      },
+
     ]; 
 
     return (
