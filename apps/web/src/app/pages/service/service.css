@@ -227,7 +227,7 @@ line-height: normal;
   }
   
   .c-1 {
-    transition: --num 2s;
+    transition: --num 1s;
     counter-set: num var(--num);
     text-align: center;
     font: 800 40px system-ui;

@@ -57,14 +57,10 @@ const userSchema = yup.object().shape({
 
 
 const RoleOptions = [
-  'Dentist',
-  'Cardiologist',
-  'Dermatologist',
-  'Gynecologist',
-  'Neurologist',
-  'Gastroenterologists',
-  'Pediatricians',
-  'Oncologist',
+  'Admin',
+  'Doctor',
+  'Receptionist',
+  
 ];
 
 
@@ -108,11 +104,11 @@ const Form = () => {
       } else {
         console.log('User Creation Failed');
       }
-    } catch (error) {
-      if (status.status === 500){
+    } catch (error: any) {
+      if (status && status.status === 500){
         enqueueSnackbar('User Creation Failed', { variant: 'error' });
       }
-      setRes(error.response?.data?.message || 'Error creating user'); // Fix: Change the assignment to a function call
+      setRes(error.response?.data?.message || 'Error creating user');
       enqueueSnackbar(res, { variant: 'error' });
     }
   }
@@ -159,12 +155,15 @@ const Form = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Box 
-            display="grid" 
+            display="inline-grid" 
             gap="30px" 
             gridTemplateColumns="repeat(4, minmax(0, 1fr))"
             sx={{
               "& > div": {
                 gridColumn: { gridColumn : "span 4" },
+                marginLeft: "30px",
+                width: "550px",
+                height: "80px"
               }
             }}
           >
@@ -178,7 +177,7 @@ const Form = () => {
               error={!!errors.firstName}
               helperText={errors.firstName?.message}
               sx={{
-                gridColumn: "span 2"
+                gridColumn: "span 1"
               }}
             />
             <TextField 
@@ -191,7 +190,7 @@ const Form = () => {
               error={!!errors.lastName}
               helperText={errors.lastName?.message}
               sx={{
-                gridColumn: "span 2"
+                gridColumn: "span 1"
               }}
             />
             <TextField 
@@ -220,6 +219,23 @@ const Form = () => {
                 gridColumn: "span 4"
               }}
             />
+
+            </Box>
+            
+            <Box 
+            display="inline-grid" 
+            gap="30px" 
+            gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+            sx={{
+              "& > div": {
+                gridColumn: { gridColumn : "span 4" },
+                justifyContent: "center",
+                marginLeft: "50px",
+                width: "550px",
+                height: "80px"
+              }
+            }}
+          >
             <TextField 
               // fullWidth
               variant="filled"
@@ -304,8 +320,8 @@ const Form = () => {
             />
             
           </Box>
-          <Box display="flex" justifyContent="end" mt="20px">
-            <Button type="submit" color="secondary" variant="contained"
+          <Box display="flex" justifyContent="center" mt="20px" ml="-35px">
+            <Button type="submit" color="secondary" variant="contained" size="large"
             >
               Create New User
             </Button>
