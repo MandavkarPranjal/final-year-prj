@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Modal, Box, Stack, TextField, FormControl, InputLabel, Select, MenuItem, Button, FormHelperText } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { SnackbarProvider, useSnackbar } from 'notistack'
 
 type Appointment = {
   firstName: string;
@@ -53,13 +54,12 @@ const validationSchema = yup.object({
 interface Props {
     open: boolean;
     onClose: () => void;
-    handleEditAppointment: (data: Appointment) => void;
     appId: number;
     // formData: Appointment; // Receive formData prop
     // setFormData: (data: Appointment) => void; // Receive setFormData prop
   }
 
-const EditAppointmentModal: React.FC<Props> = ({ open, onClose, handleEditAppointment, appId }) => {
+const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
   // const [formData, setFormData] = useState<Appointment>({
   //   id: 0,
   //   firstName: '',
@@ -99,6 +99,9 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, handleEditAppoin
     '2:00 PM - 3:00 PM',
   ];
 
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+
   const handleFormSubmit: SubmitHandler<Appointment> = async (values) => {
     // handleAddAppointment(formData);
     // console.log('Form Data', values);
@@ -108,7 +111,8 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, handleEditAppoin
       const response = axios.patch(`http://localhost:3000/appointment/update/${appId}`, values);
       // console.log(appId)
       if((await response).status === 200){
-        handleEditAppointment(values);
+        enqueueSnackbar('Appointmented Edited Successfully', { variant: 'success' });
+
         onClose();
         // navigate(`/appointment`);
       }

@@ -51,12 +51,12 @@ const validationSchema = yup.object({
 interface Props {
     open: boolean;
     onClose: () => void;
-    handleAddAppointment: (data: Appointment) => void;
-    formData: Appointment; // Receive formData prop
-    setFormData: (data: Appointment) => void; // Receive setFormData prop
+    // handleAddAppointment: (data: Appointment) => void;
+    // formData: Appointment; // Receive formData prop
+    // setFormData: (data: Appointment) => void; // Receive setFormData prop
   }
 
-const AddAppointmentModal: React.FC<Props> = ({ open, onClose, handleAddAppointment }) => {
+const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
 //   const [formData, setFormData] = useState<Appointment>({
 //     firstName: '',
 //     lastName: '',
@@ -97,10 +97,15 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose, handleAddAppointm
 
   const handleFormSubmit: SubmitHandler<Appointment> = async (values) => {
     // handleAddAppointment(formData);
-    console.log('Form Data', values);
+    // console.log('Form Data', values);
 
     try {
-      axios.post('http://localhost:3000/appointment/create', values);
+      const response = axios.post('http://localhost:3000/appointment/create', values);
+
+      if((await response).status === 201){
+        onClose();
+        // navigate(`/appointment`);
+      }
     } catch (error) {
       console.error('Error adding appointment', error);
     }
@@ -238,6 +243,7 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose, handleAddAppointm
           <Button 
             variant='contained'
             type='submit'
+            // onClick={handleFormSubmi}
           >
             Add Appointment
           </Button>
