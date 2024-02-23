@@ -10,6 +10,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { number } from "yup";
+import EditTeamModal from "./editTeamModal";
+import DeleteTeamModal from "./deleteTeamModal";
 
 interface Team{
   id: string;
@@ -29,14 +32,78 @@ interface Team{
     const [team, setTeam] = useState<Team[]>([]);
     const [error, setError] = useState<string | null>(null);
 
+    const [openEditModal, setOpenEditModal] = useState(false);
+    const [userId, setUserId] = useState(number);
+
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
+    const [refreshInterval, setRefreshInterval] = useState<NodeJS.Timeout | null>(
+      null
+    );
+
     useEffect(() => {
-      axios
-        .get<Team[]>("http://localhost:3000/users")
-        .then((res) => setTeam(res.data))
-        .catch(err => {
-        setError(err.message);
-    });
+      fetchData();
+  
+      const interval = setInterval(() => {
+        fetchData();
+      }, 8000);
+  
+      setRefreshInterval(interval);
+  
+      return () => {
+        if (refreshInterval) {
+          clearInterval(refreshInterval);
+        }
+      };
     }, []);
+  
+    const fetchData = () => {
+      axios
+        .get<Team[]>('http://localhost:3000/users')
+        .then((res) => setTeam(res.data))
+        .catch((err) => {
+          setError(err.message);
+        });
+    };
+  
+
+    // useEffect(() => {
+    //   axios
+    //     .get<Team[]>("http://localhost:3000/users")
+    //     .then((res) => setTeam(res.data))
+    //     .catch(err => {
+    //     setError(err.message);
+    // });
+    // }, []);
+
+
+
+
+
+    const handleEditOpenModal = (user: any) => {
+      const stringNumber = user.id;
+      setOpenEditModal(true);
+  
+      setUserId(stringNumber);
+      console.log(userId);
+    };
+    const handleEditCloseModal = () => {
+      // setEditMode(false);
+      setOpenEditModal(false); // Close the Edit Appointment modal
+    };
+
+    const handleDeleteOpenModal = (user: any) => {
+      console.log("delete icon clicked")
+      setOpenDeleteModal(true); // Open the Delete Appointment modal
+      setUserId(user.id); // Set the userId for the appointment to be deleted
+    };
+  
+    const handleDeleteCloseModal = () => {
+      setOpenDeleteModal(false); // Close the Delete Appointment modal
+    }
+  
+
+
 
     const columns: GridColDef[] = [
       {field: 'firstName', headerName:'FirstName', flex: 1, cellClassName: 'name-column--cell'},
@@ -77,15 +144,15 @@ interface Team{
         renderCell: (params) => (
           <div>
             <EditIcon
-              // onClick={() => handleEditOpenModal(params.row)}
+              onClick={() => handleEditOpenModal(params.row)}
               // color="primary"
               sx={{ cursor: 'pointer', fontSize: 25, marginRight: 1.5 }}
             >
               Edit
             </EditIcon>
             <DeleteIcon
-              // onClick={() => handleDeleteOpenModal(params.row)}
-              // color="secondary"
+              onClick={() => handleDeleteOpenModal(params.row)}
+              color="secondary"
               sx={{ cursor: 'pointer', fontSize: 25 }}
             >
               Delete
@@ -130,6 +197,26 @@ interface Team{
             components={{Toolbar: GridToolbar}}
           />
         </Box>
+
+
+          
+      <EditTeamModal
+        open={openEditModal}
+        onClose={handleEditCloseModal}
+        appId={userId}
+      />
+
+ <DeleteTeamModal
+        open={openDeleteModal}
+        onClose={handleDeleteCloseModal}
+        // handleDeleteAppointment={}
+        appId={userId}
+      /> 
+        
+
+
+
+
       </Box>
     )
   }

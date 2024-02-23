@@ -1,19 +1,20 @@
+
+// ------------------------------------------Finally ----------------------------------------------
+
+
 import { Box, Button } from '@mui/material';
 import { DataGrid, GridColDef, GridToolbar } from '@mui/x-data-grid';
 import { tokens } from '../../theme';
-import { mockDataContacts } from '../../../data/Mockdata';
 import { useTheme } from '@mui/material';
 import Header from '../../components/header/header';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddAppointmentModal from './addappointmentmodal';
-// import editappointmentmodal from "./editappointmentmodal";
 import EditAppointmentModal from './editappointmentmodal';
 import DeleteAppointmentModal from './deleteAppointmentModal';
-import { co } from '@fullcalendar/core/internal-common';
-import { number } from 'yup';
+import { debounce } from 'lodash';
 
 interface Appointment {
   id: number;
@@ -32,86 +33,80 @@ const Contacts = () => {
 
   const [appointment, setAppointment] = useState<Appointment[]>([]);
   const [error, setError] = useState<string | null>(null);
-
   const [openModal, setOpenModal] = useState(false);
   const [openAddModal, setOpenAddModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const [userId, setUserId] = useState(number);
+  const [userId, setUserId] = useState<number>(0);
+  // const [refreshInterval, setRefreshInterval] = useState<NodeJS.Timeout | null>(null);
 
-  const [refreshInterval, setRefreshInterval] = useState<NodeJS.Timeout | null>(
-    null
-  );
-  
 
-  useEffect(() => {
-    fetchData();
-
-    const interval = setInterval(() => {
-      fetchData();
-    }, 2800);
-
-    setRefreshInterval(interval);
-
-    return () => {
-      if (refreshInterval) {
-        clearInterval(refreshInterval);
-      }
-    };
-  }, []);
-
-  const fetchData = () => {
+  const fetchData = useCallback(() => {
     axios
       .get<Appointment[]>('http://localhost:3000/appointment/all')
-      .then((res) => setAppointment(res.data))
+      .then((res) => {
+        setAppointment(res.data);
+        console.log('Data Received:', res.data);
+      })
       .catch((err) => {
         setError(err.message);
       });
-  };
+  }, []);
 
-  const handleEditOpenModal = (user: any) => {
-    const stringNumber = user.id;
+  const debouncedFetchData = useCallback(debounce(() => fetchData(), 500), [fetchData]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+
+
+
+  const handleEditOpenModal = (user: Appointment) => {
     setOpenEditModal(true);
-
-    setUserId(stringNumber);
-    console.log(userId);
+    setUserId(user.id);
   };
+
   const handleEditCloseModal = () => {
-    // setEditMode(false);
-    setOpenEditModal(false); // Close the Edit Appointment modal
+    setOpenEditModal(false);
+    debouncedFetchData.cancel();
+    fetchData();
+    debouncedFetchData();
   };
-
 
   const handleOpenAddModal = () => {
-    setOpenAddModal(true); // Open the Add Appointment modal
+    setOpenAddModal(true);
   };
 
   const handleCloseAddModal = () => {
-    setOpenAddModal(false); // Close the Add Appointment modal
+    setOpenAddModal(false);
+    // fetchData();
+    debouncedFetchData.cancel();
+    debouncedFetchData();
   };
 
-  const handleDeleteOpenModal = (user: any) => {
-    console.log("delete icon clicked")
-    setOpenDeleteModal(true); // Open the Delete Appointment modal
-    setUserId(user.id); // Set the userId for the appointment to be deleted
+  const handleDeleteOpenModal = (user: Appointment) => {
+    setOpenDeleteModal(true);
+    setUserId(user.id);
   };
 
   const handleDeleteCloseModal = () => {
-    setOpenDeleteModal(false); // Close the Delete Appointment modal
-  }
+    setOpenDeleteModal(false);
+    debouncedFetchData.cancel();
+    // fetchData();
+    debouncedFetchData();
+  };
+
+ 
+
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', flex: 0.5 },
     { field: 'firstName', headerName: 'Firstname', flex: 1 },
-    {
-      field: 'lastName',
-      headerName: 'Lastname',
-      flex: 1,
-      cellClassName: 'name-column--cell',
-    },
+    { field: 'lastName', headerName: 'Lastname', flex: 1, cellClassName: 'name-column--cell' },
     { field: 'address', headerName: 'Address', flex: 1 },
     { field: 'age', headerName: 'Age', headerAlign: 'left', align: 'left' },
-    { field: 'gender', headerName: 'gender', flex: 1 },
+    { field: 'gender', headerName: 'Gender', flex: 1 },
     { field: 'phoneNumber', headerName: 'Phone Number', flex: 1 },
     { field: 'bookingDate', headerName: 'Booking Date', flex: 1 },
     { field: 'bookingTime', headerName: 'Booking Time', flex: 1 },
@@ -123,25 +118,19 @@ const Contacts = () => {
         <div>
           <EditIcon
             onClick={() => handleEditOpenModal(params.row)}
-            // color="primary"
             sx={{ cursor: 'pointer', fontSize: 25, marginRight: 1.5 }}
-          >
-            Edit
-          </EditIcon>
+          />
           <DeleteIcon
             onClick={() => handleDeleteOpenModal(params.row)}
-            // color="secondary"
             sx={{ cursor: 'pointer', fontSize: 25 }}
-          >
-            Delete
-          </DeleteIcon>
+          />
         </div>
       ),
     },
   ];
 
   return (
-    <Box m="20px">
+        <Box m="20px">
       <Header title="APPOINTMENTS" subtitle="List of all appiontments" />
       <Box
         m="40px 0 0 0"
@@ -186,23 +175,22 @@ const Contacts = () => {
         open={openEditModal}
         onClose={handleEditCloseModal}
         appId={userId}
-
-        // formData={formData}
-        // setFormData={setFormData}
       />
+{/* 
+      <Button onClick={debouncedFetchData} variant="contained">
+        Refresh Data
+      </Button> */}
+
 
       <AddAppointmentModal
         open={openAddModal}
         onClose={handleCloseAddModal}
-        // handleAddAppointment={handleAddAppointment}
-        // formData={formData}
-        // setFormData={setFormData}
+        
       />
 
       <DeleteAppointmentModal
         open={openDeleteModal}
         onClose={handleDeleteCloseModal}
-        // handleDeleteAppointment={}
         appId={userId}
       />
     </Box>
@@ -210,3 +198,4 @@ const Contacts = () => {
 };
 
 export default Contacts;
+

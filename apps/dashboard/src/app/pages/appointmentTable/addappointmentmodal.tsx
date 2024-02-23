@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import axios from 'axios';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useSnackbar } from 'notistack';
 
 type Appointment = {
   firstName: string;
@@ -57,6 +58,7 @@ interface Props {
   }
 
 const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
+  const { enqueueSnackbar } = useSnackbar();
 //   const [formData, setFormData] = useState<Appointment>({
 //     firstName: '',
 //     lastName: '',
@@ -98,15 +100,18 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
   const handleFormSubmit: SubmitHandler<Appointment> = async (values) => {
     // handleAddAppointment(formData);
     // console.log('Form Data', values);
+   
 
     try {
       const response = axios.post('http://localhost:3000/appointment/create', values);
 
       if((await response).status === 201){
         onClose();
+        enqueueSnackbar('Appointment added Successfully', { variant: 'success' });
         // navigate(`/appointment`);
       }
     } catch (error) {
+      enqueueSnackbar('Failed to add appointment', { variant: 'error' });
       console.error('Error adding appointment', error);
     }
   };

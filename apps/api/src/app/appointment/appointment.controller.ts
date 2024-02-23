@@ -20,7 +20,7 @@ export class AppointmentController {
   }
 
   @Get('get/:id')
-  getAppointment(@Param('id') id: string) {
+  getAppointment(@Param('id') id: number) {
     return this.appointmentService.getAppointment(Number(id));
   }
 

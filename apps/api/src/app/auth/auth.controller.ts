@@ -61,4 +61,26 @@ export class AuthController {
   deleteUser(@Param('id') id: string) {
     return this.authService.deleteUser(id);
   }
+
+
+  //------------update Team -----------
+
+  @Patch('teamUpdate/:id')
+  async updateTeam( @Body() dto: CreateAuthDto, @Param('id') id: string) {
+    // dto.id = Number(id);
+    return  this.authService.updateTeam( id, dto);
+  }
+
+  @Delete('delete/:id')
+  deleteTeam(@Param('id') id: string) {
+    return this.authService.deleteTeam(id);
+  }
+
+
+  
+  @Get('get/:id')
+  getTeam(@Param('id') id: string) {
+    return this.authService.getTeam(id);
+  }
+
 }

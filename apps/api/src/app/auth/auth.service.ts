@@ -1,5 +1,5 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto, UpdatePasswordDto, UpdateRoleDto } from './dto/update-auth.dto';
 import { PrismaService } from '../../../../../prisma/prisma.service';
@@ -147,33 +147,77 @@ export class AuthService {
     return this.jwt.signAsync(payload, {secret: jwtSecret})
   }
 
-//---------------------------------Create user function---------------------------------
-
-  // async  createUser(createAuthDto: CreateAuthDto){
-  //   const { email, password,phoneNumber,firstName,lastName,address_1,address_2 } = createAuthDto;
-
-  //   const foundUser = await this.prisma.user.findUnique({where: {email}})
-
-  //   if(foundUser) {
-  //     throw new BadRequestException('user already exists')
-  //   }
-
-  //   const hashedPassword = await this.hashPassword(password);
-    
-  //   const user = await this.prisma.user.create({
-  //     data: {
-  //       email,
-  //       hashedPassword,
-  //       phoneNumber, 
-  //       firstName,
-  //       lastName,
-  //       address_1,
-  //       address_2
-  //     }
-  //   })
 
 
-   // return (" user created successfully");
+  //-------------------------Update Team --------------------
+
+  async updateTeam(id: string, data: CreateAuthDto){
+    console.log(" updated team");
+    // check if appointment exists
+    const tempTeam = await this.prisma.user.findFirst({
+      where:{
+        id: id
+      }
+    })
+
+    const hashedPassword = await this.hashPassword(data.password);
+
+    if(tempTeam){
+      const updatedAppointment = await this.prisma.user.update({
+        where:{
+          id: id
+        },
+        data : {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phoneNumber: data.phoneNumber,
+          address_1: data.address_1,
+          address_2: data.address_2,
+          role: data.role,
+          hashedPassword: hashedPassword
+        }
+      })
+
+      return updatedAppointment;
+
+    }
+    throw new HttpException("Appointment does not exist", HttpStatus.BAD_REQUEST);
+  }
+
+  async deleteTeam(id : string){
+    console.log(" Deleted Team");
+    const team = await this.prisma.user.findFirst({
+      where:{
+        id: id // Convert id to number type
+      }
+    })
+    if(team){
+      const deletedTeam = await this.prisma.user.delete({
+        where:{
+          id: id // Convert id to number type
+        }
+      })
+      return deletedTeam;
+    }
+    throw new HttpException("Appointment does not exist", HttpStatus.BAD_REQUEST);
+
+  }
+
+
+  async getTeam(id: string){
+    const team= await this.prisma.user.findFirst({
+      where:{
+        id: id
+      }
+    })
+    if(team){
+      return team;
+    }
+    throw new HttpException("Appointment does not exist", HttpStatus.BAD_REQUEST);
+  }
+
+
   }
 
 
