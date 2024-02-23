@@ -18,9 +18,10 @@ import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import './editappointmentmodal.css';
 
 type Appointment = {
-  firstName: string;
+  firstName: string;  
   lastName: string;
   email: string;
   address: string;
@@ -140,17 +141,22 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
             bgcolor: 'background.paper',
             boxShadow: 24,
             p: 5,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
-          <Stack spacing={3}
-          sx={{display: 'inline'}}
+          < Stack spacing={3} sx={{ width: '100%' }
+        }
           >
+             <Stack direction="row" spacing={2}>
+
+            
           <TextField
-          sx={{width: '50%',
-               display: 'inline',
-              }}
+          sx={{ flex: 1 }}
             type="text"
             id="firstName"
+            className='firstName'
             label="First Name"
             defaultValue={""}
             {...register('firstName')}
@@ -158,10 +164,7 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
             helperText={errors.firstName?.message}
             />
           <TextField
-            sx={{width: '60%',
-          display: 'inline',  
-          }}
-          
+            sx={{ flex: 1}}
             type="text"
             id="lastName"
             label="Last Name"
@@ -170,7 +173,11 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
             error={!!errors.lastName}
             helperText={errors.lastName?.message}
           />
+          </Stack>
+
+          <Stack direction="row" spacing={2}>
           <TextField
+            sx={{ flex: 1 }}
             type="text"
             id="address"
             label="Address"
@@ -180,6 +187,7 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
             helperText={errors.address?.message}
           />
           <TextField
+            sx={{ flex: 1 }}
             type="number"
             id="age"
             label="Age"
@@ -188,7 +196,12 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
             error={!!errors.age}
             helperText={errors.age?.message}
           />
+          </Stack>
+
+          <Stack direction="row" spacing={2}>
+          
           <TextField
+            sx={{ flex: 1 }}
             type="text"
             id="email"
             label="Email"
@@ -200,6 +213,7 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
           
        
           <TextField
+          sx={{ flex: 1 }}
             type="text"
             id="phoneNumber"
             label="Phone Number"
@@ -208,6 +222,9 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
             error={!!errors.phoneNumber}
             helperText={errors.phoneNumber?.message}
           />
+          </Stack>  
+
+          <Stack direction="row" spacing={2}>
           <TextField
             type="date"
             id="bookingDate"
@@ -236,6 +253,9 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
             </Select>
             <FormHelperText error>{errors.Specialization?.message}</FormHelperText>
           </FormControl>
+                </Stack>
+
+                <Stack direction="row" spacing={2}>
           <FormControl>
             <InputLabel id="genderLabel">Gender</InputLabel>
             <Select
@@ -276,6 +296,7 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
             </Select>
             <FormHelperText error>{errors.bookingTime?.message}</FormHelperText>
           </FormControl>
+          </Stack>
           <Button 
             variant="contained"
             type='submit'

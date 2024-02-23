@@ -73,56 +73,6 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
 
   const RoleOptions = ['Admin', 'Doctor', 'Receptionist'];
 
-  // useEffect(() => {
-  //   fetchdata();
-  // })
-
-  // const fetchdata = async () => {
-  //   try {
-  //     const response = await axios.get(`http://localhost:3000/auth/get/${appId}`)
-  //     const appData = await response.data;
-
-  //     // console.log('fetched team data', appData);
-
-  //     setValue('firstName', appData.firstName)
-  //     setValue('lastName', appData.lastName)
-  //     setValue('address_1', appData.address_1)
-  //      setValue('address_2', appData.address_2)
-  //     setValue('role', appData.role)
-  //     setValue('email', appData.email)
- 
-  //     setValue('password', appData.password)
-  //     setValue('phoneNumber', appData.phoneNumber)
-      
-  //   }catch (error){
-  //     console.log('Error fetching team data')
-  //   }
-  // }
-
-  // const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-
-  // const handleFormSubmit: SubmitHandler<Team> = async (values) => {
-  //   // handleAddAppointment(formData);
-  //   // console.log('Form Data', values);
-  //   console.log(appId);
-
-  //   try {
-  //     const response = axios.patch(
-  //       `http://localhost:3000/auth/teamUpdate/${appId}`,
-  //       values
-  //     );
-  //     // console.log(appId)
-  //     if ((await response).status === 200) {
-  //       enqueueSnackbar('Team Edited Successfully', { variant: 'success' });
-
-  //       onClose();
-  //       // navigate(`/appointment`);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error adding appointment', error);
-  //   }
-  // };
-
   useEffect(() => {
     fetchdata();
   }, [appId]);
@@ -161,7 +111,6 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
         <Box
           sx={{
             position: 'absolute',
-
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
@@ -169,15 +118,19 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
             bgcolor: 'background.paper',
             boxShadow: 24,
             p: 5,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
-          {/* <Stack spacing={3}
-        sx={{
+          <Stack spacing={3}
+          sx={{ width: '100%'}}
         
-          }}
-        > */}
+        >
+           <Stack direction="row" spacing={2}>
           <TextField
             // fullWidth
+            sx={{ flex: 1 }}
             variant="filled"
             type="text"
             label="First Name"
@@ -192,6 +145,7 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
           />
           <TextField
             // fullWidth
+            sx={{ flex: 1 }}
             variant="filled"
             type="text"
             label="Last Name"
@@ -204,8 +158,12 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
             //     gridColumn: "span 1"
             //   }}
           />
+          </Stack>
+
+          <Stack direction="row" spacing={2}>
           <TextField
             // fullWidth
+            sx={{ flex: 1 }}
             variant="filled"
             type="text"
             label="email"
@@ -220,6 +178,7 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
           />
           <TextField
             //   fullWidth
+            sx={{ flex: 1 }}
             variant="filled"
             type="text"
             label="Contact Number"
@@ -232,9 +191,12 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
             //     gridColumn: "span 4"
             //   }}
           />
+          </Stack>
 
+          <Stack direction="row" spacing={2}>
           <TextField
             // fullWidth
+            sx={{ flex: 1 }}
             variant="filled"
             type="text"
             label="Address 1"
@@ -249,6 +211,7 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
           />
           <TextField
             // fullWidth
+            sx={{ flex: 1 }}
             variant="filled"
             type="text"
             label="Address 2"
@@ -261,8 +224,11 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
             //     gridColumn: "span 4"
             //   }}
           />
+          </Stack>
 
+          <Stack direction="row" spacing={2}>
           <FormControl
+          sx={{ flex: 1 }}
           // sx={{
           //   marginRight: 6,
           //   marginLeft: 4
@@ -292,6 +258,7 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
 
           <TextField
             // fullWidth
+            sx={{ flex: 1 }}
             variant="filled"
             type="text"
             label="Password"
@@ -304,13 +271,16 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
             //     gridColumn: "span 4"
             //   }}
           />
+          </Stack>
 
-          <Box display="flex" justifyContent="center" mt="20px" ml="-35px">
-            <Button variant="contained" type="submit">
+          <Box display="flex" justifyContent="center" mt="20px" ml="-35px"
+          >
+            <Button variant="contained" type="submit"
+            sx={{ flex: 1 }}>
               Edit Team
             </Button>
-            {/* </Stack> */}
           </Box>
+            </Stack>
         </Box>
       </form>
     </Modal>
