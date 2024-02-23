@@ -6,13 +6,14 @@
   import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
   import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
   import Header from "../../components/header/header";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { number } from "yup";
 import EditTeamModal from "./editTeamModal";
 import DeleteTeamModal from "./deleteTeamModal";
+import { debounce } from 'lodash';
 
 interface Team{
   id: string;
@@ -37,34 +38,34 @@ interface Team{
 
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
-    const [refreshInterval, setRefreshInterval] = useState<NodeJS.Timeout | null>(
-      null
-    );
+    // const [refreshInterval, setRefreshInterval] = useState<NodeJS.Timeout | null>(
+    //   null
+    // );
 
-    useEffect(() => {
-      fetchData();
+    // useEffect(() => {
+    //   fetchData();
   
-      const interval = setInterval(() => {
-        fetchData();
-      }, 8000);
+    //   const interval = setInterval(() => {
+    //     fetchData();
+    //   }, 8000);
   
-      setRefreshInterval(interval);
+    //   setRefreshInterval(interval);
   
-      return () => {
-        if (refreshInterval) {
-          clearInterval(refreshInterval);
-        }
-      };
-    }, []);
+    //   return () => {
+    //     if (refreshInterval) {
+    //       clearInterval(refreshInterval);
+    //     }
+    //   };
+    // }, []);
   
-    const fetchData = () => {
-      axios
-        .get<Team[]>('http://localhost:3000/users')
-        .then((res) => setTeam(res.data))
-        .catch((err) => {
-          setError(err.message);
-        });
-    };
+    // const fetchData = () => {
+    //   axios
+    //     .get<Team[]>('http://localhost:3000/users')
+    //     .then((res) => setTeam(res.data))
+    //     .catch((err) => {
+    //       setError(err.message);
+    //     });
+    // };
   
 
     // useEffect(() => {
@@ -76,7 +77,24 @@ interface Team{
     // });
     // }, []);
 
+    
+  const fetchData = useCallback(() => {
+    axios
+      .get<Team[]>('http://localhost:3000/users')
+      .then((res) => {
+        setTeam(res.data);
+        console.log('Data Received:', res.data);
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
+  }, []);
 
+  const debouncedFetchData = useCallback(debounce(() => fetchData(), 500), [fetchData]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
 
 
@@ -88,18 +106,23 @@ interface Team{
       console.log(userId);
     };
     const handleEditCloseModal = () => {
-      // setEditMode(false);
-      setOpenEditModal(false); // Close the Edit Appointment modal
+      setOpenEditModal(false);
+      debouncedFetchData.cancel();
+      fetchData();
+      debouncedFetchData();
     };
 
     const handleDeleteOpenModal = (user: any) => {
-      console.log("delete icon clicked")
-      setOpenDeleteModal(true); // Open the Delete Appointment modal
-      setUserId(user.id); // Set the userId for the appointment to be deleted
+      setOpenDeleteModal(true);
+      setUserId(user.id);
+    
     };
   
     const handleDeleteCloseModal = () => {
-      setOpenDeleteModal(false); // Close the Delete Appointment modal
+      setOpenDeleteModal(false);
+      debouncedFetchData.cancel();
+      // fetchData();
+      debouncedFetchData();
     }
   
 

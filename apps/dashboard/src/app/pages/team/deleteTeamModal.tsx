@@ -33,6 +33,7 @@ interface Props {
       handleDeleteAppointment(appId);
       handleDeleteConfirmationClose();
     };
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
     const handleDeleteAppointment = async (appId: number) => {
         try {
@@ -41,6 +42,7 @@ interface Props {
 
             if((await response).status === 200){
             //   enqueueSnackbar('Appointmented Deleted Successfully', { variant: 'error' });
+            enqueueSnackbar('User Deleted Successfully', { variant: 'error' });
 
                 console.log('Appointment Deleted')
             }

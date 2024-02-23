@@ -16,7 +16,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { SnackbarProvider, useSnackbar } from 'notistack';
+// import { SnackbarProvider, useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack';
 
 type Team = {
   firstName: string;
@@ -58,6 +59,9 @@ interface Props {
 }
 
 const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
+
+  const { enqueueSnackbar } = useSnackbar();
+
   const {
     register,
     setValue,
@@ -69,53 +73,85 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
 
   const RoleOptions = ['Admin', 'Doctor', 'Receptionist'];
 
+  // useEffect(() => {
+  //   fetchdata();
+  // })
+
+  // const fetchdata = async () => {
+  //   try {
+  //     const response = await axios.get(`http://localhost:3000/auth/get/${appId}`)
+  //     const appData = await response.data;
+
+  //     // console.log('fetched team data', appData);
+
+  //     setValue('firstName', appData.firstName)
+  //     setValue('lastName', appData.lastName)
+  //     setValue('address_1', appData.address_1)
+  //      setValue('address_2', appData.address_2)
+  //     setValue('role', appData.role)
+  //     setValue('email', appData.email)
+ 
+  //     setValue('password', appData.password)
+  //     setValue('phoneNumber', appData.phoneNumber)
+      
+  //   }catch (error){
+  //     console.log('Error fetching team data')
+  //   }
+  // }
+
+  // const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  // const handleFormSubmit: SubmitHandler<Team> = async (values) => {
+  //   // handleAddAppointment(formData);
+  //   // console.log('Form Data', values);
+  //   console.log(appId);
+
+  //   try {
+  //     const response = axios.patch(
+  //       `http://localhost:3000/auth/teamUpdate/${appId}`,
+  //       values
+  //     );
+  //     // console.log(appId)
+  //     if ((await response).status === 200) {
+  //       enqueueSnackbar('Team Edited Successfully', { variant: 'success' });
+
+  //       onClose();
+  //       // navigate(`/appointment`);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error adding appointment', error);
+  //   }
+  // };
+
   useEffect(() => {
     fetchdata();
-  })
+  }, [appId]);
 
   const fetchdata = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/auth/get/${appId}`)
-      const appData = await response.data;
+      const response = await axios.get(`http://localhost:3000/auth/get/${appId}`);
+      const appData = response.data;
 
-      // console.log('fetched team data', appData);
-
-      setValue('firstName', appData.firstName)
-      setValue('lastName', appData.lastName)
-      setValue('address_1', appData.address_1)
-       setValue('address_2', appData.address_2)
-      setValue('role', appData.role)
-      setValue('email', appData.email)
- 
-      setValue('password', appData.password)
-      setValue('phoneNumber', appData.phoneNumber)
-      
-    }catch (error){
-      console.log('Error fetching team data')
+      Object.keys(appData).forEach((key) => {
+        setValue(key as keyof Team, appData[key]);
+      });
+    } catch (error) {
+      console.log('Error fetching team data', error);
     }
-  }
+  };
 
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-
+  
   const handleFormSubmit: SubmitHandler<Team> = async (values) => {
-    // handleAddAppointment(formData);
-    // console.log('Form Data', values);
-    console.log(appId);
-
     try {
-      const response = axios.patch(
-        `http://localhost:3000/auth/teamUpdate/${appId}`,
-        values
-      );
-      // console.log(appId)
-      if ((await response).status === 200) {
-        enqueueSnackbar('Team Edited Successfully', { variant: 'success' });
+      const response = await axios.patch(`http://localhost:3000/auth/teamUpdate/${appId}`, values);
 
+      if (response.status === 200) {
+        enqueueSnackbar('Team Edited Successfully', { variant: 'success' });
         onClose();
-        // navigate(`/appointment`);
       }
     } catch (error) {
-      console.error('Error adding appointment', error);
+      console.error('Error editing Team', error);
+      enqueueSnackbar('Failed to edit Team', { variant: 'error' });
     }
   };
 
