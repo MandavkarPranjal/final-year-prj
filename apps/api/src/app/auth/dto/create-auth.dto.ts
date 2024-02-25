@@ -1,3 +1,4 @@
+import { Role } from '@prisma/client';
 import { IsNotEmpty, IsString, IsEmail, Length, min, minLength, IsPhoneNumber } from 'class-validator';
 
 export class CreateAuthDto {
@@ -21,16 +22,15 @@ export class CreateAuthDto {
   public phoneNumber: string;
 
   @IsNotEmpty()
+  public role: Role[];
+
+  @IsNotEmpty()
   @IsString()
   public address_1: string;
 
   @IsNotEmpty()
   @IsString()
   public address_2: string;
-
-  @IsNotEmpty()
-  @IsString()
-  public role: string;
 
   @IsNotEmpty()
   @IsString()

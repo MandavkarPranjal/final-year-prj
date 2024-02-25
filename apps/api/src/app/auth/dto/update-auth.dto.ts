@@ -1,6 +1,7 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateAuthDto } from './create-auth.dto';
-import { IsNotEmpty, IsString, Length } from 'class-validator';
+import { Role } from '@prisma/client';
+import { IsArray, IsNotEmpty, IsString, Length } from 'class-validator';
 
 export class UpdateAuthDto extends PartialType(CreateAuthDto) {
     @IsNotEmpty()
@@ -22,13 +23,22 @@ export class UpdateAuthDto extends PartialType(CreateAuthDto) {
     @IsNotEmpty()
     @IsString()
     public address: string;
+
+    @IsNotEmpty()
+    @IsArray()
+    public role: Role[];
+
+    @IsNotEmpty()
+    @IsString()
+    @Length(3, 20, { message: 'Passowrd has to be at between 3 and 20 chars' })
+    public password: string;
 }
 
 
 export class UpdateRoleDto extends PartialType(CreateAuthDto) {
     @IsNotEmpty()
-    @IsString()
-    public role: string;
+    @IsArray()
+    public role: Role[];
 }
 
 export class UpdatePasswordDto extends PartialType(CreateAuthDto) {
