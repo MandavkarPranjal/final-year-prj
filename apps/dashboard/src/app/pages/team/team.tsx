@@ -38,44 +38,7 @@ interface Team{
 
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
-    // const [refreshInterval, setRefreshInterval] = useState<NodeJS.Timeout | null>(
-    //   null
-    // );
-
-    // useEffect(() => {
-    //   fetchData();
-  
-    //   const interval = setInterval(() => {
-    //     fetchData();
-    //   }, 8000);
-  
-    //   setRefreshInterval(interval);
-  
-    //   return () => {
-    //     if (refreshInterval) {
-    //       clearInterval(refreshInterval);
-    //     }
-    //   };
-    // }, []);
-  
-    // const fetchData = () => {
-    //   axios
-    //     .get<Team[]>('http://localhost:3000/users')
-    //     .then((res) => setTeam(res.data))
-    //     .catch((err) => {
-    //       setError(err.message);
-    //     });
-    // };
-  
-
-    // useEffect(() => {
-    //   axios
-    //     .get<Team[]>("http://localhost:3000/users")
-    //     .then((res) => setTeam(res.data))
-    //     .catch(err => {
-    //     setError(err.message);
-    // });
-    // }, []);
+   
 
     
   const fetchData = useCallback(() => {
