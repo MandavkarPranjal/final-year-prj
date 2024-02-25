@@ -1,12 +1,17 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { BadRequestException, ForbiddenException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto, UpdatePasswordDto, UpdateRoleDto } from './dto/update-auth.dto';
+import { UpdateAuthDto
+  , UpdatePasswordDto
+  , UpdateRoleDto 
+} from './dto/update-auth.dto';
 import { PrismaService } from '../../../../../prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { jwtSecret } from '../utils/constant';
 import { Request, Response } from 'express';
+import { ViewUserDto } from './dto/view-user.dto';
+import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +24,6 @@ export class AuthService {
     if(foundUser) {
       throw new BadRequestException('Email already exists')
     }
-
     const hashedPassword = await this.hashPassword(password);
 
     await this.prisma.user.create({
@@ -38,27 +42,19 @@ export class AuthService {
     return {message: 'User created successfully'};
   }
 
-  async signin(createAuthDto: CreateAuthDto, req: Request, res: Response) {
-    const {email, password} = createAuthDto;
-
-    const foundUser = await this.prisma.user.findUnique({where: {email}});
-
-    if(!foundUser) {
-      throw new BadRequestException('Invalid credentials')
+  async signin(data: LoginDto):Promise<ViewUserDto> {
+    const user = await this.prisma.user.findFirst({where: {email: data.email}})
+    if(!user){
+        throw new NotFoundException({
+            message:'Couldnt find user'
+        })
     }
 
-    const isMatch = await this.comparePasswords({password, hash: foundUser.hashedPassword})
-    if(!isMatch) {
-      throw new BadRequestException('Invalid credentials')
+    const isMatch = await this.comparePasswords({password: data.password, hash: user.hashedPassword})
+    if(!isMatch){
+      throw new BadRequestException('Invalid credentials');
     }
-
-    const token = await this.signToken({id: foundUser.id, email: foundUser.email})
-    if(!token) {
-      throw new ForbiddenException()
-    }
-    res.cookie('token', token)
-
-    return res.send({message: 'Logged in successfully'})
+    return user
   }
 
   async signout(req: Request, res: Response) {

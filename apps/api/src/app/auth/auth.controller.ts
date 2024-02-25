@@ -6,13 +6,19 @@ import {
   Patch,
   Param,
   Delete,
-  Req,
+  Request,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto, UpdatePasswordDto, UpdateRoleDto } from './dto/update-auth.dto';
+import { UpdateAuthDto
+  , UpdatePasswordDto
+  , UpdateRoleDto
+ } from './dto/update-auth.dto';
 import { create } from 'domain';
+import { LocalAuthGuard } from './local-auth.guard';
+import { LoginDto } from './dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -23,14 +29,16 @@ export class AuthController {
     return this.authService.createUser(createAuthDto);
   }
 
-  @Post('signin')
-  signin(@Body() createAuthDto: CreateAuthDto, @Req() req, @Res() res) {
-    return this.authService.signin(createAuthDto, req, res);
+  // @UseGuards(LocalAuthGuard)
+  @Post('/login')
+  login(@Body() loginDto: LoginDto) {
+    return this.authService.signin(loginDto);
   }
 
-  @Get('signout')
-  signout(@Req() req, @Res() res) {
-    return this.authService.signout(req, res);
+  @Post('/logout')
+  logout(@Request() req): string {
+    req.session.destroy();
+    return 'You are logged out'
   }
 
   @Patch('update-user/:id')
