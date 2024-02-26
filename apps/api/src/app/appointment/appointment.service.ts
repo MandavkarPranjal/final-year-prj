@@ -1,7 +1,16 @@
 import { HttpException, Injectable , HttpStatus} from '@nestjs/common';
 import { CreateAppointmentDto as CADto} from './dto/create-appointment.dto';
 import { PrismaService } from '../../../../../prisma/prisma.service';
+import { createTransport } from 'nodemailer';
 // import { HttpStatus } from '@nestjs/common';
+
+const transporter = createTransport({
+  service: 'gmail',
+  auth: {
+      user: 'wellappoint@gmail.com',
+      pass: 'fosc bstw wvnx ttoy'
+}});
+
 @Injectable()
 export class AppointmentService {
   constructor(private prisma: PrismaService) {}
@@ -27,6 +36,27 @@ export class AppointmentService {
         data: data
     })
     console.log('Appointment Booked')
+
+    const emailTemplate = `
+      <p>Hello ${data.firstName},</p>
+      <p>Your appointment has been booked successfully.</p>
+    `;
+
+    const mailOptions = {
+      from: 'wellappoint@gmail.com',
+      to: `${data.email}`,
+      subject: 'Subject of the email',
+      html: emailTemplate
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+
     return patient;
   }
 
