@@ -29,6 +29,7 @@ export function LoginPage({ onLogin} : LoginPageProps) {
 
     const {
         register,
+        reset,
         handleSubmit,
         formState: { errors },
     } = useForm({ resolver: yupResolver(validationSchema)});
@@ -46,6 +47,7 @@ export function LoginPage({ onLogin} : LoginPageProps) {
             const user = res.data;
             onLogin(user);
             console.log('res', res);
+            reset();
         } catch (error) {
             console.log('error', error);
         }
@@ -108,6 +110,7 @@ export function LoginPage({ onLogin} : LoginPageProps) {
             className="email"
             label="Email"
             variant="outlined"
+            autoComplete="off"
             type="email"
             {...register('email')}
             error={!!errors.email}
@@ -121,6 +124,7 @@ export function LoginPage({ onLogin} : LoginPageProps) {
             label="Password"
             variant="outlined"
             type="password"
+            autoComplete="off"
             {...register('password')}
             error={!!errors.password}
             helperText={errors.password?.message}

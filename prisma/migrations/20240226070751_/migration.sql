@@ -1,19 +1,19 @@
 -- CreateEnum
-CREATE TYPE "Role" AS ENUM ('ADMIN', 'DOCTOR', 'CLEARK');
+CREATE TYPE "Role" AS ENUM ('ADMIN', 'USER');
 
 -- CreateTable
 CREATE TABLE "appointment" (
     "id" SERIAL NOT NULL,
-    "first_name" TEXT NOT NULL,
-    "last_name" TEXT NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
     "address" TEXT NOT NULL,
     "age" INTEGER NOT NULL,
     "email" TEXT NOT NULL,
     "gender" TEXT NOT NULL,
-    "phone_number" TEXT NOT NULL,
-    "booking_date" TEXT NOT NULL,
+    "phoneNumber" TEXT NOT NULL,
+    "bookingDate" TEXT NOT NULL,
     "Specialization" TEXT NOT NULL,
-    "booking_time" TEXT NOT NULL,
+    "bookingTime" TEXT NOT NULL,
 
     CONSTRAINT "appointment_pkey" PRIMARY KEY ("id")
 );
@@ -28,7 +28,7 @@ CREATE TABLE "user" (
     "role" "Role"[],
     "address_1" TEXT NOT NULL,
     "address_2" TEXT NOT NULL,
-    "specialty" TEXT NOT NULL,
+    "specialty" TEXT,
     "hashed_password" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -36,11 +36,16 @@ CREATE TABLE "user" (
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
 
--- CreateIndex
-CREATE UNIQUE INDEX "appointment_email_key" ON "appointment"("email");
+-- CreateTable
+CREATE TABLE "event" (
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "start" TEXT NOT NULL,
+    "end" TEXT NOT NULL,
+    "allDay" BOOLEAN NOT NULL,
 
--- CreateIndex
-CREATE UNIQUE INDEX "appointment_phone_number_key" ON "appointment"("phone_number");
+    CONSTRAINT "event_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateIndex
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");

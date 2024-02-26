@@ -33,6 +33,7 @@ export class AuthService {
         email,
         phoneNumber,
         role,
+        // role: [role],
         address_1,
         address_2,
         hashedPassword,
@@ -79,7 +80,7 @@ export class AuthService {
         phoneNumber,
         address_1,
         address_2,
-        role
+        role,
       }
     })
   }
@@ -96,6 +97,7 @@ export class AuthService {
       where: {id},
       data: {
         role
+        // role: [role],
       }
     })
   }

@@ -26,7 +26,7 @@ type Team = {
   email: string;
   address_1: string;
   address_2: string;
-  role: string;
+  role: string[];
   password: string;
 };
 
@@ -71,7 +71,12 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
     resolver: yupResolver(userSchema),
   });
 
-  const RoleOptions = ['Admin', 'Doctor', 'Receptionist'];
+  // const RoleOptions = ['Admin', 'Doctor', 'Receptionist'];
+  const RoleOptions = [
+    { value: 'ADMIN', label: 'Admin' },
+    { value: 'USER', label: 'User' },
+    
+  ];
 
   useEffect(() => {
     fetchdata();
@@ -93,7 +98,8 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
   
   const handleFormSubmit: SubmitHandler<Team> = async (values) => {
     try {
-      const response = await axios.patch(`http://localhost:3000/auth/teamUpdate/${appId}`, values);
+      const userData = { ...values, role: [values.role], }
+      const response = await axios.patch(`http://localhost:3000/auth/teamUpdate/${appId}`, userData);
 
       if (response.status === 200) {
         enqueueSnackbar('Team Edited Successfully', { variant: 'success' });
@@ -248,9 +254,12 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
                 Select Role
               </MenuItem>
               {RoleOptions.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
+                <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+                // <MenuItem key={option} value={option}>
+                //   {option}
+                // </MenuItem>
               ))}
             </Select>
             <FormHelperText error>{errors.role?.message}</FormHelperText>

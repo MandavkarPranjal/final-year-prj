@@ -1,69 +1,3 @@
-// import React, { useState } from "react";
-// import {
-//   Dialog,
-//   DialogActions,
-//   DialogContent,
-//   DialogTitle,
-//   Button,
-//   TextField,
-// } from "@mui/material";
-// import { useTheme } from "@mui/system";
-// import { formatDate } from "@fullcalendar/core";
-
-// interface CalendarModalProps {
-//   open: boolean;
-//   onClose: () => void;
-//   handleFormSubmit: (title: string) => void;
-//   newEvent: { title: string; start: string; end: string; allDay: boolean };
-// }
-// const CalendarModal: React.FC<CalendarModalProps> = ({
-//   open,
-//   onClose,
-//   handleFormSubmit,
-//   newEvent,
-// }) => {
-//   const theme = useTheme();
-
-//   return (
-//     <Dialog open={open} onClose={onClose} fullWidth={true} maxWidth="sm">
-//       <DialogTitle>Add New Event</DialogTitle>
-//       <DialogContent>
-//         <TextField
-//           sx={{ marginBottom: "20px", width: "100%" }}
-//           label="Title"
-//           value={newEvent.title}
-//           type="text"
-//           // onChange={(addEvent) =>
-//           //   handleFormSubmit(addEvent.target.value)
-//           // }
-//           onChange={(e) => {
-//             newEvent.title = e.target.value;
-//           }}
-//         />
-//       </DialogContent>
-//       <DialogActions>
-//         <Button onClick={onClose} sx={{ color: theme.palette.error.main }}>
-//           Cancel
-//         </Button>
-//         <Button
-//           onClick={() => handleFormSubmit(newEvent.title)}
-//           sx={{
-//             backgroundColor: theme.palette.primary.main,
-//             color: theme.palette.primary.contrastText,
-//           }}
-//         >
-//           Add Event
-//         </Button>
-//       </DialogActions>
-//     </Dialog>
-//   );
-// };
-
-// export default CalendarModal;
-
-
-//---------------------------------------------------------------------
-
 import React, { useState } from "react";
 import {
   Dialog,
@@ -74,7 +8,6 @@ import {
   TextField,
   FormControl,
   FormGroup,
-  FormLabel,
 } from "@mui/material";
 import { useTheme } from "@mui/system";
 
@@ -92,7 +25,7 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
   newEvent,
 }) => {
   const theme = useTheme();
-  const [formData, setFormData] = useState({ title: newEvent.title });
+  const [formData, setFormData] = useState({ title: newEvent.title, start: newEvent.start, end: newEvent.end, allDay: newEvent.allDay });
 
   const handleChange = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value });
@@ -100,7 +33,7 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    handleFormSubmit({ ...formData, start: newEvent.start, end: newEvent.end, allDay: newEvent.allDay });
+    handleFormSubmit(formData);
   };
 
   return (
@@ -117,7 +50,7 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
                 type="text"
                 onChange={(e) => handleChange("title", e.target.value)}
               />
-              {/* Add more fields for other event details as needed */}
+            
             </FormGroup>
           </FormControl>
         </DialogContent>
@@ -141,5 +74,3 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
 };
 
 export default CalendarModal;
-
-

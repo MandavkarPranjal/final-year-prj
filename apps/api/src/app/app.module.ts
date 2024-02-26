@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { AppointmentModule } from './appointment/appointment.module';
 import { ExpensesModule } from './expenses/expenses.module';
+import { CalendarModule } from './calendar/calendar.module';
 
 @Module({
   controllers: [AppController],
@@ -17,6 +18,7 @@ import { ExpensesModule } from './expenses/expenses.module';
     UsersModule,
     AppointmentModule,
     ExpensesModule,
+    CalendarModule,
   ], // Add the imported module to the imports array
 })
 export class AppModule {}

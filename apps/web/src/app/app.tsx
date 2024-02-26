@@ -16,12 +16,16 @@ import Service from './pages/service/service';
 import './pages/service/service.css';
 import AppointmentForm from './form/Form';
 import { AnimatePresence } from 'framer-motion';
+import { SnackbarProvider} from 'notistack'
 
 const App: React.FC = () => {
 
 
   return (
     <Router>
+        <SnackbarProvider>
+
+       
       <div>
         <Header />
         <Navbar />
@@ -40,6 +44,7 @@ const App: React.FC = () => {
 
         <Footer />
       </div>
+      </SnackbarProvider>
     </Router>
   );
 };

@@ -21,7 +21,7 @@ type UserFormProps = {
   email: string;
   address_1: string;
   address_2: string;
-  role: string;
+  role: string[];
   password: string;
 }
 
@@ -56,11 +56,15 @@ const userSchema = yup.object().shape({
 });
 
 
-const RoleOptions = [
-  'Admin',
-  'Doctor',
-  'Receptionist',
+// const RoleOptions = [
+//   'ADMIN',
+//   'DOCTOR',
+//   'RECEPTIONIST',
   
+// ];
+const RoleOptions = [
+  { value: 'ADMIN', label: 'Admin' },
+  { value: 'USER', label: 'User' },
 ];
 
 
@@ -72,6 +76,7 @@ const Form = () => {
 
   const {
     handleSubmit,
+    reset,
     register,
     formState: { errors },
   } = useForm<UserFormProps>({
@@ -95,22 +100,27 @@ const Form = () => {
     // console.log(data);
     
     try {
-      const response = await axios.post('http://localhost:3000/auth/create-user', data);
+      // Include the selected role in the data
+      const userData = { ...data, role: [data.role], }
+      const response = await axios.post('http://localhost:3000/auth/create-user', userData);
+  
       setStatus(response.status.toString());
-      // setRes(response.json());
-      console.log(res);
+  
       if (response.status === 201) {
         enqueueSnackbar('User Created Successfully', { variant: 'success' });
       } else {
         console.log('User Creation Failed');
       }
+      reset();
     } catch (error: any) {
-      if (status && status.status === 500){
+      if (status && status.status === 500) {
         enqueueSnackbar('User Creation Failed', { variant: 'error' });
       }
       setRes(error.response?.data?.message || 'Error creating user');
       enqueueSnackbar(res, { variant: 'error' });
     }
+    
+   
   }
 
   // }
@@ -170,6 +180,7 @@ const Form = () => {
             <TextField 
               // fullWidth
               variant="filled"
+              autoComplete="off"
               type="text"
               label="First Name"
               id="firstName"
@@ -183,6 +194,7 @@ const Form = () => {
             <TextField 
               // fullWidth
               variant="filled"
+              autoComplete="off"
               type="text"
               label="Last Name"
               id="lastName"
@@ -196,6 +208,7 @@ const Form = () => {
             <TextField 
               // fullWidth
               variant="filled"
+              autoComplete="off"
               type="text"
               label="email"
               id="email"
@@ -209,6 +222,7 @@ const Form = () => {
             <TextField 
               fullWidth
               variant="filled"
+              autoComplete="off"
               type="text"
               label="Contact Number"
               id="phoneNumber"
@@ -239,6 +253,7 @@ const Form = () => {
             <TextField 
               // fullWidth
               variant="filled"
+              autoComplete="off"
               type="text"
               label="Address 1"
               id="address_1"
@@ -252,6 +267,7 @@ const Form = () => {
             <TextField 
               // fullWidth
               variant="filled"
+              autoComplete="off"
               type="text"
               label="Address 2"
               id="address_2"
@@ -297,8 +313,8 @@ const Form = () => {
                     Select Role
                   </MenuItem>
                   {RoleOptions.map((option) => (
-                    <MenuItem key={option} value={option}>
-                      {option}
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
                     </MenuItem>
                   ))}
                 </Select>
@@ -308,6 +324,7 @@ const Form = () => {
             <TextField 
               // fullWidth
               variant="filled"
+              autoComplete="off"
               type="text"
               label="Password"
               id="password"

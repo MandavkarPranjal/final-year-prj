@@ -83,10 +83,13 @@ const SpecializationOptions = [
 
 const genderOptions = ['Male', 'Female', 'Other'];
 
+
+
 const AppointmentForm: React.FC = () => {
   // Destructure react-hook-form functions
   const {
     handleSubmit,
+    reset,
     register,
     formState: { errors },
   } = useForm<AppointmentFormValues>({
@@ -103,7 +106,12 @@ const AppointmentForm: React.FC = () => {
         'http://localhost:3000/appointment/create',
         values
       );
+      
+
+
       console.log('API response:', response.data);
+      reset();
+
       // Handle success or further actions here
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -129,6 +137,7 @@ const AppointmentForm: React.FC = () => {
               }}
                 type="text"
                 id="firstName"
+                autoComplete='off'
                 label="First Name"
                 {...register('firstName')}
                 error={!!errors.firstName}
@@ -138,6 +147,7 @@ const AppointmentForm: React.FC = () => {
               <TextField
                 type="text"
                 id="lastName"
+                autoComplete='off'
                 label="Last Name"
                 {...register('lastName')}
                 error={!!errors.lastName}
@@ -151,6 +161,7 @@ const AppointmentForm: React.FC = () => {
               }}
                 type="text"
                 id="address"
+                autoComplete='off'
                 label="Address"
                 {...register('address')}
                 error={!!errors.address}
@@ -160,6 +171,7 @@ const AppointmentForm: React.FC = () => {
               <TextField
                 type="number"
                 id="age"
+                autoComplete='off'
                 label="Age"
                 {...register('age')}
                 error={!!errors.age}
@@ -176,6 +188,7 @@ const AppointmentForm: React.FC = () => {
               }}
                 type="text"
                 id="email"
+                autoComplete='off'
                 label="Email"
                 {...register('email')}
                 error={!!errors.email}
@@ -184,6 +197,7 @@ const AppointmentForm: React.FC = () => {
               <TextField
                 type="text"
                 id="phoneNumber"
+                autoComplete='off'
                 label="Phone Number"
                 {...register('phoneNumber')}
                 error={!!errors.phoneNumber}

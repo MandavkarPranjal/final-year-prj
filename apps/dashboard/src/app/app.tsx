@@ -1,6 +1,6 @@
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline,Theme, ThemeProvider } from "@mui/material"; // Import the Theme type
-import { Routes, Route, Redirect, useLocation, useNavigate, Navigate} from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate, Navigate} from "react-router-dom";
 import Topbar from "./global/topbar/topbar";
 import Dashboard from "./pages/dashboard/dashboard";
 import Sidebar from "./global/sidebar/sidebar";
@@ -95,6 +95,4 @@ export function App() {
 }
 
 export default App;
-
-
 
