@@ -72,7 +72,7 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
 //     bookingTime: '',
 //   });
 
-  const { register, handleSubmit, formState: { errors } } = useForm<Appointment>({
+  const { register,reset, handleSubmit, formState: { errors } } = useForm<Appointment>({
     resolver: yupResolver(validationSchema),
   });
 
@@ -110,6 +110,7 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
         enqueueSnackbar('Appointment added Successfully', { variant: 'success' });
         // navigate(`/appointment`);
       }
+      reset();
     } catch (error) {
       enqueueSnackbar('Failed to add appointment', { variant: 'error' });
       console.error('Error adding appointment', error);
@@ -126,15 +127,24 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 400,
+          width: 600,
           bgcolor: 'background.paper',
           boxShadow: 24,
-          p: 4,
+          p: 5,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
-        <Stack spacing={2}>
+        <Stack spacing={3}sx={{ width: '100%' }
+        }>
+          <Stack direction="row" spacing={2}>
+
+         
           <TextField
+            sx={{ flex: 1 }}
             type="text"
+            autoComplete='off'
             id="firstName"
             label="First Name"
             {...register('firstName')}
@@ -142,52 +152,75 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
             helperText={errors.firstName?.message}
           />
           <TextField
+          sx={{ flex: 1 }}
             type="text"
             id="lastName"
+            autoComplete='off'
             label="Last Name"
             {...register('lastName')}
             error={!!errors.lastName}
             helperText={errors.lastName?.message}
           />
+           </Stack>
+
+           <Stack direction="row" spacing={2}>
+
           <TextField
+          sx={{ flex: 1 }}
             type="text"
             id="address"
+            autoComplete='off'
             label="Address"
             {...register('address')}
             error={!!errors.address}
             helperText={errors.address?.message}
-          />
+            />
           <TextField
+          sx={{ flex: 1 }}
             type="number"
             id="age"
+            autoComplete='off'
             label="Age"
             {...register('age')}
             error={!!errors.age}
             helperText={errors.age?.message}
-          />
+            />
+            </Stack>
+
+            <Stack direction="row" spacing={2}>
+
           <TextField
+          sx={{ flex: 1 }}
             type="text"
             id="email"
+            autoComplete='off'
             label="Email"
             {...register('email')}
             error={!!errors.email}
             helperText={errors.email?.message}
-          />
+            />
           <TextField
+          sx={{ flex: 1 }}
             type="text"
             id="phoneNumber"
+            autoComplete='off'
             label="Phone Number"
             {...register('phoneNumber')}
             error={!!errors.phoneNumber}
             helperText={errors.phoneNumber?.message}
-          />
+            />
+            </Stack>
+            <Stack direction="row" spacing={2}>
+
           <TextField
+          // sx={{ flex: 1 }}
             type="date"
             id="bookingDate"
+            autoComplete='off'
             {...register('bookingDate')}
             error={!!errors.bookingDate}
             helperText={errors.bookingDate?.message}
-          />
+            />
           <FormControl>
             <InputLabel id="SpecializationLabel">Specialization</InputLabel>
             <Select
@@ -195,7 +228,7 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
               id="Specialization"
               {...register('Specialization')}
               error={!!errors.Specialization}
-            >
+              >
               <MenuItem value="" disabled>
                 Select Specialization
               </MenuItem>
@@ -207,6 +240,9 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
             </Select>
             <FormHelperText error>{errors.Specialization?.message}</FormHelperText>
           </FormControl>
+            </Stack>
+            <Stack direction="row" spacing={2}>
+
           <FormControl>
             <InputLabel id="genderLabel">Gender</InputLabel>
             <Select
@@ -214,7 +250,7 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
               id="gender"
               {...register('gender')}
               error={!!errors.gender}
-            >
+              >
               <MenuItem value="" disabled>
                 Select Gender
               </MenuItem>
@@ -233,7 +269,7 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
               id="bookingTime"
               {...register('bookingTime')}
               error={!!errors.bookingTime}
-            >
+              >
               <MenuItem value="" disabled>
                 Select Booking Time
               </MenuItem>
@@ -245,6 +281,7 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
             </Select>
             <FormHelperText error>{errors.bookingTime?.message}</FormHelperText>
           </FormControl>
+              </Stack>
           <Button 
             variant='contained'
             type='submit'

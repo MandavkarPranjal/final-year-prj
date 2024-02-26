@@ -35,7 +35,8 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
     );
   };
 
-const Sidebar = () => {
+const Sidebar = ({ userRole }: { userRole: "ADMIN" | "USER" | null }) => {
+  console.log("User Role:", userRole);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -64,6 +65,7 @@ const Sidebar = () => {
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
+
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
@@ -117,6 +119,9 @@ const Sidebar = () => {
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+        
+        
+        
             <Item
               title="Dashboard"
               to="/dashboard"
@@ -204,6 +209,11 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             /> 
+            
+
+       
+
+
           </Box>
         </Menu>
       </ProSidebar>
@@ -212,3 +222,4 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+

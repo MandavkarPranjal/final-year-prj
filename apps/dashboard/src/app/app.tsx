@@ -64,17 +64,25 @@ export function App() {
                 <main className="content">
                   <Topbar />
                   <Routes>
-                      <Route path="/" element={<Layout />} />
-                      <Route path="/dashboard" Component={Dashboard} />
-                      <Route path="/team" element={<Team />} />
-                      <Route path="/appointment" element={<Contacts />} />
-                      <Route path="/invoices" element={<Invoices />} />
-                      <Route path="/form" element={<Form />} />
-                      <Route path="/calendar" element={<Calendar />} />
-                      <Route path="/faq" element={<FAQ />} />
-                      <Route path="/bar" element={<Bar />} />
-                      <Route path="/pie" element={<Pie />} />
-                      {/* <Route path="/line" element={<Line />} /> */}
+                    <Route path="/" element={<Layout />} />
+                    {user.role.includes('ADMIN') && <Route path="/dashboard" element={<Dashboard />} />}
+                    {user.role.includes('ADMIN') && <Route path="/team" element={<Team />} />}
+                    {user.role.includes('ADMIN') && <Route path="/appointment" element={<Contacts />} />}
+                    {user.role.includes('ADMIN') && <Route path="/faq" element={<FAQ />} />}
+                    
+                    {user.role.includes('ADMIN') && <Route path="/form" element={<Form />} />}
+                    {user.role.includes('ADMIN') && <Route path="/calendar" element={<Calendar />} />}
+                  
+                    {user.role.includes('ADMIN') && <Route path="/pie" element={<Pie />} />}
+
+                     {user && user.role.includes('USER') && <Route path="/pie" element={<Pie />} />} 
+                     {user && user.role.includes('USER') && <Route path="/appointment" element={<Contacts/>} />} 
+                      {user && user.role.includes('USER') && <Route path="/faq" element={<FAQ />} />}
+                      {user && user.role.includes('USER') && <Route path="/dashboard" element={<Dashboard />} />} 
+                      {user && user.role.includes('USER') && <Route path="/calendar" element={<Calendar />} />}
+
+                     
+                 
                     <Route path="/logout" element={<LogOut onLogout={onLogout} />} />
                   </Routes>
                 </main>
@@ -95,4 +103,9 @@ export function App() {
 }
 
 export default App;
+
+
+
+
+
 

@@ -123,39 +123,7 @@ const Form = () => {
    
   }
 
-  // }
  
-  // const isNonMobile = useMediaQuery("(min-width:600px)");
-
-  // const [submitting, setSubmitting] = useState(false);
-  // const [submitError, setSubmitError] = useState(null);
-
-  // const handleFormSubmit = async (values: any) => {
-  //   setSubmitting(true);
-  //   try {
-  //     const response = await axios.post('http://localhost:3000/auth/create-user', {
-  //       firstName: values.firstName,
-  //       lastName: values.lastName,
-  //       email: values.email,
-  //       phoneNumber: values.phoneNumber,
-  //       address_1: values.address_1,
-  //       address_2: values.address_2,
-  //       role: values.role,
-  //       password: values.password,
-  //     });
-  //     console.log(response.data); 
-
-  //   } catch (error) {
-  //     console.error('Error submitting form:', error);
-  //     setSubmitError('An error occurred while submitting the form.'as any); // Update the error message
-  //   } finally {
-  //     setSubmitting(false);
-  //   }
-  // };
-
-
-
-
 
   return (
     <Box m="20px" >
