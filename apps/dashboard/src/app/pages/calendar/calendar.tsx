@@ -210,6 +210,7 @@ import { tokens } from "../../theme";
 import CalendarModal from "./calendarModal";
 import axios from "axios";
 import { debounce } from "lodash";
+import { co } from "@fullcalendar/core/internal-common";
 
 interface NewEvent {
   title: string;
@@ -312,15 +313,21 @@ const Calendar: React.FC = () => {
   };
 
   const handleEventDelete = async () => {
+
     if (selectedEvent) {
+
       try {
+        console.log('selectedEvent', selectedEvent?.id);
         // Perform the deletion on the server
-        await axios.delete(`http://localhost:3000/calendar/${selectedEvent.id}`);
+        await axios.delete(`http://localhost:3000/calendar/delete/${selectedEvent.id}`);
 
         // Update the local state after successful deletion
         setCurrentEvents(currentEvents.filter((event) => event.id !== selectedEvent.id));
         setDeleteModalOpen(false);
-        console.log('Event deleted',selectedEvent.title);
+        console.log('event id', selectedEvent.id);
+        console.log('Event deleted', selectedEvent.title);
+
+        // console.log('Event deleted',selectedEvent.title);
       } catch (error) {
         console.error('Error deleting event', error);
         // Handle error, show a notification, or other error-handling logic

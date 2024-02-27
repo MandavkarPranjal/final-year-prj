@@ -9,8 +9,9 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import TrafficIcon from "@mui/icons-material/Traffic";
 import BarChart from "../../components/bar-chart/bar-chart";
 import StatBox from "../../components/stat-box/stat-box";
-import ProgressCircle from "../../components/progress-circle/progress-circle";
-import LineChart from "../../components/line-chart/line-chart";
+// import ProgressCircle from "../../components/progress-circle/progress-circle";
+// import LineChart from "../../components/line-chart/line-chart";
+import PieChart from "../../components/pie-chart/pie-chart";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -24,7 +25,7 @@ const Dashboard = () => {
       
 
       <Box>
-        <Button
+        {/* <Button
           sx={{
             backgroundColor: colors.blueAccent[700], 
             color: colors.grey[100],
@@ -35,7 +36,7 @@ const Dashboard = () => {
         >
           <DownloadOutlinedIcon sx={{ mr: "10px"}}/>
           Download Reports
-        </Button>
+        </Button> */}
       </Box>
       </Box>
       {/* GRID & CHARTS */}
@@ -117,7 +118,7 @@ const Dashboard = () => {
       
         {/* ROW 2 */}
 
-        <Box
+        {/* <Box
           gridColumn="span 8"
           gridRow="span 2"
           sx={{ backgroundColor: colors.primary[400]}}
@@ -149,9 +150,9 @@ const Dashboard = () => {
             <Box height="250px" mt="-20px">
               <LineChart isDashboard={true}/>
             </Box>
-            </Box>
+            </Box> */}
              {/* Transaction */}
-             <Box
+             {/* <Box
           gridColumn="span 4"
           gridRow="span 2"
           sx={{ backgroundColor: colors.primary[400]}}
@@ -201,10 +202,10 @@ const Dashboard = () => {
               </Box>
             </Box>
           ))}
-        </Box>
+        </Box> */}
 
         {/* ROW 3 */}
-        <Box
+        {/* <Box
           gridColumn="span 6"
           gridRow="span 2"
           sx={{ backgroundColor: colors.primary[400]}}  
@@ -229,7 +230,7 @@ const Dashboard = () => {
             </Typography>
             <Typography>Includes extra misc expenditures and costs</Typography>
           </Box>
-        </Box>
+        </Box> */}
         <Box
           gridColumn="span 6"
           gridRow="span 2"
@@ -244,6 +245,22 @@ const Dashboard = () => {
           </Typography>
           <Box height="250px" mt="-20px">
             <BarChart isDashboard={true} />
+          </Box>
+        </Box>
+        <Box
+          gridColumn="span 6"
+          gridRow="span 2"
+          sx={{ backgroundColor: colors.primary[400] }}
+        >
+          <Typography
+            variant="h5"
+            fontWeight="600"
+            sx={{ padding: "30px 30px 0 30px" }}
+          >
+            Piechart of happy lives
+          </Typography>
+          <Box height="250px" mt="-20px">
+            <PieChart isDashboard={true} />
           </Box>
         </Box>
         

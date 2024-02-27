@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCalendarDto } from './dto/create-calendar.dto';
 import { UpdateCalendarDto } from './dto/update-calendar.dto';
 import { PrismaClient } from '@prisma/client';
@@ -6,7 +6,6 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 @Injectable()
 export class CalendarService {
-  prisma: any;
   async createEvent(req, res) {
     const { title, start, end, allDay } = req.body;
 
@@ -34,21 +33,29 @@ export class CalendarService {
     return `This action updates a #${id} calendar`;
   }
 
- async removeEvent(id: number) {
-//   const event = await prisma.event.findFirst({
-//     where : {
-//       id: id
-//     }
-//   });
-//   if(event){
-//     const remove= await this.prisma.event.delete({
-//       where :{
-//         id:id
-//       }
-//     })
-//     return event;
-//   }
+ async removeEvent(id: string) {
+   const Event = await prisma.event.findFirst({
+     where:{
+       id: id
+      }
+    })
+    console.log("Inside delete api", id)
+  if(Event){
+    const deletedEvent = await prisma.event.delete({
+      where:{
+        id: id
+      }
+    })
+    return deletedEvent;
+  }
+  throw new HttpException("Event does not exist", HttpStatus.BAD_REQUEST);
+}
+  }
+
+
+
+
+   
  
   
-}
-}
+

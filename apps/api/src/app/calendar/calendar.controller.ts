@@ -40,8 +40,8 @@ export class CalendarController {
     return this.calendarService.update(+id, updateCalendarDto);
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   removeEvent(@Param('id') id: string) {
-    return this.calendarService.removeEvent(Number(id));
+    return this.calendarService.removeEvent(id);
   }
 }
