@@ -25,6 +25,8 @@ interface Appointment {
   gender: string;
   phoneNumber: string;
   bookingDate: string;
+  Specialization : string;
+  bookingTime : string;
 }
 
 const Contacts = () => {
@@ -109,6 +111,7 @@ const Contacts = () => {
     { field: 'gender', headerName: 'Gender', flex: 1 },
     { field: 'phoneNumber', headerName: 'Phone Number', flex: 1 },
     { field: 'bookingDate', headerName: 'Booking Date', flex: 1 },
+    { field: 'Specialization', headerName: 'Specialization', flex: 1 },
     { field: 'bookingTime', headerName: 'Booking Time', flex: 1 },
     {
       field: 'actions',
@@ -131,7 +134,17 @@ const Contacts = () => {
 
   return (
         <Box m="20px">
+          <>
       <Header title="APPOINTMENTS" subtitle="List of all appiontments" />
+           <Button onClick={handleOpenAddModal} variant="contained" color='secondary'
+      sx={{position:'absolute',
+           ml:135,
+           mb:'5'
+    }}
+      >
+        Add Appointment
+      </Button>
+      </>
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -160,16 +173,17 @@ const Contacts = () => {
           },
         }}
       >
+         
         <DataGrid
           rows={appointment}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />
+
+        
       </Box>
 
-      <Button onClick={handleOpenAddModal} variant="contained">
-        Add Appointment
-      </Button>
+    
 
       <EditAppointmentModal
         open={openEditModal}

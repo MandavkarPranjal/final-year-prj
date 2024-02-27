@@ -54,43 +54,6 @@ export function LoginPage({ onLogin} : LoginPageProps) {
     };
     
     return (
-        //    <div className='form-container'>
-        // <form onSubmit={handleSubmit(handleOnSubmit)}>
-    //     {/* <div className={styles['logo']}>
-    //       <img src={FL} alt="font lab logo" width="150px" height="150px" />
-    //     </div> */}
-    //     <div className='email'>
-    //       <TextField
-    //         fullWidth
-    //         type="email"
-    //         {...register('email')}
-    //         label="Email"
-    //         error={!!errors.email}
-    //         helperText={errors.email?.message}
-    //         className="form-control"
-    //         placeholder="Enter Your Email Id"
-    //       />
-    //     </div>
-
-    //     <div className="password">
-    //         <TextField
-    //             type="password"
-    //             {...register('password')}
-    //             label="Password"
-    //             error={!!errors.password}
-    //             helperText={errors.password?.message}
-    //             className="form-control"
-    //             placeholder="Enter Your Password"
-    //         />
-    //     </div>
-        
-    //     <div className='submit_btn'>
-    //       <Button type="submit" variant="contained" className="btn" sx={{backgroundColor: ""}}>
-    //         Log In
-    //       </Button>
-    //     </div>
-    //   </form>
-    //   </div>
       
     <div >
       <div className="signup-body">
