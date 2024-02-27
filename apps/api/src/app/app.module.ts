@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { AppointmentModule } from './appointment/appointment.module';
 import { ExpensesModule } from './expenses/expenses.module';
 import { CalendarModule } from './calendar/calendar.module';
+import { PieModule } from './pie/pie.module';
 
 @Module({
   controllers: [AppController],
@@ -19,6 +20,7 @@ import { CalendarModule } from './calendar/calendar.module';
     AppointmentModule,
     ExpensesModule,
     CalendarModule,
+    PieModule,
   ], // Add the imported module to the imports array
 })
 export class AppModule {}
