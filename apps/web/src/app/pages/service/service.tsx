@@ -124,35 +124,20 @@ const Service: React.FC = () => {
     <h2 className="happy">Happily Served</h2>
   <div className="recMain">
   <div className="crd1">
-      {/* <div className="value" data-akhi="2000">
-        0
-      </div>
-    <div className="content">
-      <p>New Borns</p>
-    </div> */}
+  
     <p className="crdtxt">New Borns</p>
     <div className="c-1"></div>
 
     </div>
 
   <div className="crd1">
-      {/* <div className="value" data-akhi="1000000">
-        0
-      </div>
-    <div className="content">
-      <p>Happy and healthy Customers</p>
-    </div> */}
+      
     <p className="crdtxt">Happy and healthy Customers</p>
     <div className="c2"></div>
   </div>
 
   <div className="crd1">
-      {/* <div className="value" data-akhi="350">
-        0
-      </div>
-    <div className="content">
-      <p>Cancer Recovery</p>
-    </div> */}
+      
     <p className="crdtxt">Cancer Recovery</p>
     <div className="c3"></div>
   </div>

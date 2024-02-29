@@ -38,27 +38,26 @@ export class AppointmentService {
     console.log('Appointment Booked')
 
     const emailTemplate = `
-    <h3>
-    Dear ${data.firstName} ${data.lastName}, <br><br>
+    <h1>Confirmation of Booked Appointment with WellAppoint</h1>
+    <p>Dear ${data.firstName} ${data.lastName},</p>
+    <p>I hope this email finds you well. We are delighted to confirm that your appointment with WellAppoint Hospital has been successfully booked.</p>
 
-    I hope this email finds you well. <br>
+    <p><strong>Appointment Details:</strong></p>
+    <ul>
+        <li><strong>Date:</strong> ${data.bookingDate}</li>
+        <li><strong>Time:</strong> ${data.bookingTime}</li>
+    </ul>
 
-    I am writing to confirm the appointment you recently booked with WellAppoint. We appreciate your trust in our services and are committed to providing you with the best possible experience.<br><br>
+    <p>We appreciate your trust in our healthcare services and look forward to providing you with the best possible care. If you have any specific questions or if there are any changes required, please feel free to reach out to us by replying to this email.</p>
 
-    Here are the details of your upcoming appointment:<br>
+    <p>As a reminder, kindly bring any relevant medical records or documentation with you on the day of your appointment. If there are any changes in your health condition before the scheduled date, please inform us promptly.</p>
 
-    Date: ${data.bookingDate}<br>
-    Time: ${data.bookingTime}<br><br>
+    <p>Thank you for choosing WellAppoint Hospital. We value your health and well-being, and we are committed to ensuring a positive and seamless experience for you during your visit.</p>
 
+    <p>We look forward to welcoming you on ${data.bookingDate} at ${data.bookingTime}.</p>
 
-    If, for any reason, you need to reschedule or cancel your appointment, please let us know at least 3 hours in advance. This allows us to accommodate other patients and manage our schedule efficiently.<br>
-
-    Thank you for choosing WellAppoint. We are dedicated to supporting your health and well-being.<br><br>
-
-    Best regards,<br>
-
-    WellAppoint Team
-    </h3>
+    <p>Best regards,<br>
+        WellAppoint Team<br></p>
     `;
 
     const mailOptions = {
