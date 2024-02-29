@@ -15,6 +15,7 @@ import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import hospLogo from '../../../../public/assets/hospLogo.png';
 
   const Item = ({ title, to, icon, selected, setSelected }: { title: string, to: string, icon: React.ReactNode, selected: string, setSelected: React.Dispatch<React.SetStateAction<string>> }) => {
     const theme = useTheme();
@@ -94,25 +95,25 @@ const Sidebar = ({ userRole }: { userRole: "ADMIN" | "USER" | null }) => {
           {!isCollapsed && (
             <Box mb="25px">
               <Box display="flex" justifyContent="center" alignItems="center">
-                {/* <img
+                <img
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.png`}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
-                /> */}
+                  src={hospLogo}
+                  style={{ cursor: "pointer" }}
+                />
               </Box>
               <Box textAlign="center">
                 <Typography
-                  variant="h2"
+                  variant="h3"
                   color={colors.grey[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  PG
+                  WellAppoint
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
+                 
                 </Typography>
               </Box>
             </Box>
