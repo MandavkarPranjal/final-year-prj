@@ -6,7 +6,10 @@ export class PieController {
   constructor(private readonly pieService: PieService) {}
 
   @Get()
-  pieData() {
-    return this.pieService.pieData();
+  async getUserGenderCount(): Promise<{ Male: number; Female: number }> {
+    const maleCount = await this.pieService.getUserCount('Male');
+    const femaleCount = await this.pieService.getUserCount('Female');
+
+    return { Male: maleCount, Female: femaleCount };
   }
 }

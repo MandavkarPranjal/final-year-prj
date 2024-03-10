@@ -5,26 +5,10 @@ import { PrismaService } from '../../../../../prisma/prisma.service';
 export class PieService {
     constructor(private prisma: PrismaService) {}
 
-    async pieData() {
-        const genders = ['Male', 'Female', 'Other'];
-
-        const promises = genders.map(async (gen) => {
-            const count = await this.calGen(gen);
-            return { [gen]: count };
+    async getUserCount(gender: string): Promise<number> {
+        const count = await this.prisma.appointment.count({
+            where : { gender },
         });
-
-        const results = await Promise.all(promises);
-
-        const mapData = Object.assign({}, ...results);
-
-        return mapData;
-    }
-
-    async calGen(gen: string) {
-        return await this.prisma.appointment.count({
-            where : {
-                gender: gen
-            }
-        })
+        return count
     }
 }
