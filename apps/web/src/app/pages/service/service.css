@@ -177,11 +177,14 @@
 
 .happy{
     text-align: center;
+    color: #1F2B6C;
+    font-family: "Yeseva One";
+    padding-top: 25px;
 }
 
 .recMain{
     display: flex;
-    background-color: rgb(189, 213, 240);
+    /* background-color: rgb(189, 213, 240); */
     height: 400px;
 }
 

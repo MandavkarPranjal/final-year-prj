@@ -85,3 +85,75 @@
 .links a:hover{
     color: #6868e9;
     }
+
+@media screen and (max-width: 768px)  {
+    .footer{
+        display: flex;
+        flex-direction: row;
+        margin-top: 40px;
+        width: 400px;
+    }
+
+    .hosp-logo{
+        height: 80px;
+        margin-left: 0px;
+        
+      }
+    
+      h1{
+        margin-left: 0px;
+        margin-bottom: 20px;
+      }
+    
+     .fotter{
+        display: flex;
+        margin-top: 40px;
+     } 
+
+     .fhead{
+        font-size: 18px;
+     }
+
+     .f-spl{
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        margin-left: 0px;
+        line-height: 15px;
+        text-align: start; 
+     }
+
+     .goto{
+        display: grid;
+        grid-template-rows: 25px 30px 30px 30px;
+        row-gap:  -0px;
+        margin-left: 20px;
+        text-align: start;
+    }
+    
+    .goto a{
+            font-size: 18px;
+            
+        }
+
+        .appt{
+            display: grid;
+            grid-template-rows: 40px 50px 50px 50px;
+            row-gap:  -10px;
+            margin-left: 20px;
+            text-align: start;
+        }
+
+        .appt a{
+            font-size: 19px;
+        }
+
+        .links{
+            display: none;
+            /* grid-template-rows: 40px 40px 40px 40px;
+            position: absolute;
+            left: 134px;
+            top: 5020px; */
+          
+          }
+}

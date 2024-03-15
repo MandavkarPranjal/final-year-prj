@@ -13,7 +13,7 @@ import {
   Button,
   FormHelperText,
 } from '@mui/material';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import * as yup from 'yup';
@@ -72,7 +72,7 @@ interface Props {
 const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
   const { enqueueSnackbar } = useSnackbar();
 
-  const { register, setValue, handleSubmit, formState: { errors } } = useForm<Appointment>({
+  const { register, control, setValue, handleSubmit, formState: { errors } } = useForm<Appointment>({
     resolver: yupResolver(validationSchema),
   });
 
@@ -151,149 +151,221 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
           >
              <Stack direction="row" spacing={2}>
 
-            
-          <TextField
-          sx={{ flex: 1 }}
-            type="text"
-            id="firstName"
-            className='firstName'
-            label="First Name"
-            defaultValue={""}
-            {...register('firstName')}
-            error={!!errors.firstName}
-            helperText={errors.firstName?.message}
+        <Controller 
+          name='firstName'
+          control={control}
+          defaultValue=''
+          render={({ field }) => (
+            <TextField
+              sx={{ flex: 1 }}
+              type="text"
+              id="firstName"
+              label="First Name"
+              className='firstName'
+              {...field}
+              error={!!errors.firstName}
+              helperText={errors.firstName?.message}
             />
-          <TextField
-            sx={{ flex: 1}}
-            type="text"
-            id="lastName"
-            label="Last Name"
-            defaultValue={""}
-            {...register('lastName')}
-            error={!!errors.lastName}
-            helperText={errors.lastName?.message}
-          />
-          </Stack>
+          )}
 
-          <Stack direction="row" spacing={2}>
-          <TextField
-            sx={{ flex: 1 }}
-            type="text"
-            id="address"
-            label="Address"
-            defaultValue={""}
-            {...register('address')}
-            error={!!errors.address}
-            helperText={errors.address?.message}
-          />
-          <TextField
-            sx={{ flex: 1 }}
-            type="number"
-            id="age"
-            label="Age"
-            defaultValue={""}
-            {...register('age')}
-            error={!!errors.age}
-            helperText={errors.age?.message}
-          />
+        />            
+        
+        <Controller 
+          name='lastName'
+          control={control}
+          defaultValue=''
+          render={({ field }) => (
+            <TextField
+              sx={{ flex: 1}}
+              type="text"
+              id="lastName"
+              label="Last Name"
+              defaultValue={""}
+              {...field}
+              error={!!errors.lastName}
+              helperText={errors.lastName?.message}
+            />
+          )}
+        />
           </Stack>
 
           <Stack direction="row" spacing={2}>
           
-          <TextField
-            sx={{ flex: 1 }}
-            type="text"
-            id="email"
-            label="Email"
-            defaultValue={""}
-            {...register('email')}
-            error={!!errors.email}
-            helperText={errors.email?.message}
+          <Controller
+            name='address'
+            control={control}
+            defaultValue=''
+            render={({ field }) => (
+              <TextField
+                sx={{ flex: 1 }}
+                type="text"
+                id="address"
+                label="Address"
+                defaultValue={""}
+                {...field}
+                error={!!errors.address}
+                helperText={errors.address?.message}
+              />
+            )}
           />
           
-       
-          <TextField
-          sx={{ flex: 1 }}
-            type="text"
-            id="phoneNumber"
-            label="Phone Number"
-            defaultValue={""}
-            {...register('phoneNumber')}
-            error={!!errors.phoneNumber}
-            helperText={errors.phoneNumber?.message}
+          <Controller 
+            name='age'
+            control={control}
+            // defaultValue=''
+            render={({ field }) => (
+              <TextField
+                sx={{ flex: 1 }}
+                type="number"
+                id="age"
+                label="Age"
+                defaultValue={""}
+                {...field}
+                error={!!errors.age}
+                helperText={errors.age?.message}
+              />
+            )}
           />
+          
+          </Stack>
+
+          <Stack direction="row" spacing={2}>
+          
+          <Controller 
+            name='email'
+            control={control}
+            defaultValue=''
+            render={({ field }) => (
+              <TextField
+                sx={{ flex: 1 }}
+                type="text"
+                id="email"
+                label="Email"
+                defaultValue={""}
+                {...field}
+                error={!!errors.email}
+                helperText={errors.email?.message}
+              />
+            )}
+          />
+          
+          <Controller 
+            name='phoneNumber'
+            control={control}
+            defaultValue=''
+            render={({ field }) => (
+              <TextField
+                sx={{ flex: 1 }}
+                type="text"
+                id="phoneNumber"
+                label="Phone Number"
+                defaultValue={""}
+                {...field}
+                error={!!errors.phoneNumber}
+                helperText={errors.phoneNumber?.message}
+              />
+            )}
+          /> 
           </Stack>  
 
           <Stack direction="row" spacing={2}>
-          <TextField
-            type="date"
-            id="bookingDate"
-            defaultValue={""}
-            {...register('bookingDate')}
-            error={!!errors.bookingDate}
-            helperText={errors.bookingDate?.message}
-          />
+
+            <Controller 
+            name='bookingDate'
+            control={control}
+            defaultValue=''
+            render={({ field }) => (
+              <TextField
+                type="date"
+                id="bookingDate"
+                defaultValue={""}
+                {...field}
+                error={!!errors.bookingDate}
+                helperText={errors.bookingDate?.message}
+              />
+            )}
+            />
           <FormControl>
             <InputLabel id="SpecializationLabel">Specialization</InputLabel>
-            <Select
-              labelId="SpecializationLabel"
-              id="Specialization"
-              defaultValue={""}
-              {...register('Specialization')}
-              error={!!errors.Specialization}
-            >
-              <MenuItem value="" disabled>
-                Select Specialization
-              </MenuItem>
-              {SpecializationOptions.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
+            <Controller
+            name='Specialization'
+            control={control}
+            defaultValue=''
+            render={({ field }) => (
+              <Select
+                labelId="SpecializationLabel"
+                id="Specialization"
+                {...field}
+                error={!!errors.Specialization}
+              >
+                <MenuItem value="" disabled>
+                  Select Specialization
                 </MenuItem>
-              ))}
-            </Select>
-            <FormHelperText error>{errors.Specialization?.message}</FormHelperText>
+                {SpecializationOptions.map((option) => (
+                  <MenuItem key={option} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </Select>
+              
+            )}
+            />
+           
           </FormControl>
                 </Stack>
 
                 <Stack direction="row" spacing={2}>
           <FormControl>
             <InputLabel id="genderLabel">Gender</InputLabel>
-            <Select
-              labelId="genderLabel"
-              id="gender"
-              defaultValue={""}
-              {...register('gender')}
-              error={!!errors.gender}
-            >
-              <MenuItem value="" disabled>
-                Select Gender
-              </MenuItem>
-              {genderOptions.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
-            <FormHelperText error>{errors.gender?.message}</FormHelperText>
+            <Controller 
+              name="gender"
+              control={control}
+              defaultValue=''
+              render={({ field }) => (
+                <Select
+                  labelId="genderLabel"
+                  id="gender"
+                  {...field}
+                  error={!!errors.gender}
+                >
+                  <MenuItem value="" disabled>
+                    Select Gender
+                  </MenuItem>
+                  {genderOptions.map((option) => (
+                    <MenuItem key={option} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </Select>
+
+              )}
+            />
           </FormControl>
           <FormControl>
             <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
-            <Select
-              labelId="bookingTimeLabel"
-              id="bookingTime"
-              defaultValue={""}
-              {...register('bookingTime')}
-              error={!!errors.bookingTime}
-            >
-              <MenuItem value="" disabled>
-                Select Booking Time
-              </MenuItem>
-              {timeSlots.map((slot) => (
-                <MenuItem key={slot} value={slot}>
-                  {slot}
-                </MenuItem>
-              ))}
-            </Select>
+            <Controller 
+              name="bookingTime"
+              control={control}
+              defaultValue=''
+              render={({ field }) => (
+                <Select
+                  labelId="bookingTimeLabel"
+                  id="bookingTime"
+                  {...field}
+                  error={!!errors.bookingTime}
+                >
+                  <MenuItem value="" disabled>
+                    Select Booking Time
+                  </MenuItem>
+                  {timeSlots.map((slot) => (
+                    <MenuItem key={slot} value={slot}>
+                      {slot}
+                    </MenuItem>
+                  ))}
+                </Select>
+              )}
+            />
+            
             <FormHelperText error>{errors.bookingTime?.message}</FormHelperText>
           </FormControl>
           </Stack>

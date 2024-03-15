@@ -10,6 +10,11 @@ const Navbar: React.FC = () => {
     setShowAppointmentForm(true);
   };
 
+  const [isResponsive, setIsResponsive] = useState(false);
+  const handleBurgerClick = () => {
+    setIsResponsive((prevState) => !prevState);
+  };
+
   return (
     <nav>
       <ul>
@@ -20,11 +25,33 @@ const Navbar: React.FC = () => {
         <li><Link to="/service">Service</Link></li>
       </ul>
 
+      <div className="rightnav v-class-resp">
+            
+        </div>
+        <div className="burger">
+            <div className="line"></div>
+            <div className="line"></div>
+            <div className="line"></div>
+        </div>
+
       <div className="book">
         <button className="book_btn" onClick={handleclick}><Link to="/Form">Book Appointment</Link></button>
       </div>
       
     </nav>
+
+
+// {/* Assuming your JSX structure contains elements with the specified classes */}
+//   <><div className="burger" onClick={handleBurgerClick}>
+//     {/* Your burger icon or button content goes here */}
+//   </div><div className={`navbar ${isResponsive ? 'h-nav-resp' : ''}`}>
+//       {/* Your other navbar content goes here */}
+//     </div><div className={`navlist ${isResponsive ? 'v-class-resp' : ''}`}>
+//       {/* Your navlist content goes here */}
+//     </div><div className={`rightnav ${isResponsive ? 'v-class-resp' : ''}`}>
+//       {/* Your rightnav content goes here */}
+
+//     </div></>
   );
 };
 

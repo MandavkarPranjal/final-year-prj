@@ -27,9 +27,14 @@ const About = () => {
 Good Health</p>
 
 
-<p className='abt_content1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis error possimus nulla <br /> voluptatem ducimus eligendi vel quod cupiditate nemo illum in, est, deserunt fugit eius suscipit, <br /> voluptate ratione! Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam minus veritatis <br /> voluptates neque perferendis nisi illo ipsum. Facilis at possimus sed iste laborum eaque incidunt <br /> labore, vero, doloribus esse error.</p>
+<p className='abt_content1'>At WellAppoint Hospital, our constant endeavor is to stay at the forefront of medical advancements and we continuously strive to adapt to the latest technologies and treatment modalities. Our hunger for research, innovation, and clinical excellence has earned us accolades and recognition in the medical fraternity and we believe in fostering a compassionate and caring environment for our patients and their family members. <br />
 
-<p className='abt_content2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi perspiciatis error possimus nulla <br /> voluptatem ducimus eligendi vel quod cupiditate nemo illum in, est, deserunt fugit eius veritatis </p>
+Our patient-centric approach ensures that each individual receives personalized attention and that their family’s emotional and psychological well-being is taken care of during the entire healing process. We invite you to experience our world-class healthcare services with compassion in your health journey.</p>
+
+<p className='abt_content2'> WellAppoint Hospitals has been at the forefront of providing world-class healthcare solutions and has consistently upheld its commitment to providing top-notch medical care, cutting-edge technology, and solid dedication to patient well-being.
+
+we ensure that every patient receives the finest medical attention with empathy and a human touch. The Hospital Network has positively impacted the lives of more than 7.5 million patients, making significant strides in improving access to quality healthcare in the State of Maharashtra, as well as in Overseas Regions such as the Middle East, Africa, and various other geographical areas.
+ </p>
 </div>
 
 <img  className='abt_img2' src={Rectangle_53} alt="" />
