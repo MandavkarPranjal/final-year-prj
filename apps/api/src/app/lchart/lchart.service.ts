@@ -5,19 +5,38 @@ import { PrismaService } from '../../../../../prisma/prisma.service';
 export class LchartService {
     constructor(private prisma: PrismaService) {}
 
-    async getAppointmentCountByGenderAndMonth(gender: string, month: number): Promise<number> {
-      const appointments = await this.prisma.appointment.findMany({
-        where: {
-          gender,
+    async getAllSpecializations(): Promise<string[]> {
+      const specialiaztions = await this.prisma.appointment.findMany({
+        select: {
+          Specialization: true,
         },
+        distinct: ['Specialization'],
       });
-  
-      const filteredAppointments = appointments.filter((appointment) => {
-        const appointmentMonth = new Date(appointment.bookingDate).getMonth() + 1; // Adding 1 to convert from zero-based to one-based index
-        return appointmentMonth === month;
-      });
-  
-      const count = filteredAppointments.length;
-      return count;
+
+      const uniqueScpecializations = Array.from(
+        new Set(specialiaztions.map((appointment) => appointment.Specialization)),
+      );
+
+      return uniqueScpecializations;
+    }
+
+    async getGenderCountBySpecialization(
+      gender: 'Male' | 'Female',
+    ) : Promise<number[]> {
+      const specialiaztions = await this.getAllSpecializations();
+
+      const result = [];
+
+      for (const specialiaztion of specialiaztions) {
+        const count = await this.prisma.appointment.count({
+          where: {
+            Specialization: specialiaztion,
+            gender,
+          },
+        });
+
+        result.push(count);
+      }
+      return result;
     }
 }

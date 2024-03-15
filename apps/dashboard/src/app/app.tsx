@@ -19,7 +19,6 @@ import { UserContext } from "./context/user-context";
 import { Layout } from "./components/layout/layout";
 import { LoginPage } from "./components/LoginPage/LoginPage";
 import LogOut from "./components/logout/logout";
-import Line from "./pages/line/line";
 
 export function App() {
   const [theme, colorMode] = useMode();
@@ -75,7 +74,8 @@ export function App() {
                     {user.role.includes('ADMIN') && <Route path="/calendar" element={<Calendar />} />}
                   
                     {user.role.includes('ADMIN') && <Route path="/pie" element={<Pie />} />}
-                    {user.role.includes('USER') && <Route path="/line" element={<Line />} />}
+                    {user.role.includes('ADMIN') && <Route path="/bar" element={<Bar />} />}
+                    {user.role.includes('USER') && <Route path="/bar" element={<Bar />} />}
                      {user && user.role.includes('USER') && <Route path="/pie" element={<Pie />} />} 
                      {user && user.role.includes('USER') && <Route path="/appointment" element={<Contacts/>} />} 
                       {user && user.role.includes('USER') && <Route path="/faq" element={<FAQ />} />}

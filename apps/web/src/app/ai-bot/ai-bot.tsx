@@ -3,9 +3,6 @@ import styles from './ai-bot.module.css';
 // import { useState } from 'react';
 import axios from 'axios';
 
-// /* eslint-disable-next-line */
-export interface AiBotProps {}
-
 // export function AiBot(props: AiBotProps) {
 //   return (
 //     <div className={styles['container']}>
@@ -19,6 +16,9 @@ export interface AiBotProps {}
 
 
 import { FormEvent, useState } from "react";
+
+// /* eslint-disable-next-line */
+export interface AiBotProps {}
 
 // const configuration = new Configuration({
 //   organization: "org-0nmrFWw6wSm6xIJXSbx4FpTw",

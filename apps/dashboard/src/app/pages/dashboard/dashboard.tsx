@@ -7,12 +7,11 @@ import EmailIcon from "@mui/icons-material/Email";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import TrafficIcon from "@mui/icons-material/Traffic";
-import BarChart from "../../components/bar-chart/bar-chart";
 import StatBox from "../../components/stat-box/stat-box";
 // import ProgressCircle from "../../components/progress-circle/progress-circle";
 // import LineChart from "../../components/line-chart/line-chart";
 import PieChartComponent from "../../components/pie-chart/pie-chart";
-import LineChartComponent from "../../components/line-chart/line-chart";
+import SimpleBarChart from "../../components/bar-chart/bar-chart";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -23,22 +22,6 @@ const Dashboard = () => {
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard"/>
-      
-
-      <Box>
-        {/* <Button
-          sx={{
-            backgroundColor: colors.blueAccent[700], 
-            color: colors.grey[100],
-            fontSize: "14px",
-            fontWeight: "bold",
-            padding: "10px 20px",
-          }}
-        >
-          <DownloadOutlinedIcon sx={{ mr: "10px"}}/>
-          Download Reports
-        </Button> */}
-      </Box>
       </Box>
       {/* GRID & CHARTS */}
       <Box
@@ -48,7 +31,7 @@ const Dashboard = () => {
         gap="20px"
       >
         {/* ROW 1 */}
-        <Box 
+        {/* <Box 
           gridColumn="span 3"
           sx={{ backgroundColor: colors.primary[400]}}
           display="flex"
@@ -115,7 +98,7 @@ const Dashboard = () => {
               <TrafficIcon sx={{ color: colors.greenAccent[600], fontSize: "26px"}}/>
             }
           />
-        </Box>
+        </Box> */}
         <Box
           gridColumn="span 6"
           gridRow="span 2"
@@ -129,7 +112,7 @@ const Dashboard = () => {
             Sales Quantity
           </Typography>
           <Box height="250px" mt="-20px">
-            <LineChartComponent/>
+            {/* <SimpleBarChart /> */}
           </Box>
         </Box>
         <Box
@@ -145,7 +128,7 @@ const Dashboard = () => {
             Piechart of happy lives
           </Typography>
           <Box height="250px" mt="-20px">
-            <PieChartComponent/>
+            <PieChartComponent />
           </Box>
         </Box>
         
