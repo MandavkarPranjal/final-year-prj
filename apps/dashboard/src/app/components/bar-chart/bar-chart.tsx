@@ -1,6 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import { BarChart } from '@mui/x-charts';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
+
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top' as const,
+    },
+  },
+};
 
 function SimpleBarChart() {
   const [specializations, setSpecializations] = useState([]);
@@ -53,21 +81,30 @@ function SimpleBarChart() {
     fetchData();
   }, []);
 
-  const mData = maleData;
-  const fData = femaleData;
-  const xLabels = specializations;
+  const data = {
+    labels: specializations,
+    datasets : [
+      {
+        label: 'Male',
+        data: maleData,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      },
+      {
+        label: 'Female',
+        data: femaleData,
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      }
+    ]
+  }
 
   return (
     <div>
-      <BarChart
-        width={1000}
-        height={500}
-        series={[
-          { data: mData, label: 'Male', id: 'maleId' },
-          { data: fData, label: 'Female', id: 'femaleId' },
-        ]}
-        xAxis={[{ data: xLabels, scaleType: 'band' }]}
-        />
+      <Bar 
+        height={350}
+        width={700}
+        options={options} 
+        data={data}
+      />
     </div>
   );
 }
