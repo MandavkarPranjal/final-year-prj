@@ -14,6 +14,7 @@ CREATE TABLE "appointment" (
     "bookingDate" TEXT NOT NULL,
     "Specialization" TEXT NOT NULL,
     "bookingTime" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "appointment_pkey" PRIMARY KEY ("id")
 );
