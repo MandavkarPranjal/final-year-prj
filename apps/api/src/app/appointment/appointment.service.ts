@@ -1,15 +1,16 @@
 import { HttpException, Injectable , HttpStatus} from '@nestjs/common';
 import { CreateAppointmentDto as CADto} from './dto/create-appointment.dto';
 import { PrismaService } from '../../../../../prisma/prisma.service';
-import { createTransport } from 'nodemailer';
+import transporter from '../utils/transporter';
+// import { createTransport } from 'nodemailer';
 // import { HttpStatus } from '@nestjs/common';
 
-const transporter = createTransport({
-  service: 'gmail',
-  auth: {
-      user: 'wellappoint@gmail.com',
-      pass: 'fosc bstw wvnx ttoy'
-}});
+// const transporter = createTransport({
+//   service: 'gmail',
+//   auth: {
+//       user: 'wellappoint@gmail.com',
+//       pass: 'fosc bstw wvnx ttoy'
+// }});
 
 @Injectable()
 export class AppointmentService {

@@ -74,7 +74,8 @@ export function App() {
                     {user.role.includes('ADMIN') && <Route path="/calendar" element={<Calendar />} />}
                   
                     {user.role.includes('ADMIN') && <Route path="/pie" element={<Pie />} />}
-
+                    {user.role.includes('ADMIN') && <Route path="/bar" element={<Bar />} />}
+                    {user.role.includes('USER') && <Route path="/bar" element={<Bar />} />}
                      {user && user.role.includes('USER') && <Route path="/pie" element={<Pie />} />} 
                      {user && user.role.includes('USER') && <Route path="/appointment" element={<Contacts/>} />} 
                       {user && user.role.includes('USER') && <Route path="/faq" element={<FAQ />} />}

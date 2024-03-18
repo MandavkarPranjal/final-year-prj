@@ -8,6 +8,8 @@ import { UsersModule } from './users/users.module';
 import { AppointmentModule } from './appointment/appointment.module';
 import { ExpensesModule } from './expenses/expenses.module';
 import { CalendarModule } from './calendar/calendar.module';
+import { PieModule } from './pie/pie.module';
+import { LchartModule } from './lchart/lchart.module';
 
 @Module({
   controllers: [AppController],
@@ -19,6 +21,8 @@ import { CalendarModule } from './calendar/calendar.module';
     AppointmentModule,
     ExpensesModule,
     CalendarModule,
+    PieModule,
+    LchartModule,
   ], // Add the imported module to the imports array
 })
 export class AppModule {}

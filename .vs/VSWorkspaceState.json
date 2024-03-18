@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\apps",
+    "\\apps\\api",
+    "\\apps\\api\\src",
+    "\\apps\\api\\src\\app",
+    "\\apps\\api\\src\\app\\appointment"
+  ],
+  "SelectedNode": "\\apps\\api\\src\\app\\appointment\\appointment.service.ts",
+  "PreviewInSolutionExplorer": false
+}
