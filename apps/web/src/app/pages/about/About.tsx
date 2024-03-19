@@ -20,14 +20,15 @@ const About = () => {
     <img className='abt_land' src={abt_landscape} alt="" />
     <p className='abt_main'>About Us</p>
 
-        <img className='abt_img' src={Rectangle} alt="" />
+    <img className='abt_img' src={Rectangle} alt="" />
         <div className="abt_text">
-        <p className='hosp_name'>WELCOME TO 'HOSPITAL NAME'</p>
+        <p className='hosp_name'>WELCOME TO WellAppoint</p>
         <p className='hosp_intro'>Best Care for Your <br />
 Good Health</p>
 
 
-<p className='abt_content1'>At WellAppoint Hospital, our constant endeavor is to stay at the forefront of medical advancements and we continuously strive to adapt to the latest technologies and treatment modalities. Our hunger for research, innovation, and clinical excellence has earned us accolades and recognition in the medical fraternity and we believe in fostering a compassionate and caring environment for our patients and their family members. <br />
+<p className='abt_content1'>
+  At WellAppoint Hospital, our constant endeavor is to stay at the forefront of medical advancements and we continuously strive to adapt to the latest technologies and treatment modalities. Our hunger for research, innovation, and clinical excellence has earned us accolades and recognition in the medical fraternity and we believe in fostering a compassionate and caring environment for our patients and their family members. <br />
 
 Our patient-centric approach ensures that each individual receives personalized attention and that their family’s emotional and psychological well-being is taken care of during the entire healing process. We invite you to experience our world-class healthcare services with compassion in your health journey.</p>
 
@@ -45,8 +46,8 @@ we ensure that every patient receives the finest medical attention with empathy 
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo maxime non ex mollitia ipsam possimus natus <br /> aspernatur ratione velit voluptatibus placeat fuga quod, hic aliquid modi molestiae officiis saepe beatae.</p>
 
 
-
-<p className='contact-1'>GET IN TOUCH</p>
+<div className="infoDr">
+<p className='contact-1'>Our Doctors</p>
 <p className='contact-2'>CONTACT</p>
 
 <div className="dr_imgs">
@@ -69,6 +70,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo maxime non ex moll
   specialization='Dermatology'
 />
 
+</div>
 </div>
 
 <div className="main_conct">
