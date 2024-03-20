@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sidebar as ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -16,6 +16,7 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import hospLogo from '../../../../public/assets/hospLogo.png';
+import { User } from "../../context/user-data-transfer";
 
   const Item = ({ title, to, icon, selected, setSelected }: { title: string, to: string, icon: React.ReactNode, selected: string, setSelected: React.Dispatch<React.SetStateAction<string>> }) => {
     const theme = useTheme();
@@ -36,12 +37,17 @@ import hospLogo from '../../../../public/assets/hospLogo.png';
     );
   };
 
-const Sidebar = ({ userRole }: { userRole: "ADMIN" | "USER" | null }) => {
-  console.log("User Role:", userRole);
+const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('User') ?? '{}'));
+    // console.log('sidebar user', user);
+  })
 
   return (
     <Box
@@ -122,7 +128,6 @@ const Sidebar = ({ userRole }: { userRole: "ADMIN" | "USER" | null }) => {
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
         
         
-        
             <Item
               title="Dashboard"
               to="/dashboard"
@@ -138,13 +143,17 @@ const Sidebar = ({ userRole }: { userRole: "ADMIN" | "USER" | null }) => {
             >
               Data
             </Typography>
-            <Item
-              title="Manage Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+           {
+              user?.role.includes('ADMIN') && 
+              <Item
+                title="Manage Team"
+                to="/team"
+                icon={<PeopleOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              
+           }
             <Item
               title="Appointments"
               to="/appointment"
@@ -167,13 +176,16 @@ const Sidebar = ({ userRole }: { userRole: "ADMIN" | "USER" | null }) => {
             >
               Pages
             </Typography>
-            <Item
-              title="Profile Form"
-              to="/form"
-              icon={<PersonOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            {
+              user?.role.includes('ADMIN') &&
+              <Item
+                title="Profile Form"
+                to="/form"
+                icon={<PersonOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+            }
             <Item
               title="Calendar"
               to="/calendar"
