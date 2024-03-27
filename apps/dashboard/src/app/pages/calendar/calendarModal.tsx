@@ -8,14 +8,23 @@ import {
   TextField,
   FormControl,
   FormGroup,
+  InputLabel,
+  Select,
 } from "@mui/material";
 import { useTheme } from "@mui/system";
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from "react-hook-form";
+
+const typeSchema= yup.object().shape({
+  leave: yup.boolean().required('required'),
+})
 
 interface CalendarModalProps {
   open: boolean;
   onClose: () => void;
-  handleFormSubmit: (event: { title: string; start: string; end: string; allDay: boolean }) => void;
-  newEvent: { title: string; start: string; end: string; allDay: boolean };
+  handleFormSubmit: (event: { title: string; start: string; end: string; allDay: boolean; leave: boolean }) => void;
+  newEvent: { title: string; start: string; end: string; allDay: boolean; leave: boolean };
 }
 
 const CalendarModal: React.FC<CalendarModalProps> = ({
@@ -26,6 +35,11 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
 }) => {
   const theme = useTheme();
   const [formData, setFormData] = useState({ title: newEvent.title, start: newEvent.start, end: newEvent.end, allDay: newEvent.allDay });
+
+  const {
+    register,
+    formState: { errors },
+  } = useForm
 
   const handleChange = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value });
@@ -42,7 +56,7 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
         <DialogTitle>Add New Event</DialogTitle>
         <DialogContent>
           <FormControl>
-            <FormGroup>
+            {/* <FormGroup>
               <TextField
                 sx={{ marginBottom: "20px", width: "100%" }}
                 label="Title"
@@ -51,7 +65,18 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
                 onChange={(e) => handleChange("title", e.target.value)}
               />
             
-            </FormGroup>
+            </FormGroup> */}
+
+            <InputLabel id="typeLabel">Type</InputLabel>
+            <Select
+              variant="filled"
+              labelId="typeLabel"
+              label="Type"
+              id="type"
+              {...register('type')}
+            >
+
+            </Select>
           </FormControl>
         </DialogContent>
         <DialogActions>

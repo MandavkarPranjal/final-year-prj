@@ -18,7 +18,7 @@ export class AuthService {
   constructor(private prisma: PrismaService, private jwt: JwtService) {}
   
   async createUser(createAuthDto: CreateAuthDto) {
-    const { firstName, lastName, email, phoneNumber, role, password,address_1,address_2 } = createAuthDto;
+    const { firstName, lastName, email, phoneNumber, role, password,address_1,address_2, specialty } = createAuthDto;
     const foundUser = await this.prisma.user.findUnique({where: {email}})
 
     if(foundUser) {
@@ -28,14 +28,14 @@ export class AuthService {
 
     await this.prisma.user.create({
       data: {
-        firstName,
-        lastName,
+        name: `${firstName} ${lastName}`,
         email,
         phoneNumber,
         role,
         // role: [role],
         address_1,
         address_2,
+        specialty,
         hashedPassword,
       }
     })
@@ -74,8 +74,7 @@ export class AuthService {
     await this.prisma.user.update({
       where: {id},
       data: {
-        firstName,
-        lastName,
+        name: `${firstName} ${lastName}`,
         email,
         phoneNumber,
         address_1,
@@ -166,8 +165,7 @@ export class AuthService {
           id: id
         },
         data : {
-          firstName: data.firstName,
-          lastName: data.lastName,
+          name: `${data.firstName} ${data.lastName}`,
           email: data.email,
           phoneNumber: data.phoneNumber,
           address_1: data.address_1,

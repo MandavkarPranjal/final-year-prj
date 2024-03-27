@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, FormHelperText, InputLabel, MenuItem, TextField } from "@mui/material";
+import { Box, Button, FormControl, FormHelperText, InputLabel, MenuItem, Stack, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -6,8 +6,8 @@ import Header from "../../components/header/header";
 import { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { __values } from "tslib";
-import Select from '@mui/material/Select';
-import { yupResolver } from '@hookform/resolvers/yup';
+  import Select from '@mui/material/Select';
+  import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, set, useForm } from 'react-hook-form';
 import { SnackbarProvider, useSnackbar } from 'notistack'
 
@@ -23,6 +23,7 @@ type UserFormProps = {
   address_2: string;
   role: string[];
   password: string;
+  specialty?: string;
 }
 
 
@@ -65,14 +66,33 @@ const userSchema = yup.object().shape({
 const RoleOptions = [
   { value: 'ADMIN', label: 'Admin' },
   { value: 'USER', label: 'User' },
+  { value: 'DOCTOR', label: 'Doctor' },
 ];
 
 
 const Form = () => {
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-  const [status, setStatus] = useState<String | null>(); // Fix: Change the type to [String, Dispatch<SetStateAction<String>>
-  const [res, setRes] = useState<String | null>(null);
+  const [status, setStatus] = useState<string | null>(); // Fix: Change the type to [String, Dispatch<SetStateAction<String>>
+  const [res, setRes] = useState<string | null>(null);
+  const [showSpecialtyInput, setShowSpecialtyInput] = useState(false);
+
+  const SpecializationOptions = [
+    'Dentist',
+    'Cardiologist',
+    'Dermatologist',
+    'Gynecologist',
+    'Neurologist',
+    'Gastroenterologists',
+    'Pediatricians',
+    'Oncologist',
+  ];
+
+  const handleRoleChange = (e) => {
+    const selectedRole = e.target.value;
+    // Show specialty input only if the selected role is "DOCTOR"
+    setShowSpecialtyInput(selectedRole === 'DOCTOR');
+  };
 
   const {
     handleSubmit,
@@ -132,7 +152,8 @@ const Form = () => {
         <form
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Box 
+      <Stack spacing={3}sx={{width: "100%"}}>
+          {/* <Box 
             display="inline-grid" 
             gap="30px" 
             gridTemplateColumns="repeat(4, minmax(0, 1fr))"
@@ -144,7 +165,9 @@ const Form = () => {
                 height: "80px"
               }
             }}
-          >
+          > */}
+            <Stack direction="row" spacing={3} >
+
             <TextField 
               // fullWidth
               variant="filled"
@@ -158,7 +181,7 @@ const Form = () => {
               sx={{
                 gridColumn: "span 1"
               }}
-            />
+              />
             <TextField 
               // fullWidth
               variant="filled"
@@ -172,7 +195,10 @@ const Form = () => {
               sx={{
                 gridColumn: "span 1"
               }}
-            />
+              />
+              </Stack>
+
+              <Stack direction="row" spacing={3} >
             
             <TextField 
               // fullWidth
@@ -202,10 +228,11 @@ const Form = () => {
                 gridColumn: "span 4"
               }}
             />
+            </Stack>
 
-            </Box>
+            {/* </Box> */}
             
-            <Box 
+            {/* <Box 
             display="inline-grid" 
             gap="30px" 
             gridTemplateColumns="repeat(4, minmax(0, 1fr))"
@@ -218,7 +245,8 @@ const Form = () => {
                 height: "80px"
               }
             }}
-          >
+          > */}
+            <Stack direction="row" spacing={3} >
             <TextField 
               // fullWidth
               variant="filled"
@@ -247,6 +275,7 @@ const Form = () => {
                 gridColumn: "span 4"
               }}
             />
+            </Stack>
              {/* <TextField 
               // fullWidth
               variant="filled"
@@ -262,6 +291,8 @@ const Form = () => {
                 gridColumn: "span 2"
               }}
               /> */}
+
+              <Stack direction="row" spacing={3} >
              
              <FormControl
               // sx={{
@@ -277,6 +308,7 @@ const Form = () => {
                   id="role"
                   {...register('role')} // Provide a default value
                   error={!!errors.role}
+                  onChange={handleRoleChange} 
                 >
                   <MenuItem value="" disabled>
                     Select Role
@@ -304,14 +336,42 @@ const Form = () => {
                 gridColumn: "span 4"
               }}
             />
+            </Stack>
+
+            {/* Display specialty input if showSpecialtyInput is true */}
+        {showSpecialtyInput && (
+          <FormControl>
+            <InputLabel id="specialtyLabel">Specialty</InputLabel>
+            <Select
+              variant="filled"
+              labelId="specialtyLabel"
+              label="Specialty"
+              id="specialty"
+              {...register('specialty')} // Assuming you're using useForm hook here
+              // error={!!errors.specialty}
+            >
+              <MenuItem value="" disabled>
+                Select Specialty
+              </MenuItem>
+              {/* Assuming you have an array of specialties like RoleOptions */}
+              {SpecializationOptions.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </Select>
+            {/* <FormHelperText error>{errors.specialty?.message}</FormHelperText> */}
+          </FormControl>
+        )}
             
-          </Box>
+          {/* </Box> */}
           <Box display="flex" justifyContent="center" mt="20px" ml="-35px">
             <Button type="submit" color="secondary" variant="contained" size="large"
             >
               Create New User
             </Button>
           </Box>
+          </Stack>
         </form>
 
     </Box>

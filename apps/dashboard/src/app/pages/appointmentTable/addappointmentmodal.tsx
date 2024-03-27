@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, Box, Stack, TextField, FormControl, InputLabel, Select, MenuItem, Button, FormHelperText } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -15,8 +15,10 @@ type Appointment = {
   phoneNumber: string;
   bookingDate: string;
   Specialization: string;
+  userId: string;
   gender: string;
   bookingTime: string;
+  doctor: string;
 };
 
 const validationSchema = yup.object({
@@ -59,6 +61,8 @@ interface Props {
 
 const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
   const { enqueueSnackbar } = useSnackbar();
+  const [doctors, setDoctors] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 //   const [formData, setFormData] = useState<Appointment>({
 //     firstName: '',
 //     lastName: '',
@@ -72,9 +76,26 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
 //     bookingTime: '',
 //   });
 
-  const { register,reset, handleSubmit, formState: { errors } } = useForm<Appointment>({
+  const { register,reset, handleSubmit, formState: { errors }, getValues } = useForm<Appointment>({
     resolver: yupResolver(validationSchema),
   });
+
+  useEffect(() => {
+    const intervalId = setInterval(async () => {
+      try {
+        setLoading(true);
+        const specialization = getValues('Specialization');
+        const response = await axios.get(`http://localhost:3000/appointment/${specialization}`);
+        setDoctors(response.data); 
+      } catch (error) {
+        console.error('Error fetching doctors:', error);
+      } finally {
+        setLoading(false);
+      }
+    }, 5000); // Fetch every 5 seconds
+
+    return () => clearInterval(intervalId); // Clean up the interval on unmount or when specialization changes
+  }, [getValues]);
 
   const SpecializationOptions = [
     'Dentist',
@@ -241,6 +262,23 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
             <FormHelperText error>{errors.Specialization?.message}</FormHelperText>
           </FormControl>
             </Stack>
+
+            <FormControl>
+                <InputLabel id="doctorLabel">Doctor</InputLabel>
+                <Select value={getValues('userId')} {...register('userId')} disabled={loading}>
+                        {loading ? (
+                          <MenuItem value="">Loading...</MenuItem>
+                        ) : (
+                          doctors.map((doctor) => (
+                            <MenuItem key={doctor.id} value={doctor.id}>
+                              {doctor.name}
+                            </MenuItem>
+                          ))
+                        )}
+                      </Select>
+                <FormHelperText error>{errors.doctor?.message}</FormHelperText>
+              </FormControl>
+
             <Stack direction="row" spacing={2}>
 
           <FormControl>

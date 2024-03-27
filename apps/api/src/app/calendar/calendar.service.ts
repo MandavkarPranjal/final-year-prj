@@ -7,18 +7,19 @@ const prisma = new PrismaClient();
 @Injectable()
 export class CalendarService {
   async createEvent(req, res) {
-    const { title, start, end, allDay } = req.body;
+    const { title, start, end, allDay, leave } = req.body;
 
-  const event = await prisma.event.create({
-    data: {
-      title,
-      start,
-      end,
-      allDay,
-    },
-  });
-  res.json(event);
-  return event;
+    const event = await prisma.event.create({
+      data: {
+        title,
+        start,
+        end,
+        allDay,
+        leave: leave, // Add the missing 'leave' property with a default value
+      },
+    });
+    res.json(event);
+    return event;
   }
 
   findAll() {

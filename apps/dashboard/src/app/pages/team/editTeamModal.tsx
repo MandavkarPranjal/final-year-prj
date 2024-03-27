@@ -20,22 +20,21 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useSnackbar } from 'notistack';
 
 type Team = {
-  firstName: string;
-  lastName: string;
+  name: string;
   phoneNumber: string;
   email: string;
   address_1: string;
   address_2: string;
   role: string[];
   password: string;
+  specialty?: string;
 };
 
 const phoneRegExp =
   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
 const userSchema = yup.object().shape({
-  firstName: yup.string().required('required'),
-  lastName: yup.string().required('required'),
+  name: yup.string().required('required'),
   email: yup.string().email('invalid email').required('required'),
   phoneNumber: yup
     .string()
@@ -61,6 +60,24 @@ interface Props {
 const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
 
   const { enqueueSnackbar } = useSnackbar();
+  const [showSpecialtyInput, setShowSpecialtyInput] = useState(false);
+
+  const SpecializationOptions = [
+    'Dentist',
+    'Cardiologist',
+    'Dermatologist',
+    'Gynecologist',
+    'Neurologist',
+    'Gastroenterologists',
+    'Pediatricians',
+    'Oncologist',
+  ];
+
+  const handleRoleChange = (e) => {
+    const selectedRole = e.target.value;
+    // Show specialty input only if the selected role is "DOCTOR"
+    setShowSpecialtyInput(selectedRole === 'DOCTOR');
+  };
 
   const {
     register,
@@ -75,7 +92,7 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
   const RoleOptions = [
     { value: 'ADMIN', label: 'Admin' },
     { value: 'USER', label: 'User' },
-    
+    { value: 'DOCTOR', label: 'Doctor' },
   ];
 
   useEffect(() => {
@@ -139,31 +156,17 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
             sx={{ flex: 1 }}
             variant="filled"
             type="text"
-            label="First Name"
+            label="Name"
             defaultValue={""}
             id="firstName"
-            {...register('firstName')}
-            error={!!errors.firstName}
-            helperText={errors.firstName?.message}
+            {...register('name')}
+            error={!!errors.name}
+            helperText={errors.name?.message}
             //   sx={{
             //     gridColumn: "span 1"
             //   }}
           />
-          <TextField
-            // fullWidth
-            sx={{ flex: 1 }}
-            variant="filled"
-            type="text"
-            label="Last Name"
-            defaultValue={""}
-            id="lastName"
-            {...register('lastName')}
-            error={!!errors.lastName}
-            helperText={errors.lastName?.message}
-            //   sx={{
-            //     gridColumn: "span 1"
-            //   }}
-          />
+
           </Stack>
 
           <Stack direction="row" spacing={2}>
@@ -249,6 +252,7 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
               id="role"
               {...register('role')} // Provide a default value
               error={!!errors.role}
+              onChange={handleRoleChange}
             >
               <MenuItem value="" disabled>
                 Select Role
@@ -281,6 +285,31 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
             //   }}
           />
           </Stack>
+          {showSpecialtyInput && (
+          <FormControl>
+            <InputLabel id="specialtyLabel">Specialty</InputLabel>
+            <Select
+              variant="filled"
+              labelId="specialtyLabel"
+              label="Specialty"
+              id="specialty"
+              {...register('specialty')} // Assuming you're using useForm hook here
+              // error={!!errors.specialty}
+            >
+              <MenuItem value="" disabled>
+                Select Specialty
+              </MenuItem>
+              {/* Assuming you have an array of specialties like RoleOptions */}
+              {SpecializationOptions.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </Select>
+            {/* <FormHelperText error>{errors.specialty?.message}</FormHelperText> */}
+          </FormControl>
+        )}
+            
 
           <Box display="flex" justifyContent="center" mt="20px" ml="-35px"
           >

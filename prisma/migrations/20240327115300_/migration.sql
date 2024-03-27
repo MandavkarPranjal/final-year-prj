@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "Role" AS ENUM ('ADMIN', 'USER');
+CREATE TYPE "Role" AS ENUM ('ADMIN', 'USER', 'DOCTOR');
 
 -- CreateTable
 CREATE TABLE "appointment" (
@@ -14,6 +14,8 @@ CREATE TABLE "appointment" (
     "bookingDate" TEXT NOT NULL,
     "Specialization" TEXT NOT NULL,
     "bookingTime" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "appointment_pkey" PRIMARY KEY ("id")
 );
@@ -21,8 +23,7 @@ CREATE TABLE "appointment" (
 -- CreateTable
 CREATE TABLE "user" (
     "id" TEXT NOT NULL,
-    "first_name" TEXT NOT NULL,
-    "lastname" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "phoneNumber" TEXT NOT NULL,
     "role" "Role"[],
@@ -42,6 +43,8 @@ CREATE TABLE "event" (
     "title" TEXT NOT NULL,
     "start" TEXT NOT NULL,
     "end" TEXT NOT NULL,
+    "leave" BOOLEAN NOT NULL,
+    "userId" TEXT,
     "allDay" BOOLEAN NOT NULL,
 
     CONSTRAINT "event_pkey" PRIMARY KEY ("id")
@@ -52,3 +55,9 @@ CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "user_phoneNumber_key" ON "user"("phoneNumber");
+
+-- AddForeignKey
+ALTER TABLE "appointment" ADD CONSTRAINT "appointment_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "event" ADD CONSTRAINT "event_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE SET NULL ON UPDATE CASCADE;

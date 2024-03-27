@@ -3,8 +3,7 @@ import { Role } from "@prisma/client";
 
 export class ViewUserDto{
     id: string;
-    firstName: string;
-    lastName: string;
+    name: string;
     email: string;
     hashedPassword: string;
     role: Role[];

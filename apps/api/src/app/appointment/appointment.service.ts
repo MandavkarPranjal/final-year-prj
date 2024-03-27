@@ -2,6 +2,7 @@ import { HttpException, Injectable , HttpStatus} from '@nestjs/common';
 import { CreateAppointmentDto as CADto} from './dto/create-appointment.dto';
 import { PrismaService } from '../../../../../prisma/prisma.service';
 import transporter from '../utils/transporter';
+import { user } from '@prisma/client';
 // import { createTransport } from 'nodemailer';
 // import { HttpStatus } from '@nestjs/common';
 
@@ -16,8 +17,16 @@ import transporter from '../utils/transporter';
 export class AppointmentService {
   constructor(private prisma: PrismaService) {}
   async getData(){
-    const appointment : CADto[] = await this.prisma.appointment.findMany();
-    return appointment;
+    const appointments = await this.prisma.appointment.findMany({
+      include: {
+        user: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+    return appointments;
   }
 
   async getAppointment(id: number){
@@ -214,4 +223,16 @@ export class AppointmentService {
     }
     throw new HttpException("Appointment does not exist", HttpStatus.BAD_REQUEST);
   }
+
+  async getDoctorsBySpecialization(specialization: string){
+    return this.prisma.user.findMany({
+        where: {
+            specialty: specialization// Assuming specialization is stored in lowercase
+        },
+        select: {
+          id: true,
+          name: true,
+        }
+    });
+}
 }

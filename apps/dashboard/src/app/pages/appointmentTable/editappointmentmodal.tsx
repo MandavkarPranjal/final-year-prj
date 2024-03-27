@@ -29,8 +29,10 @@ type Appointment = {
   gender: string;
   phoneNumber: string;
   Specialization: string;
+  userId: string;
   bookingDate: string;
   bookingTime: string;
+  doctor: string;
 };
 
 const validationSchema = yup.object({
@@ -71,8 +73,12 @@ interface Props {
 
 const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
   const { enqueueSnackbar } = useSnackbar();
+  const [doctors, setDoctors] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const { register, setValue, handleSubmit, formState: { errors } } = useForm<Appointment>({
+  
+  
+  const { register, setValue, handleSubmit, formState: { errors }, getValues } = useForm<Appointment>({
     resolver: yupResolver(validationSchema),
   });
 
@@ -99,7 +105,21 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
 
   useEffect(() => {
     fetchdata();
-  }, [appId]);
+    const intervalId = setInterval(async () => {
+      try {
+        setLoading(true);
+        const specialization = getValues('Specialization');
+        const response = await axios.get(`http://localhost:3000/appointment/${specialization}`);
+        setDoctors(response.data); 
+      } catch (error) {
+        console.error('Error fetching doctors:', error);
+      } finally {
+        setLoading(false);
+      }
+    }, 5000); // Fetch every 5 seconds
+
+    return () => clearInterval(intervalId);
+  }, [getValues, appId]);
 
   const fetchdata = async () => {
     try {
@@ -254,6 +274,22 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
             <FormHelperText error>{errors.Specialization?.message}</FormHelperText>
           </FormControl>
                 </Stack>
+
+              <FormControl>
+                <InputLabel id="doctorLabel">Doctor</InputLabel>
+                <Select value={getValues('userId')} {...register('userId')} disabled={loading}>
+                        {loading ? (
+                          <MenuItem value="">Loading...</MenuItem>
+                        ) : (
+                          doctors.map((doctor) => (
+                            <MenuItem key={doctor.id} value={doctor.id}>
+                              {doctor.name}
+                            </MenuItem>
+                          ))
+                        )}
+                      </Select>
+                <FormHelperText error>{errors.doctor?.message}</FormHelperText>
+              </FormControl>
 
                 <Stack direction="row" spacing={2}>
           <FormControl>

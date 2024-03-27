@@ -2,7 +2,7 @@
 import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { Request } from 'express';
 import { PrismaService } from '../../../../../prisma/prisma.service';
-import { NotFoundError } from 'rxjs';
+import { user } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
@@ -30,4 +30,6 @@ export class UsersService {
     async getUsers(){
         return this.prisma.user.findMany({});
     }
+
+
 }

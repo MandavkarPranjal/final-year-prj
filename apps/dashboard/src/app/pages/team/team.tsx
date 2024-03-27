@@ -17,8 +17,7 @@ import { debounce } from 'lodash';
 
 interface Team{
   id: string;
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   phoneNumber: string;
   address_1: string;
@@ -92,8 +91,7 @@ interface Team{
 
 
     const columns: GridColDef[] = [
-      {field: 'firstName', headerName:'FirstName', flex: 1, cellClassName: 'name-column--cell'},
-      {field: 'lastName', headerName:'LastName', flex: 1, cellClassName: 'name-column--cell'},
+      {field: 'name', headerName:'Name', flex: 1, cellClassName: 'name-column--cell'},
       {field: 'email', headerName:'Email', flex: 1 },
       {field: 'phoneNumber', headerName:'Phone Number', flex: 1 },
       {field: 'address_1', headerName:'Address1', flex: 1, cellClassName: 'name-column--cell'},

@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import Rectangle from '../../../public/images/Rectangle.jpg';
@@ -26,8 +26,10 @@ type AppointmentFormValues = {
   phoneNumber: string;
   bookingDate: string;
   Specialization: string;
+  userId: string;
   gender: string;
   bookingTime: string;
+  doctor: string;
 };
 
 // Define validation schema using yup
@@ -86,15 +88,35 @@ const genderOptions = ['Male', 'Female', 'Other'];
 
 
 const AppointmentForm: React.FC = () => {
+  const [doctors, setDoctors] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   // Destructure react-hook-form functions
   const {
     handleSubmit,
     reset,
     register,
     formState: { errors },
+    getValues,
   } = useForm<AppointmentFormValues>({
     resolver: yupResolver(validationSchema),
   });
+
+  useEffect(() => {
+    const intervalId = setInterval(async () => {
+      try {
+        setLoading(true);
+        const specialization = getValues('Specialization');
+        const response = await axios.get(`http://localhost:3000/appointment/${specialization}`);
+        setDoctors(response.data); 
+      } catch (error) {
+        console.error('Error fetching doctors:', error);
+      } finally {
+        setLoading(false);
+      }
+    }, 5000); // Fetch every 5 seconds
+
+    return () => clearInterval(intervalId); // Clean up the interval on unmount or when specialization changes
+  }, [getValues]);
 
   // Define the function to be called on form submission
   const onSubmit: SubmitHandler<AppointmentFormValues> = async (values) => {
@@ -233,6 +255,22 @@ const AppointmentForm: React.FC = () => {
                   ))}
                 </Select>
                 <FormHelperText error>{errors.Specialization?.message}</FormHelperText>
+              </FormControl>
+
+              <FormControl>
+                <InputLabel id="doctorLabel">Doctor</InputLabel>
+                <Select value={getValues('userId')} {...register('userId')} disabled={loading}>
+                        {loading ? (
+                          <MenuItem value="">Loading...</MenuItem>
+                        ) : (
+                          doctors.map((doctor) => (
+                            <MenuItem key={doctor.id} value={doctor.id}>
+                              {doctor.name}
+                            </MenuItem>
+                          ))
+                        )}
+                      </Select>
+                <FormHelperText error>{errors.doctor?.message}</FormHelperText>
               </FormControl>
 
               <FormControl

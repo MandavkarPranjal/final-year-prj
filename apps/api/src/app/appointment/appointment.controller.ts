@@ -6,13 +6,17 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { AppointmentService } from './appointment.service';
 import { CreateAppointmentDto as CADto } from './dto/create-appointment.dto';
+import { user } from '@prisma/client';
 
 @Controller('appointment')
 export class AppointmentController {
-  constructor(private readonly appointmentService: AppointmentService) {}
+  constructor(
+      private readonly appointmentService: AppointmentService
+    ) {}
 
   @Get('all')
   getData() {
@@ -43,6 +47,11 @@ export class AppointmentController {
   @Delete('delete/:id')
   deleteAppointment(@Param('id') id: string) {
     return this.appointmentService.deleteAppointment(Number(id));
+  }
+
+  @Get(':specialization')
+  async getDoctorsBySpecialization(@Param('specialization') specialization: string){
+      return this.appointmentService.getDoctorsBySpecialization(specialization);
   }
 
 }

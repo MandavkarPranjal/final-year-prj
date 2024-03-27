@@ -43,4 +43,8 @@ export class CreateAppointmentDto {
     @IsString()
     public bookingTime: string;
 
+    @IsNotEmpty()
+    @IsString()
+    public userId: string;
+
 }

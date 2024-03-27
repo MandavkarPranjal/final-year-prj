@@ -16,41 +16,48 @@ model appointment {
   lastName       String
   address        String
   age            Int
-  email          String 
+  email          String
   gender         String
   phoneNumber    String
   bookingDate    String
   Specialization String
   bookingTime    String
+  userId         String
   createdAt      DateTime @default(now())
+  user           user@relation(fields: [userId], references: [id])
 }
 
 enum Role {
   ADMIN
   USER
+  DOCTOR
 }
 model user {
   id             String   @id @default(uuid())
-  firstName      String   @map("first_name")  
-  lastName       String   @map("lastname")
+  name           String
   email          String   @unique
   phoneNumber    String   @unique
-  role           Role[]   
+  role           Role[]
   address_1      String
   address_2      String
   specialty      String?
   hashedPassword String   @map("hashed_password")
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt()
+  appointment    appointment[]
+  event          event[]
   // docRecipt docRecipt[]
 }
 
 model event {
   id          String  @id @default(uuid())
   title       String
-  start    String
-  end      String
+  start       String
+  end         String
+  leave       Boolean
+  userId      String?
   allDay      Boolean
+  user        user? @relation(fields: [userId], references: [id])
 }
 
 // model receipt {
