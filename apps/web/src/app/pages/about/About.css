@@ -131,8 +131,8 @@ font-weight: 400;
     position: absolute;
     top: 0;
     font-weight: 500;
-    margin-top: 1300px;
-    margin-left: 330px;
+    margin-top: 1350px;
+    margin-left: 350px;
     font-weight: 600;
     color: #1F2B6C;
  }
@@ -443,4 +443,67 @@ color: var(--Secondary, #159EEC);
     font-weight: 400;
     line-height: 9px; 
     margin-left: 25px;
+}
+
+@media only screen and (max-width: 768px) {
+    .abt_land{
+        width: 100vw;
+        height: 15vh;
+    }
+
+    .abt_main{
+        position: relative;
+        top: -100px;
+        left: 30px;
+        font-size: 28px;
+    }
+
+    /* .abt_content1{
+
+    } */
+
+    .abt_content2{
+        display: none;
+    }
+
+    .abt_img{
+        width: 70vw;
+        height: 50vh;
+        display: none;
+    }
+
+    .abt_img2{
+        position: relative;
+        top: 600px;
+        height: 40vh;
+        width: 100vw;
+
+    }
+
+    .contact-1{
+        margin-top: 650px;
+    }
+
+    .dr_text{
+        width: 80vw;
+        margin-left: 45px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .infoDr{
+        margin-top: 300px;
+    }
+
+    .dr_imgs{
+        display: inline;
+    }
+
+    .card{
+        margin-left: 70px
+    }
+
+    .contact{
+        display: inline;
+    }
 }

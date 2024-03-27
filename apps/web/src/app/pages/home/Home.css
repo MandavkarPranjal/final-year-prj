@@ -89,19 +89,21 @@
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
-    line-height: normal;
+    margin-top: -20px;
     letter-spacing: 2.88px;
     text-transform: uppercase;
-    margin-top: 40px;
+    
 }
 
-.service_small{
+.service_small2{
     color: var(--Primary, #1F2B6C);
+    /* margin-left: 120px;
+    margin-top: -20px; */
     text-align: center;
     font-family: "Yeseva One";
-    font-size: 32px;
+    font-size: 30px;
     font-style: normal;
-    line-height: normal;
+    
 }
 
 .home-serv{
@@ -209,9 +211,13 @@ font-size: 40px;
 .spl-container{
     display: flex;
     margin-top: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 30px;  
+}
 
-   
+.spl-container2{
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 30px;  
 }
 
 .c1{
@@ -308,4 +314,147 @@ font-size: 40px;
     border-radius: 50%;
 }
 
+@media only screen and (max-width: 768px) {
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 10px;
+    line-height: 1.5;
+    
+}
+
+    .main_img {
+        max-width: 100%; /* Adjusted for smaller screens */
+        height: auto;
+    }
+
+    .img_text {
+        font-size: 1.5rem; /* Adjusted for smaller screens */
+        margin-top: 10%; /* Adjusted for smaller screens */
+        margin-left: 10%; /* Adjusted for smaller screens */
+    }
+    .intro_img{
+      width: 400px;
+      height: 250px;
+      margin-left: 0;
+    }
+
+    .caring{
+        color: #159EEC;
+        font-family: monospace;
+        font-weight: 800;
+        margin-left: -440px;
+    }
+
+    .leading{
+        color: #1F2B6C;
+        font-size: 20px;
+        margin-left: -440px;
+        line-height: -10px;
+    }
+
+    .spl-container{
+        display: grid;
+        margin-left: -70px;
+        margin-top: 50px;
+        
+    }
+
+    .spl-container2{
+        display: grid;
+        margin-left: -70px;
+        margin-top: -20px;
+        
+    }
+
+    .c1{
+        height: 230px;  
+    }
+
+    .c1 p{
+        font-size: 15px;
+    }
+
+    .c1 h4{
+        font-size: 15px;
+    }
+
+    .home-serv{
+        
+        margin-left: 0;
+    }
+
+    .service_small{
+        font-size: 20px;
+        margin-left: -1070px;
+    }
+
+    .serv1 p{
+        font-size: 20px;
+        margin-left: -175px;
+    }
+
+    .sple_img{
+        display: none;
+    }
+
+    .sple_img2{
+        display: none;
+    }
+
+    .service_small2{
+        margin-left: -1070px;
+    }
+
+    .serv1{
+        font-size: 12px; 
+    }
+
+    .sple{
+        display: block;
+    }
+
+    .abt_list{
+        margin-bottom: -15px;
+        margin-left: -130px;
+        font-size: 15px;
+    }
+
+    .abt_list2{
+       
+        margin-left: -130px;
+        font-size: 15px;
+    }
+
+    .serv2{
+        width: 350px;
+        margin-left: 30px;
+        font-size: 15px;
+    }
+
+    .serv2_text2{
+        width: 350px;
+        margin-top: -20px;
+        margin-left: 30px;
+        font-size: 15px;
+    }
+
+    .r1{
+        height: 350px;
+        width: 200px;
+        margin-left: 5px;
+        margin-right: 0;
+    }
+
+    .r1 h4{
+        font-size: 15px;
+    }
+
+    .r1 p{
+        font-size: 10px;
+    }
+
+    /* Add more responsive styles as needed */
+}
 

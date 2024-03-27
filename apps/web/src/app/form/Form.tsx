@@ -8,7 +8,7 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import Rectangle from '../../../public/images/Rectangle.jpg';
 import appointment from '../../../public/images/appointment.png';
@@ -43,7 +43,7 @@ const validationSchema = yup.object({
     .required('Last Name is required')
     .matches(/^[A-Za-z]+$/, 'Last Name must only contain letters'),
   age: yup
-    .number()
+    .number().typeError('Age must be a number')
     .positive('Age must be a positive number')
     .integer('Age must be an integer')
     .required('Age is required'),
@@ -56,7 +56,7 @@ const validationSchema = yup.object({
     .string()
     .required('Phone Number is required')
     .min(10, 'Phone Number must be at least 10 digits')
-    .max(10, 'Must contain 10 digits only'),
+    .max(10, 'Must contain 10 digits only').matches(/^[6-9]\d{9}$/, 'Invalid Phone Number'),  
   bookingDate: yup.string().required('Booking Date is required'),
   bookingTime: yup.string().required('Booking Time is required'),
   Specialization: yup.string().required('Specialization is required'),
@@ -93,6 +93,7 @@ const AppointmentForm: React.FC = () => {
   // Destructure react-hook-form functions
   const {
     handleSubmit,
+    control,
     reset,
     register,
     formState: { errors },
@@ -152,91 +153,146 @@ const AppointmentForm: React.FC = () => {
             {/* Section One: Personal Information */}
             <div className="g-one">
               <p className="headings">Appointment Form</p>
-              <TextField
-              sx={{
-                marginRight: 6,
-                marginLeft: 4
-              }}
-                type="text"
-                id="firstName"
-                autoComplete='off'
-                label="First Name"
-                {...register('firstName')}
-                error={!!errors.firstName}
-                helperText={errors.firstName?.message}
+              
+              <Controller 
+                name="firstName"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    sx={{
+                      marginRight: 6,
+                      marginLeft: 4
+                    }}
+                    type="text"
+                    id="firstName"
+                    autoComplete='off'
+                    label="First Name"
+                    error={!!errors.firstName}
+                    helperText={errors.firstName?.message}
+                  />
+                )}
+              />
+              
+              <Controller 
+                name="lastName"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    type="text"
+                    id="lastName"
+                    autoComplete='off'
+                    label="Last Name"
+                    error={!!errors.lastName}
+                    helperText={errors.lastName?.message}
+                  />
+                )}
               />
 
-              <TextField
-                type="text"
-                id="lastName"
-                autoComplete='off'
-                label="Last Name"
-                {...register('lastName')}
-                error={!!errors.lastName}
-                helperText={errors.lastName?.message}
+              <Controller 
+                name="address"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    sx={{
+                      marginRight: 6,
+                      marginLeft: 4
+                    }}
+                    type="text"
+                    id="address"
+                    autoComplete='off'
+                    label="Address"
+                    error={!!errors.address}
+                    helperText={errors.address?.message}
+                  />
+                )}
+              />
+              
+              <Controller
+                name="age"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    type="number"
+                    id="age"
+                    autoComplete='off'
+                    label="Age"
+                    error={!!errors.age}
+                    helperText={errors.age?.message}
+                  />
+                )}
               />
 
-              <TextField
-              sx={{
-                marginRight: 6,
-                marginLeft: 4
-              }}
-                type="text"
-                id="address"
-                autoComplete='off'
-                label="Address"
-                {...register('address')}
-                error={!!errors.address}
-                helperText={errors.address?.message}
-              />
-
-              <TextField
-                type="number"
-                id="age"
-                autoComplete='off'
-                label="Age"
-                {...register('age')}
-                error={!!errors.age}
-                helperText={errors.age?.message}
-              />
             </div>
 
             {/* Section Two: Contact Information */}
             <div className="g-two">
-              <TextField
-              sx={{
-                marginRight: 6,
-                marginLeft: 4
-              }}
-                type="text"
-                id="email"
-                autoComplete='off'
-                label="Email"
-                {...register('email')}
-                error={!!errors.email}
-                helperText={errors.email?.message}
+
+              <Controller 
+                name="email"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    sx={{
+                      marginRight: 6,
+                      marginLeft: 4
+                    }}
+                    type="text"
+                    id="email"
+                    autoComplete='off'
+                    label="Email"
+                    error={!!errors.email}
+                    helperText={errors.email?.message}
+                  />
+                )}
               />
-              <TextField
-                type="text"
-                id="phoneNumber"
-                autoComplete='off'
-                label="Phone Number"
-                {...register('phoneNumber')}
-                error={!!errors.phoneNumber}
-                helperText={errors.phoneNumber?.message}
+              
+              <Controller 
+                name="phoneNumber"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    type="text"
+                    id="phoneNumber"
+                    autoComplete='off'
+                    label="Phone Number"
+                    error={!!errors.phoneNumber}
+                    helperText={errors.phoneNumber?.message}
+                  />
+                )}
               />
-              <TextField
-              sx={{
-                marginRight: 6,
-                marginLeft: 4
-              }}
-                type="date"
-                id="bookingDate"
-                // label="Booking Date"
-                {...register('bookingDate')}
-                error={!!errors.bookingDate}
-                helperText={errors.bookingDate?.message}
+              
+              <Controller 
+                name="bookingDate"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    sx={{
+                      marginRight: 6,
+                      marginLeft: 4
+                    }}
+                    type="date"
+                    id="bookingDate"
+                    // label="Booking Date"
+                    error={!!errors.bookingDate}
+                    helperText={errors.bookingDate?.message}
+                  />
+                )}
               />
+              
               <FormControl>
                 <InputLabel id="SpecializationLabel">Specialization</InputLabel>
                 <Select
@@ -280,41 +336,55 @@ const AppointmentForm: React.FC = () => {
               }}
               >
                 <InputLabel id="genderLabel">Gender</InputLabel>
-                <Select
-                  labelId="genderLabel"
-                  id="gender"
-                  {...register('gender')} // Provide a default value
-                  error={!!errors.gender}
-                >
-                  <MenuItem value="" disabled>
-                    Select Gender
-                  </MenuItem>
-                  {genderOptions.map((option) => (
-                    <MenuItem key={option} value={option}>
-                      {option}
+              <Controller 
+                name='gender'
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <Select
+                    labelId="genderLabel"
+                    {...field}
+                    error={!!errors.gender}
+                  >
+                    <MenuItem value="" disabled>
+                      Select Gender
                     </MenuItem>
-                  ))}
-                </Select>
+                    {genderOptions.map((option) => (
+                      <MenuItem key={option} value={option}>
+                        {option}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                )}
+              />
                 <FormHelperText error>{errors.gender?.message}</FormHelperText>
+
               </FormControl>
               
               <FormControl>
                 <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
-                <Select
-                  labelId="bookingTimeLabel"
-                  id="bookingTime"
-                  {...register('bookingTime')}
-                  error={!!errors.bookingTime}
-                >
-                  <MenuItem value="" disabled>
-                    Select Booking Time
-                  </MenuItem>
-                  {timeSlots.map((slot) => (
-                    <MenuItem key={slot} value={slot}>
-                      {slot}
-                    </MenuItem>
-                  ))}
-                </Select>
+                <Controller
+                  name="bookingTime"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      labelId="bookingTimeLabel"
+                      id="bookingTime"
+                      error={!!errors.bookingTime}
+                    >
+                      <MenuItem value="" disabled>
+                        Select Booking Time
+                      </MenuItem>
+                      {timeSlots.map((slot) => (
+                        <MenuItem key={slot} value={slot}>
+                          {slot}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  )}
+                />
                 <FormHelperText error>
                   {errors.bookingTime?.message}
                 </FormHelperText>

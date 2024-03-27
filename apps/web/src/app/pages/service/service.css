@@ -13,12 +13,12 @@
     top: 126px;
     left: 151px;
     color: var(--Primary, #1F2B6C);
-font-family: "Yeseva One";
-font-size: 48px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-margin-left: 70px;
+    font-family: "Yeseva One";
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 70px;
 
 }
 
@@ -119,25 +119,25 @@ margin-left: 70px;
 
 .always{
     color: var(--Secondary, #159EEC);
-text-align: center;
-font-family: "Work Sans";
-font-size: 18px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-letter-spacing: 2.88px;
-text-transform: uppercase;
-margin-top: 140px;
+    text-align: center;
+    font-family: "Work Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 2.88px;
+    text-transform: uppercase;
+    margin-top: 140px;
 }
 
 .spl_text{
     color: var(--Primary, #1F2B6C);
-text-align: center;
-font-family: "Yeseva One";
-font-size: 32px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    text-align: center;
+    font-family: "Yeseva One";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 .spl1{
@@ -176,13 +176,15 @@ line-height: normal;
 }
 
 .happy{
-    /* margin-left: 500px; */
     text-align: center;
+    color: #1F2B6C;
+    font-family: "Yeseva One";
+    padding-top: 25px;
 }
 
 .recMain{
     display: flex;
-    background-color: rgb(189, 213, 240);
+    /* background-color: rgb(189, 213, 240); */
     height: 400px;
 }
 
@@ -275,5 +277,72 @@ line-height: normal;
   }
   .c3:hover {
     --num: 550;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .first_img{
+        width: 100vw;
+        height: 20vh;
+    }
+
+    .service{
+        position: relative;
+        top: 50px;
+        left: -25px;
+        font-size: 30px;
+    }
+
+    .upside{
+        display: inline;
+    }
+
+    .card_one{
+        margin-left: 50px;
+    }
+
+    .always{
+        margin-top: 120px;
+    }
+
+    .neuro{
+        margin-top: 15px;
+        margin-left: 20px;
+    }
+
+    .dentist{
+        margin-top: 15px;
+        margin-left: 35px;
+    }
+
+    .radio{
+        margin-top: 15px;
+        margin-left: 25px;
+    }
+
+    .recMain{
+        display: inline;
+        height: 200px;
+    }
+
+    .crd1{
+        display: flex;
+        width: 70vw;
+        margin-left: 60px;
+    }
+
+    .c-1{
+        margin-top: 50px;
+        margin-left: -70px;
+    }
+
+    .c2{
+        margin-top: 50px;
+        margin-left: -240px;
+    }
+
+    .c3{
+        margin-top: 50px;
+        margin-left: -125px;
+    }
   }
   

@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
 
         <div className="goto">
           <h3 className='fhead'>Go To</h3>
-         <a href="#">Home</a>
+         <a href="/">Home</a>
          <a href="contact">Contact</a>
          <a href="about">About Us</a>
          <a href="service">Service</a>
@@ -42,7 +42,8 @@ const Footer: React.FC = () => {
 
         </div>
         <hr />
-      <p>&copy; 2024 Your Hospital Name. All rights reserved.</p>
+      <h5>&copy; 2024 WellAppoint. All rights reserved.</h5>
+      <p className='credit'>Made by Ankur R, Mithil M, Pranjal M</p>
     </footer>
   );
 };

@@ -6,7 +6,7 @@ import Dashboard from "./pages/dashboard/dashboard";
 import Sidebar from "./global/sidebar/sidebar";
 import Team from "./pages/team/team";
 import Contacts from "./pages/appointmentTable/contacts";
-import Invoices from "./pages/invoices/invoices";
+// import Invoices from "./pages/invoices/invoices";
 import Form from "./pages/user-form/user-form";
 import Calendar from "./pages/calendar/calendar";
 import FAQ from "./pages/faq/faq";

@@ -40,14 +40,3 @@ export class CreateAuthDto {
   @Length(3, 20, { message: 'Passowrd has to be at between 3 and 20 chars' })
   public password: string;
 }
-
-
-
-
-// "email": "ar@1gmail.com",
-// "password": "abr",
-// "firstName": "sam",
-// "lastName": "son",
-// "phoneNumber": "1234567891",
-// "address_1": "thane",
-// "address_2": "india"

@@ -32,7 +32,8 @@ import transition from '../../transition';
     <div className="intro">
       <p className='welcome'>Welcome to Meddical</p>
       <p className='welcome_two'>A Great Place to Receive Care</p>
-      <p className='welcome_content'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta aut excepturi <br /> atque earum provident quaerat sed labore vitae repudiandae <br /> qui quod  molestias ducimus numquam at consequatur fuga, nobis repellendus. </p> 
+      <p className='welcome_content'>Is a multispecialty tertiary care hospital providing the highest standard of clinical expertise and <br /> nursing care by offering the latest technology, and state-of-the-art hospital facilities. <br /> The Hospital focusses on rapid  assessment Where compassionate healing blends with cutting-edge expertise. <br />
+Raising healthcare standards and redefining excellence in patient care </p> 
 
       <img className='intro_img' src={landscape} alt="" />
     </div>
@@ -45,7 +46,7 @@ import transition from '../../transition';
     <img className='spl-logo' src={heart} alt=""/>
     <h4>Cardiology</h4>
     </div>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa. </p>
+<p>The Department of Cardiology at WellAppoint Hospital & Research Centre is equipped with state-of-the-art equipment and a dedicated team of Cardiologists and Cath lab technicians with a wide experience in management of complex cardiac problems. </p>
   </div>
 
  
@@ -55,7 +56,7 @@ import transition from '../../transition';
     <img className='spl-logo' src={child} alt=""/>
     <h4>Paediatrics</h4>
     </div>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa.</p>
+<p>The Department of Paediatrics has a full complement of high-end equipment. An expert team of doctors and well-trained nurses ensure prompt services, and provide a wide range of diagnostic and therapeutic procedures</p>
   </div>
 
   <div className="c1">
@@ -63,11 +64,11 @@ import transition from '../../transition';
     <img className='spl-logo' src={denatl} alt=""/>
     <h4>Dental Care</h4>
     </div>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa. </p>
+<p>Dentistry Department at WellAppoint Hospital takes professionals look into the patient’s needs and condition to provide multidisciplinary care. We have a team of licensed dental specialists who provide routine care and special practices for every type of dental problem. </p>
   </div>
 </div>
 
-<div className="spl-container">
+<div className="spl-container2">
 
 
   <div className="c1">
@@ -75,7 +76,7 @@ import transition from '../../transition';
     <img className='spl-logo' src={skin} alt=""/>
     <h4>Dermatology</h4>
     </div>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa. </p>
+<p>Our hospital’s plastic surgeon team has received specialized training to provide Best services. We have a team of skillful dermatologists who carry out various processes for treating general skin diseases as well as severe skin disorders. </p>
   </div>
 
   <div className="c1">
@@ -83,7 +84,7 @@ import transition from '../../transition';
     <img className='spl-logo' src={cancer} alt=""/>
     <h4>Oncology</h4>
     </div>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa. </p>
+<p>Cancer of any stage can be ruthless and challenging to treat. The oncology department of the WellAppoint Hospital offers an extensive range of full-fledged treatments in the diagnosis and all types of cancer treatment in pune. </p>
   </div>
 
   <div className="c1">
@@ -91,13 +92,13 @@ import transition from '../../transition';
     <img className='spl-logo' src={xRay} alt=""/>
     <h4>Radiology</h4>
     </div>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa.</p>
+<p>We have a major branch of the Radiology and Imaging department that helps cater to all other hospital branches. We help patients to detect severe problems through our advanced technology, exceptional care, and devoted doctors</p>
   </div>
 </div>
         
 <div className="home-serv">
         <p className='service_small'>Care you can believe in</p>
-        <p className='service_small'>Our Services</p>
+        <p className='service_small2'>Our Services</p>
 
 
         <div className="serv1">
@@ -121,9 +122,9 @@ import transition from '../../transition';
 
 <div className="serv2">
 
-<p className='serv2_text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br /> Quisquam, voluptatum Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus nulla debitis molestiae minus eaque impedit quia porro, voluptatem exercitationem eveniet modi. Quia ipsam unde neque ipsum quibusdam. Eos, voluptatem laborum..</p>
+<p className='serv2_text'>Our comprehensive range of medical services encompasses various specialties and includes Cardiology and Cardiac Surgery, Neurology and Neurosurgery, Haematology and bone Marrow Transplants, Organ Transplants, Oncology, Orthopaedics, IVF, Urology, Endocrinology and Gastroenterology to name a few. The hospital also holds the distinction of being the fastest-growing Liver Transplant Centre in Western India, performing the highest number of Bone Marrow Transplants in Western India, and pioneers in Neurosciences in Maharashtra.</p>
 </div>
-<p className='serv2_text2'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic ipsa, earum vero molestiae incidunt inventore delectus, quo eum magni impedit voluptates nostrum perspiciatis consequatur reiciendis non, similique asperiores magnam odit.</p>
+<p className='serv2_text2'>Our patient-centric approach ensures that each individual receives personalized attention and that their family’s emotional and psychological well-being is taken care of during the entire healing process.</p>
 <img className='sple_img2' src={Rectangle14} alt="" />
 </div>
 
@@ -133,30 +134,29 @@ import transition from '../../transition';
 <div className="review-container">
 
 
+
   <div className="r1">
     <div className="r1-top">
      <img className='review-logo' src={review} alt=""/>
     <h4>Mr.Reddy</h4>
     </div>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa. </p>
+<p>I have just no words to thank him for the amazing care and love he shows for her, Despite odd times, including covid days, I have reached out to him asking for guidance for my condition he has been a guiding angel, despite his busy schedule. </p>
   </div>
-
- 
 
   <div className="r1">
   <div className="r1-top">
      <img className='review-logo' src={review} alt=""/> 
     <h4>Mr.Mandavkar</h4>
     </div>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa.</p>
+<p>I cannot praise the service of WellAppoint. It is a highly skilled surgeon and goes an extra mile for his patients. My father had robotic surgery last month and despite the complications, it was a success. </p>
   </div>
 
-  <div className="r1">
+  {/* <div className="r1">
   <div className="r1-top">
      <img className='review-logo' src={review} alt=""/> 
     <h4>Vivek Gupta</h4>
     </div>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa. </p>
+<p>My son was diagnosed with cancer and doctor told to operate immediately. Surgery was successful but after surgery doctor recommended 6 cycles of chemotherapy which was non affordable. I approached charity department for monetary help.</p>
   </div>
 
   <div className="r1">
@@ -164,8 +164,10 @@ import transition from '../../transition';
      <img className='review-logo' src={review} alt=""/> 
     <h4>Mrs Gupta</h4>
     </div>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat necessitatibus aspernatur ea, dolorem et at ratione voluptatibus, in omnis sequi dignissimos culpa. </p>
-  </div>
+<p>I appreciate the quick decision taken by doctors of admission and good treatment given. During discharge immediate help was provided by Mediclaim department for approval and excellent service during the complete process.</p>
+  </div> */}
+
+
 </div>
 
 </div>

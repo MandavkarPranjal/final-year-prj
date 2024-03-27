@@ -87,12 +87,12 @@ function SimpleBarChart() {
       {
         label: 'Male',
         data: maleData,
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        backgroundColor: 'rgba(2, 178, 175, 1)',
       },
       {
         label: 'Female',
         data: femaleData,
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        backgroundColor: 'rgba(114, 204, 255, 1)',
       }
     ]
   }
