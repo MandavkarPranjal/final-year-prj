@@ -1,4 +1,3 @@
-
 //------------------------temp code editmodal----------------------
 import React, { useEffect, useState } from 'react';
 import {
@@ -21,7 +20,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import './editappointmentmodal.css';
 
 type Appointment = {
-  firstName: string;  
+  firstName: string;
   lastName: string;
   email: string;
   address: string;
@@ -76,9 +75,14 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
   const [doctors, setDoctors] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  
-  
-  const { register, control, setValue, handleSubmit, formState: { errors }, getValues } = useForm<Appointment>({
+  const {
+    register,
+    control,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<Appointment>({
     resolver: yupResolver(validationSchema),
   });
 
@@ -109,8 +113,10 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
       try {
         setLoading(true);
         const specialization = getValues('Specialization');
-        const response = await axios.get(`http://localhost:3000/appointment/${specialization}`);
-        setDoctors(response.data); 
+        const response = await axios.get(
+          `http://localhost:3000/appointment/${specialization}`
+        );
+        setDoctors(response.data);
       } catch (error) {
         console.error('Error fetching doctors:', error);
       } finally {
@@ -123,7 +129,9 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
 
   const fetchdata = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/appointment/get/${appId}`);
+      const response = await axios.get(
+        `http://localhost:3000/appointment/get/${appId}`
+      );
       const appData = response.data;
 
       Object.keys(appData).forEach((key) => {
@@ -136,10 +144,15 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
 
   const handleFormSubmit: SubmitHandler<Appointment> = async (values) => {
     try {
-      const response = await axios.patch(`http://localhost:3000/appointment/update/${appId}`, values);
+      const response = await axios.patch(
+        `http://localhost:3000/appointment/update/${appId}`,
+        values
+      );
 
       if (response.status === 200) {
-        enqueueSnackbar('Appointment Edited Successfully', { variant: 'success' });
+        enqueueSnackbar('Appointment Edited Successfully', {
+          variant: 'success',
+        });
         onClose();
       }
     } catch (error) {
@@ -166,252 +179,250 @@ const EditAppointmentModal: React.FC<Props> = ({ open, onClose, appId }) => {
             alignItems: 'center',
           }}
         >
-          < Stack spacing={3} sx={{ width: '100%' }
-        }
-          >
-             <Stack direction="row" spacing={2}>
-
-        <Controller 
-          name='firstName'
-          control={control}
-          defaultValue=''
-          render={({ field }) => (
-            <TextField
-              sx={{ flex: 1 }}
-              type="text"
-              id="firstName"
-              label="First Name"
-              className='firstName'
-              {...field}
-              error={!!errors.firstName}
-              helperText={errors.firstName?.message}
-            />
-          )}
-
-        />            
-        
-        <Controller 
-          name='lastName'
-          control={control}
-          defaultValue=''
-          render={({ field }) => (
-            <TextField
-              sx={{ flex: 1}}
-              type="text"
-              id="lastName"
-              label="Last Name"
-              defaultValue={""}
-              {...field}
-              error={!!errors.lastName}
-              helperText={errors.lastName?.message}
-            />
-          )}
-        />
-          </Stack>
-
-          <Stack direction="row" spacing={2}>
-          
-          <Controller
-            name='address'
-            control={control}
-            defaultValue=''
-            render={({ field }) => (
-              <TextField
-                sx={{ flex: 1 }}
-                type="text"
-                id="address"
-                label="Address"
-                defaultValue={""}
-                {...field}
-                error={!!errors.address}
-                helperText={errors.address?.message}
+          <Stack spacing={3} sx={{ width: '100%' }}>
+            <Stack direction="row" spacing={2}>
+              <Controller
+                name="firstName"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    sx={{ flex: 1 }}
+                    type="text"
+                    id="firstName"
+                    label="First Name"
+                    className="firstName"
+                    {...field}
+                    error={!!errors.firstName}
+                    helperText={errors.firstName?.message}
+                  />
+                )}
               />
-            )}
-          />
-          
-          <Controller 
-            name='age'
-            control={control}
-            // defaultValue=''
-            render={({ field }) => (
-              <TextField
-                sx={{ flex: 1 }}
-                type="number"
-                id="age"
-                label="Age"
-                defaultValue={""}
-                {...field}
-                error={!!errors.age}
-                helperText={errors.age?.message}
-              />
-            )}
-          />
-          
-          </Stack>
 
-          <Stack direction="row" spacing={2}>
-          
-          <Controller 
-            name='email'
-            control={control}
-            defaultValue=''
-            render={({ field }) => (
-              <TextField
-                sx={{ flex: 1 }}
-                type="text"
-                id="email"
-                label="Email"
-                defaultValue={""}
-                {...field}
-                error={!!errors.email}
-                helperText={errors.email?.message}
+              <Controller
+                name="lastName"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    sx={{ flex: 1 }}
+                    type="text"
+                    id="lastName"
+                    label="Last Name"
+                    defaultValue={''}
+                    {...field}
+                    error={!!errors.lastName}
+                    helperText={errors.lastName?.message}
+                  />
+                )}
               />
-            )}
-          />
-          
-          <Controller 
-            name='phoneNumber'
-            control={control}
-            defaultValue=''
-            render={({ field }) => (
-              <TextField
-                sx={{ flex: 1 }}
-                type="text"
-                id="phoneNumber"
-                label="Phone Number"
-                defaultValue={""}
-                {...field}
-                error={!!errors.phoneNumber}
-                helperText={errors.phoneNumber?.message}
+            </Stack>
+
+            <Stack direction="row" spacing={2}>
+              <Controller
+                name="address"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    sx={{ flex: 1 }}
+                    type="text"
+                    id="address"
+                    label="Address"
+                    defaultValue={''}
+                    {...field}
+                    error={!!errors.address}
+                    helperText={errors.address?.message}
+                  />
+                )}
               />
-            )}
-          /> 
-          </Stack>  
 
-          <Stack direction="row" spacing={2}>
-
-            <Controller 
-            name='bookingDate'
-            control={control}
-            defaultValue=''
-            render={({ field }) => (
-              <TextField
-                type="date"
-                id="bookingDate"
-                defaultValue={""}
-                {...field}
-                error={!!errors.bookingDate}
-                helperText={errors.bookingDate?.message}
+              <Controller
+                name="age"
+                control={control}
+                // defaultValue=''
+                render={({ field }) => (
+                  <TextField
+                    sx={{ flex: 1 }}
+                    type="number"
+                    id="age"
+                    label="Age"
+                    defaultValue={''}
+                    {...field}
+                    error={!!errors.age}
+                    helperText={errors.age?.message}
+                  />
+                )}
               />
-            )}
-            />
-          <FormControl>
-            <InputLabel id="SpecializationLabel">Specialization</InputLabel>
-            <Controller
-            name='Specialization'
-            control={control}
-            defaultValue=''
-            render={({ field }) => (
-              <Select
-                labelId="SpecializationLabel"
-                id="Specialization"
-                {...field}
-                error={!!errors.Specialization}
-              >
-                <MenuItem value="" disabled>
-                  Select Specialization
-                </MenuItem>
-                {SpecializationOptions.map((option) => (
-                  <MenuItem key={option} value={option}>
-                    {option}
-                  </MenuItem>
-                ))}
-              </Select>
-              
-            )}
-            />
-           
-          </FormControl>
-                </Stack>
+            </Stack>
 
+            <Stack direction="row" spacing={2}>
+              <Controller
+                name="email"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    sx={{ flex: 1 }}
+                    type="text"
+                    id="email"
+                    label="Email"
+                    defaultValue={''}
+                    {...field}
+                    error={!!errors.email}
+                    helperText={errors.email?.message}
+                  />
+                )}
+              />
+
+              <Controller
+                name="phoneNumber"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    sx={{ flex: 1 }}
+                    type="text"
+                    id="phoneNumber"
+                    label="Phone Number"
+                    defaultValue={''}
+                    {...field}
+                    error={!!errors.phoneNumber}
+                    helperText={errors.phoneNumber?.message}
+                  />
+                )}
+              />
+            </Stack>
+
+            <Stack direction="row" spacing={2}>
+              <Controller
+                name="bookingDate"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    type="date"
+                    id="bookingDate"
+                    defaultValue={''}
+                    {...field}
+                    error={!!errors.bookingDate}
+                    helperText={errors.bookingDate?.message}
+                  />
+                )}
+              />
               <FormControl>
-                <InputLabel id="doctorLabel">Doctor</InputLabel>
-                <Select value={getValues('userId')} {...register('userId')} disabled={loading}>
-                        {loading ? (
-                          <MenuItem value="">Loading...</MenuItem>
-                        ) : (
-                          doctors.map((doctor) => (
-                            <MenuItem key={doctor.id} value={doctor.id}>
-                              {doctor.name}
-                            </MenuItem>
-                          ))
-                        )}
-                      </Select>
-                <FormHelperText error>{errors.doctor?.message}</FormHelperText>
+                <InputLabel id="SpecializationLabel">Specialization</InputLabel>
+                <Controller
+                  name="Specialization"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Select
+                      labelId="SpecializationLabel"
+                      id="Specialization"
+                      {...field}
+                      error={!!errors.Specialization}
+                    >
+                      <MenuItem value="" disabled>
+                        Select Specialization
+                      </MenuItem>
+                      {SpecializationOptions.map((option) => (
+                        <MenuItem key={option} value={option}>
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  )}
+                />
               </FormControl>
+            </Stack>
 
-                <Stack direction="row" spacing={2}>
-          <FormControl>
-            <InputLabel id="genderLabel">Gender</InputLabel>
-            <Controller 
-              name="gender"
-              control={control}
-              defaultValue=''
-              render={({ field }) => (
-                <Select
-                  labelId="genderLabel"
-                  id="gender"
-                  {...field}
-                  error={!!errors.gender}
-                >
-                  <MenuItem value="" disabled>
-                    Select Gender
-                  </MenuItem>
-                  {genderOptions.map((option) => (
-                    <MenuItem key={option} value={option}>
-                      {option}
-                    </MenuItem>
-                  ))}
-                </Select>
+            <FormControl>
+              <InputLabel id="doctorLabel">Doctor</InputLabel>
+              <Controller
+                name="Doctor"
+                control={control}
+                defaultValue={''}
+                render={({ field }) => (
+                  <Select
+                    value={getValues('userId')}
+                    {...register('userId')}
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <MenuItem value="">Loading...</MenuItem>
+                    ) : (
+                      doctors.map((doctor) => (
+                        <MenuItem key={doctor.id} value={doctor.id}>
+                          {doctor.name}
+                        </MenuItem>
+                      ))
+                    )}
+                  </Select>
+                )}
+              />
+              <FormHelperText error>{errors.doctor?.message}</FormHelperText>
+            </FormControl>
 
-              )}
-            />
-          </FormControl>
-          <FormControl>
-            <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
-            <Controller 
-              name="bookingTime"
-              control={control}
-              defaultValue=''
-              render={({ field }) => (
-                <Select
-                  labelId="bookingTimeLabel"
-                  id="bookingTime"
-                  {...field}
-                  error={!!errors.bookingTime}
-                >
-                  <MenuItem value="" disabled>
-                    Select Booking Time
-                  </MenuItem>
-                  {timeSlots.map((slot) => (
-                    <MenuItem key={slot} value={slot}>
-                      {slot}
-                    </MenuItem>
-                  ))}
-                </Select>
-              )}
-            />
-            
-            <FormHelperText error>{errors.bookingTime?.message}</FormHelperText>
-          </FormControl>
-          </Stack>
-          <Button 
-            variant="contained"
-            type='submit'
-            
-          >
-            Edit Appointment
-          </Button>
+            <Stack direction="row" spacing={2}>
+              <FormControl>
+                <InputLabel id="genderLabel">Gender</InputLabel>
+                <Controller
+                  name="gender"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Select
+                      labelId="genderLabel"
+                      id="gender"
+                      {...field}
+                      error={!!errors.gender}
+                    >
+                      <MenuItem value="" disabled>
+                        Select Gender
+                      </MenuItem>
+                      {genderOptions.map((option) => (
+                        <MenuItem key={option} value={option}>
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  )}
+                />
+              </FormControl>
+              <FormControl>
+                <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
+                <Controller
+                  name="bookingTime"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Select
+                      labelId="bookingTimeLabel"
+                      id="bookingTime"
+                      {...field}
+                      error={!!errors.bookingTime}
+                    >
+                      <MenuItem value="" disabled>
+                        Select Booking Time
+                      </MenuItem>
+                      {timeSlots.map((slot) => (
+                        <MenuItem key={slot} value={slot}>
+                          {slot}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  )}
+                />
+
+                <FormHelperText error>
+                  {errors.bookingTime?.message}
+                </FormHelperText>
+              </FormControl>
+            </Stack>
+            <Button variant="contained" type="submit">
+              Edit Appointment
+            </Button>
           </Stack>
         </Box>
       </form>

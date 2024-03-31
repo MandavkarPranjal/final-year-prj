@@ -26,6 +26,10 @@ export class AppointmentService {
         },
       },
     });
+
+    (await appointments).forEach(appointment => {
+      appointment.firstName = `${appointment.firstName} ${appointment.lastName}`;
+    });
     return appointments;
   }
 
@@ -233,5 +237,27 @@ export class AppointmentService {
           name: true,
         }
     });
-}
+  }
+
+  async getDoctorAppointment(doctorId: string) {
+    const appointment =  this.prisma.appointment.findMany({
+      where: {
+        userId: doctorId
+      },
+      include: {
+        user: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+    
+    (await appointment).forEach(appointment => {
+      appointment.firstName = `${appointment.firstName} ${appointment.lastName}`;
+    })
+
+    return appointment;
+  }
+
 }

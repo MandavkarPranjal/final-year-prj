@@ -217,7 +217,6 @@ interface NewEvent {
   start: string;
   end: string;
   allDay: boolean;
-  leave?: boolean;
 }
 
 const Calendar: React.FC = () => {
@@ -233,7 +232,6 @@ const Calendar: React.FC = () => {
     start: "",
     end: "",
     allDay: false,
-    leave: false,
   });
 
   const fetchData = useCallback(() => {
@@ -398,7 +396,7 @@ const Calendar: React.FC = () => {
       <CalendarModal
         open={isModalOpen}
         onClose={handleModalClose}
-        handleFormSubmit={(event: { title: string; start: string; end: string; allDay: boolean; leave: boolean }) => handleFormSubmit(event.title)}
+        handleFormSubmit={(event: { title: string; start: string; end: string; allDay: boolean; type: string }) => handleFormSubmit(event.title)}
         newEvent={newEvent}
       />
 

@@ -15,6 +15,7 @@ import AddAppointmentModal from './addappointmentmodal';
 import EditAppointmentModal from './editappointmentmodal';
 import DeleteAppointmentModal from './deleteAppointmentModal';
 import { debounce } from 'lodash';
+import { User } from '../../context/user-data-transfer';
 
 interface Appointment {
   id: number;
@@ -40,12 +41,16 @@ const Contacts = () => {
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [userId, setUserId] = useState<number>(0);
+  const [user, setUser] = useState<User | null>(null);
   // const [refreshInterval, setRefreshInterval] = useState<NodeJS.Timeout | null>(null);
 
 
   const fetchData = useCallback(() => {
-    axios
-      .get<Appointment[]>('http://localhost:3000/appointment/all')
+    setUser(JSON.parse(localStorage.getItem('User') ?? '{}'));
+    
+    if(user?.role.includes('DOCTOR')) {
+      axios
+      .get<Appointment[]>(`http://localhost:3000/appointment/doctorAppointments/${user?.id}`)
       .then((res) => {
         setAppointment(res.data);
         console.log('Data Received:', res.data);
@@ -53,13 +58,25 @@ const Contacts = () => {
       .catch((err) => {
         setError(err.message);
       });
-  }, []);
+    }
+    else {
+      axios
+        .get<Appointment[]>('http://localhost:3000/appointment/all')
+        .then((res) => {
+          setAppointment(res.data);
+          console.log('Data Received:', res.data);
+        })
+        .catch((err) => {
+          setError(err.message);
+        });
+    }
+  }, [user?.id, user?.role]);
 
-  const debouncedFetchData = useCallback(debounce(() => fetchData(), 500), [fetchData]);
+  const debouncedFetchData = useCallback(debounce(() => fetchData(), 5000), [fetchData]);
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  });
 
 
 
@@ -104,16 +121,23 @@ const Contacts = () => {
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', flex: 0.5 },
-    { field: 'firstName', headerName: 'Firstname', flex: 1 },
-    { field: 'lastName', headerName: 'Lastname', flex: 1, cellClassName: 'name-column--cell' },
+    { field: 'firstName', headerName: 'Name', flex: 1 },
+    // { field: 'name', headerName: 'Name', flex: 1, cellClassName: 'name-column--cell', valueGetter: (params) => `${params.row.firstname} ${params.row.lastname}`,},
     { field: 'address', headerName: 'Address', flex: 1 },
     { field: 'age', headerName: 'Age', headerAlign: 'left', align: 'left' },
     { field: 'gender', headerName: 'Gender', flex: 1 },
+    
     { field: 'phoneNumber', headerName: 'Phone Number', flex: 1 },
     { field: 'bookingDate', headerName: 'Booking Date', flex: 1 },
     { field: 'Specialization', headerName: 'Specialization', flex: 1 },
     { field: 'bookingTime', headerName: 'Booking Time', flex: 1 },
-    {
+  ];
+
+  if (!user?.role.includes('DOCTOR')) {
+    columns.push(
+      { field: 'user.name', headerName: 'Doctor', flex:1, valueGetter: (params) => params.row.user.name,},
+    )
+    columns.push({
       field: 'actions',
       headerName: 'Actions',
       flex: 1,
@@ -129,13 +153,14 @@ const Contacts = () => {
           />
         </div>
       ),
-    },
-  ];
+    });
+  }
 
   return (
         <Box m="20px">
           <>
       <Header title="APPOINTMENTS" subtitle="List of all appiontments" />
+      {!user?.role.includes('DOCTOR') && (
            <Button onClick={handleOpenAddModal} variant="contained" color='secondary'
       sx={{position:'absolute',
            ml:135,
@@ -144,6 +169,7 @@ const Contacts = () => {
       >
         Add Appointment
       </Button>
+      )}
       </>
       <Box
         m="40px 0 0 0"

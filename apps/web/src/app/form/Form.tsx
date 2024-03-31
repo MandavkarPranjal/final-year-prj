@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FormHelperText } from '@mui/material';
+import { FormHelperText, Stack } from '@mui/material';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -43,7 +43,8 @@ const validationSchema = yup.object({
     .required('Last Name is required')
     .matches(/^[A-Za-z]+$/, 'Last Name must only contain letters'),
   age: yup
-    .number().typeError('Age must be a number')
+    .number()
+    .typeError('Age must be a number')
     .positive('Age must be a positive number')
     .integer('Age must be an integer')
     .required('Age is required'),
@@ -56,7 +57,8 @@ const validationSchema = yup.object({
     .string()
     .required('Phone Number is required')
     .min(10, 'Phone Number must be at least 10 digits')
-    .max(10, 'Must contain 10 digits only').matches(/^[6-9]\d{9}$/, 'Invalid Phone Number'),  
+    .max(10, 'Must contain 10 digits only')
+    .matches(/^[6-9]\d{9}$/, 'Invalid Phone Number'),
   bookingDate: yup.string().required('Booking Date is required'),
   bookingTime: yup.string().required('Booking Time is required'),
   Specialization: yup.string().required('Specialization is required'),
@@ -85,8 +87,6 @@ const SpecializationOptions = [
 
 const genderOptions = ['Male', 'Female', 'Other'];
 
-
-
 const AppointmentForm: React.FC = () => {
   const [doctors, setDoctors] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -107,8 +107,10 @@ const AppointmentForm: React.FC = () => {
       try {
         setLoading(true);
         const specialization = getValues('Specialization');
-        const response = await axios.get(`http://localhost:3000/appointment/${specialization}`);
-        setDoctors(response.data); 
+        const response = await axios.get(
+          `http://localhost:3000/appointment/${specialization}`
+        );
+        setDoctors(response.data);
       } catch (error) {
         console.error('Error fetching doctors:', error);
       } finally {
@@ -129,8 +131,6 @@ const AppointmentForm: React.FC = () => {
         'http://localhost:3000/appointment/create',
         values
       );
-      
-
 
       console.log('API response:', response.data);
       reset();
@@ -144,178 +144,196 @@ const AppointmentForm: React.FC = () => {
 
   return (
     <div className="super">
-        <div className="dummy">
-          <h3 className='up'>Book a Appointment</h3>
-      <div className="main-cont">
-        <div className="form-container">
-          {/* The onSubmit function will be called when the form is submitted */}
-          <form className="form" onSubmit={handleSubmit(onSubmit)}>
-            {/* Section One: Personal Information */}
-            <div className="g-one">
-              <p className="headings">Appointment Form</p>
-              
-              <Controller 
-                name="firstName"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    sx={{
-                      marginRight: 6,
-                      marginLeft: 4
-                    }}
-                    type="text"
-                    id="firstName"
-                    autoComplete='off'
-                    label="First Name"
-                    error={!!errors.firstName}
-                    helperText={errors.firstName?.message}
-                  />
-                )}
-              />
-              
-              <Controller 
-                name="lastName"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    type="text"
-                    id="lastName"
-                    autoComplete='off'
-                    label="Last Name"
-                    error={!!errors.lastName}
-                    helperText={errors.lastName?.message}
-                  />
-                )}
-              />
+      <div className="dummy">
+        <h3 className="up">Book a Appointment</h3>
+        <div className="main-cont">
+          <div className="form-container">
+            {/* The onSubmit function will be called when the form is submitted */}
+            <form className="form" onSubmit={handleSubmit(onSubmit)}>
+              {/* Section One: Personal Information */}
+              <div className="g-one">
+                <p className="headings">Appointment Form</p>
 
-              <Controller 
-                name="address"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    sx={{
-                      marginRight: 6,
-                      marginLeft: 4
-                    }}
-                    type="text"
-                    id="address"
-                    autoComplete='off'
-                    label="Address"
-                    error={!!errors.address}
-                    helperText={errors.address?.message}
-                  />
-                )}
-              />
-              
-              <Controller
-                name="age"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    type="number"
-                    id="age"
-                    autoComplete='off'
-                    label="Age"
-                    error={!!errors.age}
-                    helperText={errors.age?.message}
-                  />
-                )}
-              />
+                <Controller
+                  name="firstName"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      sx={{
+                        marginRight: 6,
+                        marginLeft: 4,
+                      }}
+                      type="text"
+                      id="firstName"
+                      autoComplete="off"
+                      label="First Name"
+                      error={!!errors.firstName}
+                      helperText={errors.firstName?.message}
+                    />
+                  )}
+                />
 
-            </div>
+                <Controller
+                  name="lastName"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      type="text"
+                      id="lastName"
+                      autoComplete="off"
+                      label="Last Name"
+                      error={!!errors.lastName}
+                      helperText={errors.lastName?.message}
+                    />
+                  )}
+                />
 
-            {/* Section Two: Contact Information */}
-            <div className="g-two">
+                <Controller
+                  name="address"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      sx={{
+                        marginRight: 6,
+                        marginLeft: 4,
+                      }}
+                      type="text"
+                      id="address"
+                      autoComplete="off"
+                      label="Address"
+                      error={!!errors.address}
+                      helperText={errors.address?.message}
+                    />
+                  )}
+                />
 
-              <Controller 
-                name="email"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    sx={{
-                      marginRight: 6,
-                      marginLeft: 4
-                    }}
-                    type="text"
-                    id="email"
-                    autoComplete='off'
-                    label="Email"
-                    error={!!errors.email}
-                    helperText={errors.email?.message}
-                  />
-                )}
-              />
-              
-              <Controller 
-                name="phoneNumber"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    type="text"
-                    id="phoneNumber"
-                    autoComplete='off'
-                    label="Phone Number"
-                    error={!!errors.phoneNumber}
-                    helperText={errors.phoneNumber?.message}
-                  />
-                )}
-              />
-              
-              <Controller 
-                name="bookingDate"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    sx={{
-                      marginRight: 6,
-                      marginLeft: 4
-                    }}
-                    type="date"
-                    id="bookingDate"
-                    // label="Booking Date"
-                    error={!!errors.bookingDate}
-                    helperText={errors.bookingDate?.message}
-                  />
-                )}
-              />
-              
-              <FormControl>
-                <InputLabel id="SpecializationLabel">Specialization</InputLabel>
-                <Select
-                  labelId="SpecializationLabel"
-                  id="Specialization"
-                  {...register('Specialization')} // Provide a default value
-                  error={!!errors.Specialization}
-                >
-                  <MenuItem value="" disabled>
-                    Select Specialization
-                  </MenuItem>
-                  {SpecializationOptions.map((option) => (
-                    <MenuItem key={option} value={option}>
-                      {option}
-                    </MenuItem>
-                  ))}
-                </Select>
-                <FormHelperText error>{errors.Specialization?.message}</FormHelperText>
-              </FormControl>
+                <Controller
+                  name="age"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      type="number"
+                      id="age"
+                      autoComplete="off"
+                      label="Age"
+                      error={!!errors.age}
+                      helperText={errors.age?.message}
+                    />
+                  )}
+                />
+              </div>
 
-              <FormControl>
-                <InputLabel id="doctorLabel">Doctor</InputLabel>
-                <Select value={getValues('userId')} {...register('userId')} disabled={loading}>
+              {/* Section Two: Contact Information */}
+              <div className="g-two">
+                <Controller
+                  name="email"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      sx={{
+                        marginRight: 6,
+                        marginLeft: 4,
+                      }}
+                      type="text"
+                      id="email"
+                      autoComplete="off"
+                      label="Email"
+                      error={!!errors.email}
+                      helperText={errors.email?.message}
+                    />
+                  )}
+                />
+
+                <Controller
+                  name="phoneNumber"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      type="text"
+                      id="phoneNumber"
+                      autoComplete="off"
+                      label="Phone Number"
+                      error={!!errors.phoneNumber}
+                      helperText={errors.phoneNumber?.message}
+                    />
+                  )}
+                />
+
+                <Controller
+                  name="bookingDate"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      sx={{
+                        marginRight: 6,
+                        marginLeft: 4,
+                      }}
+                      type="date"
+                      id="bookingDate"
+                      // label="Booking Date"
+                      error={!!errors.bookingDate}
+                      helperText={errors.bookingDate?.message}
+                    />
+                  )}
+                />
+
+                <FormControl>
+                  <InputLabel id="SpecializationLabel">
+                    Specialization
+                  </InputLabel>
+                  <Controller
+                    name="Specialization"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <Select
+                        labelId="SpecializationLabel"
+                        id="Specialization"
+                        {...register('Specialization')} // Provide a default value
+                        error={!!errors.Specialization}
+                      >
+                        <MenuItem value="" disabled>
+                          Select Specialization
+                        </MenuItem>
+                        {SpecializationOptions.map((option) => (
+                          <MenuItem key={option} value={option}>
+                            {option}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    )}
+                  />
+                  <FormHelperText error>
+                    {errors.Specialization?.message}
+                  </FormHelperText>
+                </FormControl>
+
+                <FormControl>
+                  <InputLabel id="doctorLabel">Doctor</InputLabel>
+                  <Controller
+                    name="doctor"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <Select
+                        value={getValues('userId')}
+                        {...register('userId')}
+                        disabled={loading}
+                      >
                         {loading ? (
                           <MenuItem value="">Loading...</MenuItem>
                         ) : (
@@ -326,108 +344,112 @@ const AppointmentForm: React.FC = () => {
                           ))
                         )}
                       </Select>
-                <FormHelperText error>{errors.doctor?.message}</FormHelperText>
-              </FormControl>
+                    )}
+                  />
+                  <FormHelperText error>
+                    {errors.doctor?.message}
+                  </FormHelperText>
+                </FormControl>
 
-              <FormControl
-              sx={{
-                marginRight: 6,
-                marginLeft: 4
-              }}
-              >
-                <InputLabel id="genderLabel">Gender</InputLabel>
-              <Controller 
-                name='gender'
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <Select
-                    labelId="genderLabel"
-                    {...field}
-                    error={!!errors.gender}
-                  >
-                    <MenuItem value="" disabled>
-                      Select Gender
-                    </MenuItem>
-                    {genderOptions.map((option) => (
-                      <MenuItem key={option} value={option}>
-                        {option}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                )}
-              />
-                <FormHelperText error>{errors.gender?.message}</FormHelperText>
-
-              </FormControl>
-              
-              <FormControl>
-                <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
-                <Controller
-                  name="bookingTime"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }) => (
-                    <Select
-                      {...field}
-                      labelId="bookingTimeLabel"
-                      id="bookingTime"
-                      error={!!errors.bookingTime}
-                    >
-                      <MenuItem value="" disabled>
-                        Select Booking Time
-                      </MenuItem>
-                      {timeSlots.map((slot) => (
-                        <MenuItem key={slot} value={slot}>
-                          {slot}
+                <FormControl
+                  sx={{
+                    marginRight: 6,
+                    marginLeft: 4,
+                  }}
+                >
+                  <InputLabel id="genderLabel">Gender</InputLabel>
+                  <Controller
+                    name="gender"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <Select
+                        labelId="genderLabel"
+                        {...field}
+                        error={!!errors.gender}
+                      >
+                        <MenuItem value="" disabled>
+                          Select Gender
                         </MenuItem>
-                      ))}
-                    </Select>
-                  )}
-                />
-                <FormHelperText error>
-                  {errors.bookingTime?.message}
-                </FormHelperText>
-              </FormControl>
-            </div>
+                        {genderOptions.map((option) => (
+                          <MenuItem key={option} value={option}>
+                            {option}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    )}
+                  />
+                  <FormHelperText error>
+                    {errors.gender?.message}
+                  </FormHelperText>
+                </FormControl>
 
-            {/* Submit Button */}
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              sx={{
-                marginLeft: 32,
-                width: 150,
-              }}
-            >
-              Submit
-            </Button>
-          </form>
+                <FormControl>
+                  <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
+                  <Controller
+                    name="bookingTime"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        labelId="bookingTimeLabel"
+                        id="bookingTime"
+                        error={!!errors.bookingTime}
+                      >
+                        <MenuItem value="" disabled>
+                          Select Booking Time
+                        </MenuItem>
+                        {timeSlots.map((slot) => (
+                          <MenuItem key={slot} value={slot}>
+                            {slot}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    )}
+                  />
+                  <FormHelperText error>
+                    {errors.bookingTime?.message}
+                  </FormHelperText>
+                </FormControl>
+              </div>
+
+              {/* Submit Button */}
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                sx={{
+                  marginLeft: 32,
+                  width: 150,
+                }}
+              >
+                Submit
+              </Button>
+            </form>
+          </div>
+          {/* Image Container */}
+          <div className="img-container">
+            <img className="book_img" src={Rectangle} alt="img" />
+          </div>
         </div>
-        {/* Image Container */}
-        <div className="img-container">
-          <img className="book_img" src={Rectangle} alt="img" />
+
+        <div className="apptbtm">
+          <div className="btm1">
+            <img className="aapticon" src={appointment} alt="" />
+            <p className="btmtxt">Monday - Saturday</p>
+          </div>
+
+          <div className="btm1">
+            <img className="aapticon" src={inTime} alt="" />
+            <p className="btmtxt">09.00 Am - 08.00 Pm</p>
+          </div>
+
+          <div className="btm1">
+            <img className="aapticon" src={doctor} alt="" />
+            <p className="btmtxt">All Doctors Available</p>
+          </div>
         </div>
-      </div>
-      
-      <div className="apptbtm">
-        <div className="btm1">
-  <img className='aapticon' src={appointment} alt="" />
-  <p className='btmtxt'>Monday - Saturday</p>
-  </div>
-
-  <div className="btm1">
-  <img className='aapticon' src={inTime} alt="" />
-  <p className='btmtxt'>09.00 Am - 08.00 Pm</p>
-  </div>
-
-  <div className="btm1">
-  <img className='aapticon' src={doctor} alt="" />
-  <p className='btmtxt'>All Doctors Available</p>
-  </div>
-  </div>
-        
       </div>
     </div>
   );

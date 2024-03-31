@@ -52,13 +52,24 @@ model user {
 model event {
   id          String  @id @default(uuid())
   title       String
-  start       String
-  end         String
+  start    String
+  end      String
+  allDay      Boolean
   leave       Boolean
   userId      String?
-  allDay      Boolean
   user        user? @relation(fields: [userId], references: [id])
 }
+
+// model event {
+//   id          String  @id @default(uuid())
+//   title       String
+//   start       String
+//   end         String
+//   leave       Boolean
+//   userId      String?
+//   allDay      Boolean
+//   user        user? @relation(fields: [userId], references: [id])
+// }
 
 // model receipt {
 //   id          String    @id @default(uuid())

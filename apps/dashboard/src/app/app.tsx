@@ -81,7 +81,7 @@ export function App() {
                       {user && user.role.includes('USER') && <Route path="/faq" element={<FAQ />} />}
                       {user && user.role.includes('USER') && <Route path="/dashboard" element={<Dashboard />} />} 
                       {user && user.role.includes('USER') && <Route path="/calendar" element={<Calendar />} />}
-
+                      {user && user.role.includes('DOCTOR') && <Route path="/appointment" element={<Contacts/>} />} 
                      
                  
                     <Route path="/logout" element={<LogOut onLogout={onLogout} />} />

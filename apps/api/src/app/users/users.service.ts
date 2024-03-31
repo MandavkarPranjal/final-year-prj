@@ -31,5 +31,17 @@ export class UsersService {
         return this.prisma.user.findMany({});
     }
 
+    async getDoctors() {
+        return this.prisma.user.findMany({
+            where: {
+                role: { equals: ['DOCTOR'] }
+            },
+            select: {
+                id: true,
+                name: true
+            }
+        })
+    }
+
 
 }

@@ -54,4 +54,9 @@ export class AppointmentController {
       return this.appointmentService.getDoctorsBySpecialization(specialization);
   }
 
+  @Get('doctorAppointments/:doctorId')
+  async getDoctorsAppointments(@Param('doctorId') doctorId: string){
+      return this.appointmentService.getDoctorAppointment(doctorId);
+  }
+
 }
