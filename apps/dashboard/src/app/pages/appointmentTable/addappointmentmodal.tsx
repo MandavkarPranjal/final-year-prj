@@ -140,7 +140,6 @@ const AddAppointmentModal: React.FC<Props> = ({ open, onClose}) => {
         }>
           <Stack direction="row" spacing={2}>
 
-         
           <TextField
             sx={{ flex: 1 }}
             type="text"

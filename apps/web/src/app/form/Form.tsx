@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FormHelperText } from '@mui/material';
+import { FormHelperText, Stack } from '@mui/material';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -132,6 +132,7 @@ const AppointmentForm: React.FC = () => {
             <div className="g-one">
               <p className="headings">Appointment Form</p>
               
+              <Stack direction="row" spacing={10}>
               <Controller 
                 name="firstName"
                 control={control}
@@ -140,8 +141,8 @@ const AppointmentForm: React.FC = () => {
                   <TextField
                     {...field}
                     sx={{
-                      marginRight: 6,
-                      marginLeft: 4
+                      marginRight: 0,
+                      marginLeft: 0
                     }}
                     type="text"
                     id="firstName"
@@ -169,7 +170,9 @@ const AppointmentForm: React.FC = () => {
                   />
                 )}
               />
+              </Stack>
 
+              <Stack direction="row" spacing={10}>
               <Controller 
                 name="address"
                 control={control}
@@ -179,7 +182,7 @@ const AppointmentForm: React.FC = () => {
                     {...field}
                     sx={{
                       marginRight: 6,
-                      marginLeft: 4
+                      marginLeft: 0
                     }}
                     type="text"
                     id="address"
@@ -207,12 +210,14 @@ const AppointmentForm: React.FC = () => {
                   />
                 )}
               />
+              </Stack>
 
             </div>
 
             {/* Section Two: Contact Information */}
             <div className="g-two">
 
+            <Stack direction="row" spacing={10}>
               <Controller 
                 name="email"
                 control={control}
@@ -250,7 +255,9 @@ const AppointmentForm: React.FC = () => {
                   />
                 )}
               />
-              
+              </Stack>
+
+              <Stack direction="row" spacing={10}>
               <Controller 
                 name="bookingDate"
                 control={control}
@@ -260,7 +267,7 @@ const AppointmentForm: React.FC = () => {
                     {...field}
                     sx={{
                       marginRight: 6,
-                      marginLeft: 4
+                      marginLeft: 0
                     }}
                     type="date"
                     id="bookingDate"
@@ -299,11 +306,13 @@ const AppointmentForm: React.FC = () => {
                   <FormHelperText error>{errors.Specialization?.message}</FormHelperText>
                 
               </FormControl>
+              </Stack>
 
+              <Stack direction="row" spacing={10}>
               <FormControl
               sx={{
                 marginRight: 6,
-                marginLeft: 4
+                marginLeft: 0
               }}
               >
                 <InputLabel id="genderLabel">Gender</InputLabel>
@@ -360,6 +369,7 @@ const AppointmentForm: React.FC = () => {
                   {errors.bookingTime?.message}
                 </FormHelperText>
               </FormControl>
+              </Stack>
             </div>
 
             {/* Submit Button */}
@@ -368,7 +378,7 @@ const AppointmentForm: React.FC = () => {
               color="primary"
               type="submit"
               sx={{
-                marginLeft: 32,
+                marginLeft: 29,
                 width: 150,
               }}
             >
