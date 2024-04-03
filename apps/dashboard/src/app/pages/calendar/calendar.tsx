@@ -396,7 +396,7 @@ const Calendar: React.FC = () => {
       <CalendarModal
         open={isModalOpen}
         onClose={handleModalClose}
-        handleFormSubmit={(event: { title: string; start: string; end: string; allDay: boolean; type: string }) => handleFormSubmit(event.title)}
+        handleFormSubmit={(event: { title: string; start: string; end: string; allDay: boolean }) => handleFormSubmit(event.title)}
         newEvent={newEvent}
       />
 
