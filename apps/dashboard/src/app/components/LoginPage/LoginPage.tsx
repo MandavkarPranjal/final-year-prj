@@ -93,7 +93,7 @@ export function LoginPage({ onLogin} : LoginPageProps) {
             helperText={errors.password?.message}
           />
           <Button className="signinButton" variant="contained" type="submit">
-            Sign in
+            Log in
           </Button>
         </div>
       </form>

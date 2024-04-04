@@ -17,30 +17,30 @@ import { LoginDto } from './dto/login.dto';
 export class AuthService {
   constructor(private prisma: PrismaService, private jwt: JwtService) {}
   
-  async createUser(createAuthDto: CreateAuthDto) {
-    const { firstName, lastName, email, phoneNumber, role, password,address_1,address_2, specialty } = createAuthDto;
+  async createUser(req, res) {
+    const email = req.email;
     const foundUser = await this.prisma.user.findUnique({where: {email}})
 
     if(foundUser) {
       throw new BadRequestException('Email already exists')
     }
-    const hashedPassword = await this.hashPassword(password);
+    const hashedPassword = await this.hashPassword(req.password);
 
     await this.prisma.user.create({
       data: {
-        name: `${firstName} ${lastName}`,
-        email,
-        phoneNumber,
-        role,
+        name: `${req.firstName} ${req.lastName}`,
+        email: req.email,
+        phoneNumber: req.phoneNumber,
+        role: req.role,
         // role: [role],
-        address_1,
-        address_2,
-        specialty,
+        address_1: req.address_1,
+        address_2: req.address_2,
+        specialty: req.specialty,
         hashedPassword,
       }
-    })
+    });
 
-    return {message: 'User created successfully'};
+    res.status(201).send({ message: 'User created successfully' });
   }
 
   async signin(data: LoginDto):Promise<ViewUserDto> {
@@ -64,7 +64,7 @@ export class AuthService {
   }
 
   async updateUser(id: string, updateAuthDto: UpdateAuthDto){
-    const { firstName, lastName, email, phoneNumber, address_1,address_2, role} = updateAuthDto;
+    const { name, email, phoneNumber, address_1,address_2, role} = updateAuthDto;
     const foundUser = await this.prisma.user.findUnique({where: {id}})
 
     if(!foundUser) {
@@ -74,7 +74,7 @@ export class AuthService {
     await this.prisma.user.update({
       where: {id},
       data: {
-        name: `${firstName} ${lastName}`,
+        name,
         email,
         phoneNumber,
         address_1,
@@ -148,7 +148,7 @@ export class AuthService {
 
   //-------------------------Update Team --------------------
 
-  async updateTeam(id: string, data: CreateAuthDto){
+  async updateTeam(id: string, data: UpdateAuthDto){
     console.log(" updated team");
     // check if appointment exists
     const tempTeam = await this.prisma.user.findFirst({
@@ -165,7 +165,7 @@ export class AuthService {
           id: id
         },
         data : {
-          name: `${data.firstName} ${data.lastName}`,
+          name: data.name,
           email: data.email,
           phoneNumber: data.phoneNumber,
           address_1: data.address_1,
