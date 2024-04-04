@@ -151,7 +151,7 @@ Raising healthcare standards and redefining excellence in patient care </p>
 <p>I cannot praise the service of WellAppoint. It is a highly skilled surgeon and goes an extra mile for his patients. My father had robotic surgery last month and despite the complications, it was a success. </p>
   </div>
 
-  {/* <div className="r1">
+   <div className="r1">
   <div className="r1-top">
      <img className='review-logo' src={review} alt=""/> 
     <h4>Vivek Gupta</h4>
@@ -164,8 +164,8 @@ Raising healthcare standards and redefining excellence in patient care </p>
      <img className='review-logo' src={review} alt=""/> 
     <h4>Mrs Gupta</h4>
     </div>
-<p>I appreciate the quick decision taken by doctors of admission and good treatment given. During discharge immediate help was provided by Mediclaim department for approval and excellent service during the complete process.</p>
-  </div> */}
+<p>I appreciate the quick decision taken by doctors of admission and good treatment given. During discharge immediate help was provided by Mediclaim department for approval and excellent service during the complete process.</p> 
+  </div> 
 
 
 </div>
