@@ -322,7 +322,12 @@ const AppointmentForm: React.FC = () => {
                   </FormHelperText>
                 </FormControl>
 
-                <FormControl>
+                <FormControl
+                  sx={{
+                    marginRight: 1,
+                    marginLeft: 0,
+                  }}
+                >
                   <InputLabel id="doctorLabel">Doctor</InputLabel>
                   <Controller
                     name="doctor"
@@ -384,7 +389,12 @@ const AppointmentForm: React.FC = () => {
                   </FormHelperText>
                 </FormControl>
 
-                <FormControl>
+                <FormControl
+                sx={{width: 550,
+                  marginLeft: 5
+                     
+                }}
+                >
                   <InputLabel id="bookingTimeLabel">Booking Time</InputLabel>
                   <Controller
                     name="bookingTime"
@@ -421,7 +431,7 @@ const AppointmentForm: React.FC = () => {
                 type="submit"
                 sx={{
                   marginLeft: 32,
-                  width: 150,
+                  
                 }}
               >
                 Submit
