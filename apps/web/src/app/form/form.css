@@ -48,8 +48,7 @@ body{
 } 
 /* Style select input */
 .MuiSelect-root {
-  width: 100%;
-  
+  width: 100%; 
 }
 
 /* Style submit button */
@@ -108,7 +107,6 @@ body{
     top: 20px;
   }
 
-
   .img-container{
     position: relative;
     top: 25px;
@@ -150,4 +148,56 @@ body{
 
   .credit{
     font-size: 13px;
+  }
+
+
+  @media  (max-width: 768px) {
+    .form-container{
+      width: 95%;
+      height: 900px;
+      margin-left: -500px;
+    }
+    .dummy{
+      width: 100%;
+      margin-left: 0px;
+    }
+
+    .headings{
+      margin-left: 0px;
+      font-size: 2rem;
+    }
+
+    .form{
+      padding: 10px;
+    }
+
+    .MuiFormControl-root {
+      display: inline;
+      margin-bottom: 20px;
+      width: 85%;
+      margin-left: 0px; 
+    } 
+    /* Style select input */
+    .MuiSelect-root {
+      width: 100%;
+    }
+
+    .g-one{
+      display: inline;
+    }
+
+    .g-two{
+      display: inline;
+      margin-left: -30px;
+    }
+
+    .apptbtm{
+      display: none;
+      margin-left: -130px;
+      margin-top: -20px;
+      height: 1500px;
+    }
+
+    
+    
   }
