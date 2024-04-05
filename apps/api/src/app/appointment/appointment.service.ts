@@ -51,27 +51,39 @@ export class AppointmentService {
     })
     console.log('Appointment Booked')
 
+    const doctor = await this.prisma.user.findUnique({
+      where: {
+      id: data.userId
+      },
+      select: {
+      name: true
+      }
+    });
+
     const emailTemplate = `
     <h1>Confirmation of Booked Appointment with WellAppoint</h1>
     <p>Dear ${data.firstName} ${data.lastName},</p>
     <p>I hope this email finds you well. We are delighted to confirm that your appointment with WellAppoint Hospital has been successfully booked.</p>
-
+    
     <p><strong>Appointment Details:</strong></p>
     <ul>
-        <li><strong>Date:</strong> ${data.bookingDate}</li>
-        <li><strong>Time:</strong> ${data.bookingTime}</li>
+      <li><strong>Appointment ID:</strong> ${patient.id}</li>
+      <li><strong>Date:</strong> ${data.bookingDate}</li>
+      <li><strong>Time:</strong> ${data.bookingTime}</li>
+      <li><strong>Doctor:</strong> ${doctor.name}</li>
     </ul>
-
+    
     <p>We appreciate your trust in our healthcare services and look forward to providing you with the best possible care. If you have any specific questions or if there are any changes required, please feel free to reach out to us by replying to this email.</p>
-
+    
     <p>As a reminder, kindly bring any relevant medical records or documentation with you on the day of your appointment. If there are any changes in your health condition before the scheduled date, please inform us promptly.</p>
-
+    
     <p>Thank you for choosing WellAppoint Hospital. We value your health and well-being, and we are committed to ensuring a positive and seamless experience for you during your visit.</p>
-
+    
     <p>We look forward to welcoming you on ${data.bookingDate} at ${data.bookingTime}.</p>
-
+    
     <p>Best regards,<br>
-        WellAppoint Team<br></p>
+      WellAppoint Team<br></p>
+    
     `;
 
     const mailOptions = {
@@ -100,6 +112,12 @@ export class AppointmentService {
         id: id
       },
       select: {
+        id: true,
+        user : {
+          select: {
+            name: true
+          }
+        },
         bookingDate: true,
         bookingTime: true
       }
@@ -117,26 +135,44 @@ export class AppointmentService {
           id : id
         },
         select : {
+          id: true,
+          user : {
+            select : {
+              name: true
+            }
+          },
           bookingDate: true,
           bookingTime: true
         }
       })
+
+
 
       const emailTemplate = `
       <h1>Appointment Rescheduled - WellAppoint Hospital</h1>
       <p>Dear ${data.firstName} ${data.lastName},</p>
       <p>We hope this message finds you in good health. This is to inform you that there has been a change in the scheduling of your upcoming appointment at WellAppoint Hospital.</p>
       <p><strong>Original Appointment Details:</strong></p>
-      <p><strong>Date:</strong> ${tempAppointment.bookingDate}</p>
-      <p><strong>Time:</strong> ${tempAppointment.bookingTime}</p>
+      <ul>
+          <li><strong>Appointment ID:</strong> ${tempAppointment.id}</li>
+          <li><strong>Doctor:</strong> ${tempAppointment.user.name}</li>
+          <li><strong>Date:</strong> ${tempAppointment.bookingDate}</li>
+          <li><strong>Time:</strong> ${tempAppointment.bookingTime}</li>
+      </ul>
       <p><strong>New Appointment Details:</strong></p>
-      <p><strong>Date:</strong> ${newAppointment.bookingDate}</p>
-      <p><strong>Time:</strong> ${newAppointment.bookingTime}</p>
+      <ul>
+          <li><strong>Appointment ID:</strong> ${newAppointment.id}</li>
+          <li><strong>Doctor:</strong> ${newAppointment.user.name}</li>
+          <li><strong>Date:</strong> ${newAppointment.bookingDate}</li>
+          <li><strong>Time:</strong> ${newAppointment.bookingTime}</li>
+      </ul>
       <p>We understand that changes in appointment schedules can be inconvenient, and we sincerely apologize for any disruption this may cause. Our team is committed to providing you with the best possible care, and we appreciate your understanding in this matter.</p>
       <p>If the rescheduled timing is not convenient for you or if you have any concerns, please feel free to reach out to our scheduling team at [Hospital Contact Number] to discuss alternative options.</p>
       <p>Once again, we apologize for any inconvenience, and we appreciate your cooperation. Thank you for choosing WellAppoint Hospital for your healthcare needs.</p>
       <p>Best regards,<br>
           WellAppoint Team<br>
+      </p>
+      
     `;
 
     const mailOptions = {
@@ -178,14 +214,19 @@ export class AppointmentService {
   async deleteAppointment(id: number){
     const appointment = await this.prisma.appointment.findFirst({
       where: {
-        id: id
+      id: id
       },
       select: {
-        firstName: true,
-        lastName: true,
-        email: true,
-        bookingDate: true,
-        bookingTime: true
+      firstName: true,
+      lastName: true,
+      email: true,
+      user : {
+        select: {
+        name: true
+        }
+      },
+      bookingDate: true,
+      bookingTime: true
       }
     });
     if(appointment){
@@ -195,16 +236,20 @@ export class AppointmentService {
         }
       })
 
+
       const emailTemplate = `
       <h1>Important Notice: Appointment Cancellation</h1>
       <p>Dear ${appointment.firstName} ${appointment.lastName},</p><br>
       <p>I hope this email finds you well. I am writing to inform you of a change in your upcoming appointment at WellAppoint Hospital.</p>
-      <p>Unfortunately, due to unforeseen circumstances, we regret to inform you that your scheduled appointment on <strong>${appointment.bookingDate} at ${appointment.bookingTime} has been canceled.</strong> We understand the importance of your healthcare and sincerely apologize for any inconvenience this may cause.</p>
+      <p>Unfortunately, due to unforeseen circumstances, we regret to inform you that your scheduled appointment with <strong>${appointment.user.name}</strong> on <strong>${appointment.bookingDate} at ${appointment.bookingTime}</strong> has been canceled.</p>
+      <p>We understand the importance of your healthcare and sincerely apologize for any inconvenience this may cause.</p>
       <p>We understand that unexpected changes can be frustrating, and we appreciate your understanding and cooperation during this time. Our priority is to provide you with the best possible care, and we are committed to ensuring that you receive the attention you need.</p>
       <p>Once again, we apologize for any inconvenience this may cause, and we appreciate your patience as we work to reschedule your appointment. If you have any questions or concerns, please feel free to respond to this email or contact our office directly.</p>
       <p>Thank you for choosing WellAppoint Hospital for your healthcare needs. We look forward to assisting you in rescheduling your appointment and continuing to provide you with the highest level of care.</p>
       <p>Best regards,<br>
           WellAppoint Team<br>
+      </p>
+      
     `;
 
     const mailOptions = {
