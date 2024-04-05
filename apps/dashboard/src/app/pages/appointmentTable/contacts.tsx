@@ -53,7 +53,6 @@ const Contacts = () => {
       .get<Appointment[]>(`http://localhost:3000/appointment/doctorAppointments/${user?.id}`)
       .then((res) => {
         setAppointment(res.data);
-        console.log('Data Received:', res.data);
       })
       .catch((err) => {
         setError(err.message);
@@ -64,7 +63,6 @@ const Contacts = () => {
         .get<Appointment[]>('http://localhost:3000/appointment/all')
         .then((res) => {
           setAppointment(res.data);
-          console.log('Data Received:', res.data);
         })
         .catch((err) => {
           setError(err.message);

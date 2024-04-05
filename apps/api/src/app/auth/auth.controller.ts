@@ -19,14 +19,16 @@ import { UpdateAuthDto
 import { create } from 'domain';
 import { LocalAuthGuard } from './local-auth.guard';
 import { LoginDto } from './dto/login.dto';
+import { Role } from '@prisma/client';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('create-user')
-  createUser(@Body() createAuthDto: CreateAuthDto) {
-    return this.authService.createUser(createAuthDto);
+  createUser(@Request() req, @Res() res){
+  // createUser(@Body() datafirstname: string, lastname: string, email: string, phoneNumber: string, role: Role[], address_1: string, address_2: string, password: string) {
+    return this.authService.createUser(req.body, res);
   }
 
   // @UseGuards(LocalAuthGuard)
@@ -74,7 +76,7 @@ export class AuthController {
   //------------update Team -----------
 
   @Patch('teamUpdate/:id')
-  async updateTeam( @Body() dto: CreateAuthDto, @Param('id') id: string) {
+  async updateTeam( @Body() dto: UpdateAuthDto, @Param('id') id: string) {
     // dto.id = Number(id);
     return  this.authService.updateTeam( id, dto);
   }

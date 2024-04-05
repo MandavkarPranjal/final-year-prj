@@ -6,11 +6,7 @@ import { IsArray, IsNotEmpty, IsString, Length } from 'class-validator';
 export class UpdateAuthDto extends PartialType(CreateAuthDto) {
     @IsNotEmpty()
     @IsString()
-    public firstName: string;
-    
-    @IsNotEmpty()
-    @IsString()
-    public lastName: string;
+    public name: string;
     
     @IsNotEmpty()
     @IsString()
@@ -22,8 +18,11 @@ export class UpdateAuthDto extends PartialType(CreateAuthDto) {
     
     @IsNotEmpty()
     @IsString()
-    public address: string;
+    public address_1: string;
 
+    @IsNotEmpty()
+    @IsString()
+    public address_2: string;
     @IsNotEmpty()
     @IsArray()
     public role: Role[];
