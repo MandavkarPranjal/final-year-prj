@@ -70,6 +70,7 @@ export class AppointmentService {
       <li><strong>Appointment ID:</strong> ${patient.id}</li>
       <li><strong>Date:</strong> ${data.bookingDate}</li>
       <li><strong>Time:</strong> ${data.bookingTime}</li>
+      <li><strong>Specialization:</strong> ${data.Specialization}</li>
       <li><strong>Doctor:</strong> ${doctor.name}</li>
     </ul>
     
@@ -119,7 +120,8 @@ export class AppointmentService {
           }
         },
         bookingDate: true,
-        bookingTime: true
+        bookingTime: true,
+        Specialization: true
       }
     })
     if(tempAppointment){
@@ -139,10 +141,12 @@ export class AppointmentService {
           user : {
             select : {
               name: true
+             
             }
           },
           bookingDate: true,
-          bookingTime: true
+          bookingTime: true,
+          Specialization: true
         }
       })
 
@@ -156,6 +160,7 @@ export class AppointmentService {
       <ul>
           <li><strong>Appointment ID:</strong> ${tempAppointment.id}</li>
           <li><strong>Doctor:</strong> ${tempAppointment.user.name}</li>
+          <li><strong>Specialization:</strong> ${tempAppointment.Specialization}</li>
           <li><strong>Date:</strong> ${tempAppointment.bookingDate}</li>
           <li><strong>Time:</strong> ${tempAppointment.bookingTime}</li>
       </ul>
@@ -163,6 +168,7 @@ export class AppointmentService {
       <ul>
           <li><strong>Appointment ID:</strong> ${newAppointment.id}</li>
           <li><strong>Doctor:</strong> ${newAppointment.user.name}</li>
+          <li><strong>Specialization:</strong> ${newAppointment.Specialization}</li>
           <li><strong>Date:</strong> ${newAppointment.bookingDate}</li>
           <li><strong>Time:</strong> ${newAppointment.bookingTime}</li>
       </ul>

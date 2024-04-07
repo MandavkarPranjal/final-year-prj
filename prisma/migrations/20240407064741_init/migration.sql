@@ -43,8 +43,6 @@ CREATE TABLE "event" (
     "title" TEXT NOT NULL,
     "start" TEXT NOT NULL,
     "end" TEXT NOT NULL,
-    "leave" BOOLEAN NOT NULL,
-    "userId" TEXT,
     "allDay" BOOLEAN NOT NULL,
 
     CONSTRAINT "event_pkey" PRIMARY KEY ("id")
@@ -58,6 +56,3 @@ CREATE UNIQUE INDEX "user_phoneNumber_key" ON "user"("phoneNumber");
 
 -- AddForeignKey
 ALTER TABLE "appointment" ADD CONSTRAINT "appointment_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "event" ADD CONSTRAINT "event_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE SET NULL ON UPDATE CASCADE;
