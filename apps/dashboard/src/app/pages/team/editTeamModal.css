@@ -1,0 +1,20 @@
+/* Adjust the form spacing */
+.MuiFormControl-root {
+    width: 100%;
+    margin-bottom: 15px;
+  } 
+  
+  
+  /* Add styles for the submit button */
+  button[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #3c653e;
+  }

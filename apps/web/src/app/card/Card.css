@@ -1,24 +1,29 @@
 .card{
-    background-color: rgb(255, 255, 255);
-    height: 280px;
-    width: 195px;
-    border: 2px solid black;
-    border-radius: 10px;
+    background-color: #1F2B6C;
+    height: 400px;
+    width: 270px;
+    border-radius: 5px;
+
+   /* margin:  50px 50px  70px 70px; */
 }
 
 .image{
-    height: 185px;
-    width: 195px;
-    border-radius: 10px;
+    height: 325px;
+    width: 268px;
+    border-radius: 5px;
 }
 
 .name{
-    padding: 0 5px;
-    font-size: 23px;
+    padding: 0 10px;
+    margin-left: 50px;
+    margin-top: 12px;
+    font-size: 25px;
+    color: white;
 }
 
 .spl{
     display: flex;
-    padding: 0 5px;
-    color: grey;
+    padding: 0 10px;
+    margin-left: 75px;
+    color: #BFD2F8;
 }

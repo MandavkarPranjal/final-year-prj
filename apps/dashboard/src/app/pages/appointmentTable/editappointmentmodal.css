@@ -1,0 +1,30 @@
+/* Add this CSS to your stylesheet or in a style tag in your component */
+
+ 
+  /* Adjust the modal position and size */
+  /* .MuiDialog-paper {
+    width: 600px;
+    padding: 20px;
+  } 
+   */
+  /* Adjust the form spacing */
+   .MuiFormControl-root {
+    width: 100%;
+    margin-bottom: 15px;
+  } 
+  
+  
+  /* Add styles for the submit button */
+  button[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  

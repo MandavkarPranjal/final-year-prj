@@ -1,0 +1,204 @@
+
+body{
+  width: auto;
+}
+
+.form{ 
+    height: 500px;
+    padding: 25px;
+    
+  }
+  
+  div {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: flex;
+    margin-bottom: 5px;
+  }
+
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  } 
+
+  .headings{
+    margin-left: 168px;
+    font-size: 40px;
+    
+  }
+
+
+/* Apply styles to all TextField components */
+.MuiFormControl-root {
+  margin-bottom: 20px;
+  margin-right: 50px;
+  width: 40%;
+  
+} 
+/* Style select input */
+.MuiSelect-root {
+  width: 100%; 
+}
+
+/* Style submit button */
+.MuiButton-root {
+  
+  margin-top: 20px;
+} 
+
+
+
+  .submit_btn{
+    margin-left: 180px;
+    font-size: large;
+    width: 300px;
+  }
+
+  .book_img{
+    height: 610px;
+    width: 92%;
+    border-radius: 4px;
+  }
+
+  .super{
+    margin-top: 10px;
+  }
+  
+.main-cont{
+  display: flex;
+ 
+}
+
+  .form-container{
+    display: inline;
+    position: relative;
+    left: 520px;
+    /* background-color: #91afed; */
+    background-color: #e2e4f8;
+    border-radius: 5px;
+    width: 700px;
+    height: 620px;
+    margin-top: 20px;
+    margin-left: 120px;
+  }
+
+  .dummy{
+    background-color: #9abcec;
+    height: 350px;
+    width: 1430px;
+    border-radius: 5px;
+    margin-left: 50px;
+    margin-bottom: 700px;
+  }
+
+  .up{
+    position: relative;
+    margin-left: 50px;
+    top: 20px;
+  }
+
+  .img-container{
+    position: relative;
+    top: 25px;
+    left: -770px;
+  }
+  
+  .g-one{
+    display: block;
+    margin-left: 13px;
+  }
+
+  .g-two{
+    display: block;
+    margin-left: 13px;
+    margin-top: -18px;
+  }
+
+  .apptbtm{
+    display: flex;
+    margin-left: 150px;
+    margin-top: 80px;
+  }
+
+  .btm1{
+    margin-left: 110px;
+  }
+
+  .aapticon{
+    height: 100px;
+    margin-left: 65px;
+  }
+
+  .btmtxt{
+    font-size: 18px;
+    margin-left: 30px;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+
+  .credit{
+    font-size: 13px;
+  }
+
+
+  @media  (max-width: 768px) {
+    .form-container{
+      width: 95%;
+      height: 900px;
+      margin-left: -500px;
+    }
+    .dummy{
+      width: 100%;
+      margin-left: 0px;
+    }
+
+    .headings{
+      margin-left: 0px;
+      font-size: 2rem;
+    }
+
+    .form{
+      padding: 10px;
+    }
+
+    .MuiFormControl-root {
+      display: inline;
+      margin-bottom: 20px;
+      width: 85%;
+      margin-left: 0px; 
+    } 
+    /* Style select input */
+    .MuiSelect-root {
+      width: 100%;
+    }
+
+    .g-one{
+      display: inline;
+    }
+
+    .g-two{
+      display: inline;
+      margin-left: -30px;
+    }
+
+    .apptbtm{
+      display: none;
+      margin-left: -130px;
+      margin-top: -20px;
+      height: 1500px;
+    }
+
+    
+    
+  }

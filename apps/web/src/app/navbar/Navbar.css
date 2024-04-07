@@ -1,12 +1,13 @@
 nav {
-    background-color: #86B6F6;
+    background-color: #1F2B6C;
     color: rgb(0, 0, 0);
+    display: flex;
     padding: 25px;
   }
   
   ul {
     list-style-type: none;
-    margin: 0;
+    margin-top: 15px;
     padding: 0;
     display: flex;
   }
@@ -18,7 +19,40 @@ nav {
   a {
     text-decoration: none;
     color: white;
-    font-weight: semi-bold;
+    font-weight: 600;
     font-size: 22px;
+    text-align: center;
   }
+
+
   
+  .book_btn{
+    display: inline-flex;
+    padding: 15px 30px;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 50px;
+    background: var(--Accent, #91afed);
+    margin-left: 860px;
+    font-weight: 600;
+  }
+
+  @media only screen and (max-width: 800px) {
+    nav {
+        flex-direction: column; /* Stack items vertically */
+        /* align-items: center; */
+    }
+
+    ul{
+      flex-direction: column;
+      justify-content: start;
+    }
+
+    .book_btn {
+      position: absolute;
+      top: 223px;
+      left: 50px;
+      margin-left: 100px; /* Reset margin for smaller screens */
+      width: 200px;
+    }
+}

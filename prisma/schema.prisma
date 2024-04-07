@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model appointment {
+  id             Int    @id @default(autoincrement())
+  firstName      String
+  lastName       String
+  address        String
+  age            Int
+  email          String
+  gender         String
+  phoneNumber    String
+  bookingDate    String
+  Specialization String
+  bookingTime    String
+  userId         String
+  createdAt      DateTime @default(now())
+  user           user@relation(fields: [userId], references: [id])
+}
+
+enum Role {
+  ADMIN
+  USER
+  DOCTOR
+}
+model user {
+  id             String   @id @default(uuid())
+  name           String
+  email          String   @unique
+  phoneNumber    String   @unique
+  role           Role[]
+  address_1      String
+  address_2      String
+  specialty      String?
+  hashedPassword String   @map("hashed_password")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt()
+  appointment    appointment[]
+  // docRecipt docRecipt[]
+}
+
+model event {
+  id          String  @id @default(uuid())
+  title       String
+  start    String
+  end      String
+  allDay      Boolean
+}
+
+// model event {
+//   id          String  @id @default(uuid())
+//   title       String
+//   start       String
+//   end         String
+//   leave       Boolean
+//   userId      String?
+//   allDay      Boolean
+//   user        user? @relation(fields: [userId], references: [id])
+// }
+
+// model receipt {
+//   id          String    @id @default(uuid())
+//   description String
+//   amount      Decimal
+//   date        String
+//   expense     expense[]
+// }
+
+// model expense {
+//   id          String  @id @default(uuid())
+//   description String
+//   receiptId   String
+//   amount      Decimal
+//   date        String
+
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt()
+
+//   receipt receipt @relation(fields: [receiptId], references: [id])
+// }
+
+// model docRecipt {
+//   id          String  @id @default(uuid())
+//   description String
+//   amount      Decimal
+//   date        String
+//   doctorId    String
+//   user        user  @relation(fields: [doctorId], references: [id])
+// }

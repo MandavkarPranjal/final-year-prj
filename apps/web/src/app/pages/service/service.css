@@ -1,0 +1,348 @@
+.main{
+    overflow: hidden;
+}
+
+.first_img{
+    position: absolute;
+    width: 1520px;
+    opacity: 0.5;
+}
+
+.service{
+    position: relative;
+    top: 126px;
+    left: 151px;
+    color: var(--Primary, #1F2B6C);
+    font-family: "Yeseva One";
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 70px;
+
+}
+
+.content1{
+    margin-top: 300px;
+}
+
+.upside{
+    display: flex;
+    margin-top: 70px;
+}
+
+.card_one{
+    margin-left: 50px;
+    height: 480px;
+    width: 300px;
+    margin-top: 0;
+    margin-left: 270px;
+    border: 1px solid #000000;
+    
+}
+
+.card_one:hover{
+    transform: translate(-20px, -0px);
+    transition: 0.5s;
+    box-shadow: 0px 10px 11px -1px rgba(140, 199, 220, 0.8),
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 3px 0px rgba(0, 0, 0, .12);
+}
+
+.card_one img{
+    width: 296px;
+    height: 300px;
+}
+
+.free{
+    color: var(--Black, #1F2B6C);
+    font-family: "Work Sans";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; 
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.contents{
+    color: var(--Black, #212124);
+    font-family: "Work Sans";
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.card_two{
+    margin-left: 50px;
+    height: 480px;
+    width: 300px;
+    margin-top: 0;
+    border: 1px solid #000000;
+}
+
+.card_two:hover{
+    transform: translate(-10px, -8px);
+    transition: 0.5s;
+    box-shadow: 0px 10px 11px -1px rgba(140, 199, 220, 0.8),
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 3px 0px rgba(0, 0, 0, .12);
+}
+
+.card_two img{
+    width: 296px;
+    height: 300px;
+}
+
+.card_three{
+    margin-left: 50px;
+    height: 480px;
+    width: 300px;
+    border: 1px solid #000000;
+}
+
+.card_three:hover{
+    transform: translate(20px, -0px);
+    transition: 0.5s;
+    box-shadow: 0px 10px 11px -1px rgba(140, 199, 220, 0.8),
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 3px 0px rgba(0, 0, 0, .12);
+}
+
+.card_three img{
+    width: 296px;
+    height: 300px;
+}
+
+.always{
+    color: var(--Secondary, #159EEC);
+    text-align: center;
+    font-family: "Work Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 2.88px;
+    text-transform: uppercase;
+    margin-top: 140px;
+}
+
+.spl_text{
+    color: var(--Primary, #1F2B6C);
+    text-align: center;
+    font-family: "Yeseva One";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.spl1{
+    display: flex;
+    margin-top: 70px;
+    justify-content: space-around;
+    margin-bottom: 100px;
+}
+
+.Neurology img{
+    height: 70px;
+    margin-left: 10px;
+}
+
+.neuro{
+    font-size: larger;
+    color: #212124;
+    margin-left: 1px;
+}
+
+.dentist{
+    font-size: larger;
+    color: #212124;
+    margin-left: 20px;
+}
+
+.radio{
+    font-size: larger;
+    color: #212124;
+    margin-left: 10px;
+}
+
+.records{
+    background-color:rgb(189, 213, 240);
+
+}
+
+.happy{
+    text-align: center;
+    color: #1F2B6C;
+    font-family: "Yeseva One";
+    padding-top: 25px;
+}
+
+.recMain{
+    display: flex;
+    /* background-color: rgb(189, 213, 240); */
+    height: 400px;
+}
+
+.crd1{
+        display: inline;
+        margin-top: 110px;
+        margin-bottom: 30px;
+        width: 350px;
+        height: 170px;
+        background-color: rgb(244, 244, 239);
+        margin-right: 10px;
+        margin-left: 100px;
+        padding: 20px;
+        border-radius: 15px;
+}
+
+.crd1-top{
+    
+    font-size: 40px;
+    text-align: center;
+}
+
+
+.crd1:hover{
+    background-color: #83aeff;
+    transform: translate(-5px, -5px);
+    transition: 0.5s;
+    box-shadow: 0px 10px 11px -1px rgba(0, 0, 0, 0.8),
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 3px 0px rgba(0, 0, 0, .12);
+}
+
+.crdtxt{
+    font-size: 20px;
+    text-align: center;
+}
+
+@property --num {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+  }
+  
+  .c-1 {
+    transition: --num 1s;
+    counter-set: num var(--num);
+    text-align: center;
+    font: 800 40px system-ui;
+  }
+  .c-1::after {
+    content: counter(num);
+  }
+  .c-1:hover {
+    --num: 2540;
+  }
+
+  @property --num {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+  }
+  
+  .c2 {
+    transition: --num 1s;
+    counter-set: num var(--num);
+    text-align: center;
+    font: 800 40px system-ui;
+  }
+  .c2::after {
+    content: counter(num);
+  }
+  .c2:hover {
+    --num: 100000;
+  }
+
+  @property --num {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+  }
+  
+  .c3 {
+    transition: --num 2s;
+    counter-set: num var(--num);
+    text-align: center;
+    font: 800 40px system-ui;
+  }
+  .c3::after {
+    content: counter(num);
+  }
+  .c3:hover {
+    --num: 550;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .first_img{
+        width: 100vw;
+        height: 20vh;
+    }
+
+    .service{
+        position: relative;
+        top: 50px;
+        left: -25px;
+        font-size: 30px;
+    }
+
+    .upside{
+        display: inline;
+    }
+
+    .card_one{
+        margin-left: 50px;
+    }
+
+    .always{
+        margin-top: 120px;
+    }
+
+    .neuro{
+        margin-top: 15px;
+        margin-left: 20px;
+    }
+
+    .dentist{
+        margin-top: 15px;
+        margin-left: 35px;
+    }
+
+    .radio{
+        margin-top: 15px;
+        margin-left: 25px;
+    }
+
+    .recMain{
+        display: inline;
+        height: 200px;
+    }
+
+    .crd1{
+        display: flex;
+        width: 70vw;
+        margin-left: 60px;
+    }
+
+    .c-1{
+        margin-top: 50px;
+        margin-left: -70px;
+    }
+
+    .c2{
+        margin-top: 50px;
+        margin-left: -240px;
+    }
+
+    .c3{
+        margin-top: 50px;
+        margin-left: -125px;
+    }
+  }
+  
