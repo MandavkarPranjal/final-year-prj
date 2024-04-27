@@ -8,26 +8,22 @@ import {
   Delete,
   Request,
   Res,
-  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto
+import {
+  UpdateAuthDto
   , UpdatePasswordDto
   , UpdateRoleDto
- } from './dto/update-auth.dto';
-import { create } from 'domain';
-import { LocalAuthGuard } from './local-auth.guard';
+} from './dto/update-auth.dto';
 import { LoginDto } from './dto/login.dto';
-import { Role } from '@prisma/client';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   @Post('create-user')
-  createUser(@Request() req, @Res() res){
-  // createUser(@Body() datafirstname: string, lastname: string, email: string, phoneNumber: string, role: Role[], address_1: string, address_2: string, password: string) {
+  createUser(@Request() req, @Res() res) {
+    // createUser(@Body() datafirstname: string, lastname: string, email: string, phoneNumber: string, role: Role[], address_1: string, address_2: string, password: string) {
     return this.authService.createUser(req.body, res);
   }
 
@@ -45,7 +41,7 @@ export class AuthController {
 
   @Patch('update-user/:id')
   updateUser(
-    @Param('id') id: string, 
+    @Param('id') id: string,
     @Body() updateAuthDto: UpdateAuthDto
   ) {
     return this.authService.updateUser(id, updateAuthDto);
@@ -53,7 +49,7 @@ export class AuthController {
 
   @Patch('update-role/:id')
   updateRole(
-    @Param('id') id: string, 
+    @Param('id') id: string,
     @Body() updateRoleDto: UpdateRoleDto
   ) {
     return this.authService.updateRole(id, updateRoleDto);
@@ -76,9 +72,9 @@ export class AuthController {
   //------------update Team -----------
 
   @Patch('teamUpdate/:id')
-  async updateTeam( @Body() dto: UpdateAuthDto, @Param('id') id: string) {
+  async updateTeam(@Body() dto: UpdateAuthDto, @Param('id') id: string) {
     // dto.id = Number(id);
-    return  this.authService.updateTeam( id, dto);
+    return this.authService.updateTeam(id, dto);
   }
 
   @Delete('delete/:id')
@@ -87,7 +83,7 @@ export class AuthController {
   }
 
 
-  
+
   @Get('get/:id')
   getTeam(@Param('id') id: string) {
     return this.authService.getTeam(id);
