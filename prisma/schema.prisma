@@ -45,7 +45,6 @@ model user {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt()
   appointment    appointment[]
-  // docRecipt docRecipt[]
 }
 
 model event {
@@ -55,44 +54,3 @@ model event {
   end      String
   allDay      Boolean
 }
-
-// model event {
-//   id          String  @id @default(uuid())
-//   title       String
-//   start       String
-//   end         String
-//   leave       Boolean
-//   userId      String?
-//   allDay      Boolean
-//   user        user? @relation(fields: [userId], references: [id])
-// }
-
-// model receipt {
-//   id          String    @id @default(uuid())
-//   description String
-//   amount      Decimal
-//   date        String
-//   expense     expense[]
-// }
-
-// model expense {
-//   id          String  @id @default(uuid())
-//   description String
-//   receiptId   String
-//   amount      Decimal
-//   date        String
-
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt()
-
-//   receipt receipt @relation(fields: [receiptId], references: [id])
-// }
-
-// model docRecipt {
-//   id          String  @id @default(uuid())
-//   description String
-//   amount      Decimal
-//   date        String
-//   doctorId    String
-//   user        user  @relation(fields: [doctorId], references: [id])
-// }
