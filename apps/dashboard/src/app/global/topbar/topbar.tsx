@@ -1,13 +1,9 @@
 import { Box, IconButton, Menu, MenuItem, Typography, useTheme } from "@mui/material";
 import { useContext, useState } from "react";
 import { ColorModeContext, tokens } from "../../theme";
-import InputBase from "@mui/material/InputBase";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import SearchIcon from "@mui/icons-material/Search";
 import { Link, useNavigate } from "react-router-dom";
 
 const Topbar = () => {
@@ -61,7 +57,7 @@ const Topbar = () => {
         {/* <IconButton>
           <SettingsOutlinedIcon />
         </IconButton> */}
-       
+
         <IconButton onClick={handleMenuClick}>
           <PersonOutlinedIcon />
         </IconButton>
@@ -72,18 +68,18 @@ const Topbar = () => {
         >
           <MenuItem onClick={handleLogout}>
             <Typography textAlign="center">
-                    <Link
-                      to="/logout"
-                      // className={styles['logout-link']}
-                      style={{
-                        textDecoration: 'none',
-                        color: 'white',
-                        marginLeft: '5px',
-                      }}
-                    >
-                      Logout
-                    </Link>
-                  </Typography>
+              <Link
+                to="/logout"
+                // className={styles['logout-link']}
+                style={{
+                  textDecoration: 'none',
+                  color: 'white',
+                  marginLeft: '5px',
+                }}
+              >
+                Logout
+              </Link>
+            </Typography>
           </MenuItem>
         </Menu>
       </Box>
