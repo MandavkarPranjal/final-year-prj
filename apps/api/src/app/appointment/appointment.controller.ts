@@ -6,17 +6,15 @@ import {
   Patch,
   Param,
   Delete,
-  Query,
 } from '@nestjs/common';
 import { AppointmentService } from './appointment.service';
 import { CreateAppointmentDto as CADto } from './dto/create-appointment.dto';
-import { user } from '@prisma/client';
 
 @Controller('appointment')
 export class AppointmentController {
   constructor(
-      private readonly appointmentService: AppointmentService
-    ) {}
+    private readonly appointmentService: AppointmentService
+  ) { }
 
   @Get('all')
   getData() {
@@ -34,9 +32,9 @@ export class AppointmentController {
   }
 
   @Patch('update/:id')
-  async updateAppointment( @Body() dto: CADto, @Param('id') id: string) {
+  async updateAppointment(@Body() dto: CADto, @Param('id') id: string) {
     // dto.id = Number(id);
-    return  this.appointmentService.updateAppointment( +id, dto);
+    return this.appointmentService.updateAppointment(+id, dto);
   }
 
   @Get('calendar')
@@ -50,13 +48,13 @@ export class AppointmentController {
   }
 
   @Get(':specialization')
-  async getDoctorsBySpecialization(@Param('specialization') specialization: string){
-      return this.appointmentService.getDoctorsBySpecialization(specialization);
+  async getDoctorsBySpecialization(@Param('specialization') specialization: string) {
+    return this.appointmentService.getDoctorsBySpecialization(specialization);
   }
 
   @Get('doctorAppointments/:doctorId')
-  async getDoctorsAppointments(@Param('doctorId') doctorId: string){
-      return this.appointmentService.getDoctorAppointment(doctorId);
+  async getDoctorsAppointments(@Param('doctorId') doctorId: string) {
+    return this.appointmentService.getDoctorAppointment(doctorId);
   }
 
 }
