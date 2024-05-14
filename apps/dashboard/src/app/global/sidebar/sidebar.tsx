@@ -7,13 +7,11 @@ import { tokens } from '../../theme';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
-import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import PieChartOutlineOutlinedIcon from '@mui/icons-material/PieChartOutlineOutlined';
-import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import hospLogo from '../../../../public/assets/hospLogo.png';
 import { User } from '../../context/user-data-transfer';
@@ -59,7 +57,7 @@ const Sidebar = () => {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('User') ?? '{}'));
     // console.log('sidebar user', user);
-  });
+  }, []);
 
   return (
     <Box
@@ -139,7 +137,7 @@ const Sidebar = () => {
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : '10%'}>
-            {!user?.role.includes('DOCTOR')&& (
+            {!user?.role.includes('DOCTOR') && (
               <Item
                 title="Dashboard"
                 to="/dashboard"

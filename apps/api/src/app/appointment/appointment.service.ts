@@ -1,8 +1,7 @@
-import { HttpException, Injectable , HttpStatus} from '@nestjs/common';
-import { CreateAppointmentDto as CADto} from './dto/create-appointment.dto';
+import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
+import { CreateAppointmentDto as CADto } from './dto/create-appointment.dto';
 import { PrismaService } from '../../../../../prisma/prisma.service';
 import transporter from '../utils/transporter';
-import { user } from '@prisma/client';
 // import { createTransport } from 'nodemailer';
 // import { HttpStatus } from '@nestjs/common';
 
@@ -15,8 +14,8 @@ import { user } from '@prisma/client';
 
 @Injectable()
 export class AppointmentService {
-  constructor(private prisma: PrismaService) {}
-  async getData(){
+  constructor(private prisma: PrismaService) { }
+  async getData() {
     const appointments = await this.prisma.appointment.findMany({
       include: {
         user: {
@@ -33,30 +32,30 @@ export class AppointmentService {
     return appointments;
   }
 
-  async getAppointment(id: number){
+  async getAppointment(id: number) {
     const appointment = await this.prisma.appointment.findFirst({
-      where:{
+      where: {
         id: id
       }
     })
-    if(appointment){
+    if (appointment) {
       return appointment;
     }
     throw new HttpException("Appointment does not exist", HttpStatus.BAD_REQUEST);
   }
 
-  async bookAppointment(data: CADto){
+  async bookAppointment(data: CADto) {
     const patient = await this.prisma.appointment.create({
-        data: data
+      data: data
     })
     console.log('Appointment Booked')
 
     const doctor = await this.prisma.user.findUnique({
       where: {
-      id: data.userId
+        id: data.userId
       },
       select: {
-      name: true
+        name: true
       }
     });
 
@@ -64,7 +63,7 @@ export class AppointmentService {
     <h1>Confirmation of Booked Appointment with WellAppoint</h1>
     <p>Dear ${data.firstName} ${data.lastName},</p>
     <p>I hope this email finds you well. We are delighted to confirm that your appointment with WellAppoint Hospital has been successfully booked.</p>
-    
+
     <p><strong>Appointment Details:</strong></p>
     <ul>
       <li><strong>Appointment ID:</strong> ${patient.id}</li>
@@ -73,18 +72,18 @@ export class AppointmentService {
       <li><strong>Specialization:</strong> ${data.Specialization}</li>
       <li><strong>Doctor:</strong> ${doctor.name}</li>
     </ul>
-    
+
     <p>We appreciate your trust in our healthcare services and look forward to providing you with the best possible care. If you have any specific questions or if there are any changes required, please feel free to reach out to us by replying to this email.</p>
-    
+
     <p>As a reminder, kindly bring any relevant medical records or documentation with you on the day of your appointment. If there are any changes in your health condition before the scheduled date, please inform us promptly.</p>
-    
+
     <p>Thank you for choosing WellAppoint Hospital. We value your health and well-being, and we are committed to ensuring a positive and seamless experience for you during your visit.</p>
-    
+
     <p>We look forward to welcoming you on ${data.bookingDate} at ${data.bookingTime}.</p>
-    
+
     <p>Best regards,<br>
       WellAppoint Team<br></p>
-    
+
     `;
 
     const mailOptions = {
@@ -105,16 +104,16 @@ export class AppointmentService {
     return patient;
   }
 
-  async updateAppointment(id: number, data: CADto){
+  async updateAppointment(id: number, data: CADto) {
     console.log(" updated Appointment");
     // check if appointment exists
     const tempAppointment = await this.prisma.appointment.findFirst({
-      where:{
+      where: {
         id: id
       },
       select: {
         id: true,
-        user : {
+        user: {
           select: {
             name: true
           }
@@ -124,22 +123,22 @@ export class AppointmentService {
         Specialization: true
       }
     })
-    if(tempAppointment){
+    if (tempAppointment) {
       const updatedAppointment = await this.prisma.appointment.update({
-        where:{
+        where: {
           id: id
         },
-        data : data,
+        data: data,
       })
 
       const newAppointment = await this.prisma.appointment.findFirst({
-        where : {
-          id : id
+        where: {
+          id: id
         },
-        select : {
+        select: {
           id: true,
-          user : {
-            select : {
+          user: {
+            select: {
               name: true
              
             }
@@ -178,23 +177,23 @@ export class AppointmentService {
       <p>Best regards,<br>
           WellAppoint Team<br>
       </p>
-      
+
     `;
 
-    const mailOptions = {
-      from: 'wellappoint@gmail.com',
-      to: `${data.email}`,
-      subject: 'Appoinment Rescheduled',
-      html: emailTemplate
-    };
+      const mailOptions = {
+        from: 'wellappoint@gmail.com',
+        to: `${data.email}`,
+        subject: 'Appoinment Rescheduled',
+        html: emailTemplate
+      };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    });
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
 
       return updatedAppointment;
 
@@ -202,9 +201,9 @@ export class AppointmentService {
     throw new HttpException("Appointment does not exist", HttpStatus.BAD_REQUEST);
   }
 
-  async getCalData(){
+  async getCalData() {
     const appointment = await this.prisma.appointment.findMany({
-      select : {
+      select: {
         firstName: true,
         lastName: true,
         bookingDate: true,
@@ -214,30 +213,30 @@ export class AppointmentService {
     const title = appointment.map(appointment => `${appointment.firstName} ${appointment.lastName}`);
     const date = appointment.map(appointment => appointment.bookingDate);
 
-    return {title, date};
+    return { title, date };
   }
 
-  async deleteAppointment(id: number){
+  async deleteAppointment(id: number) {
     const appointment = await this.prisma.appointment.findFirst({
       where: {
-      id: id
+        id: id
       },
       select: {
-      firstName: true,
-      lastName: true,
-      email: true,
-      user : {
-        select: {
-        name: true
-        }
-      },
-      bookingDate: true,
-      bookingTime: true
+        firstName: true,
+        lastName: true,
+        email: true,
+        user: {
+          select: {
+            name: true
+          }
+        },
+        bookingDate: true,
+        bookingTime: true
       }
     });
-    if(appointment){
+    if (appointment) {
       const deletedAppointment = await this.prisma.appointment.delete({
-        where:{
+        where: {
           id: id
         }
       })
@@ -255,43 +254,43 @@ export class AppointmentService {
       <p>Best regards,<br>
           WellAppoint Team<br>
       </p>
-      
+
     `;
 
-    const mailOptions = {
-      from: 'wellappoint@gmail.com',
-      to: `${appointment.email}`,
-      subject: 'Important Notice: Appointment Cancellation',
-      html: emailTemplate
-    };
+      const mailOptions = {
+        from: 'wellappoint@gmail.com',
+        to: `${appointment.email}`,
+        subject: 'Important Notice: Appointment Cancellation',
+        html: emailTemplate
+      };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    });
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
 
       return deletedAppointment;
     }
     throw new HttpException("Appointment does not exist", HttpStatus.BAD_REQUEST);
   }
 
-  async getDoctorsBySpecialization(specialization: string){
+  async getDoctorsBySpecialization(specialization: string) {
     return this.prisma.user.findMany({
-        where: {
-            specialty: specialization// Assuming specialization is stored in lowercase
-        },
-        select: {
-          id: true,
-          name: true,
-        }
+      where: {
+        specialty: specialization// Assuming specialization is stored in lowercase
+      },
+      select: {
+        id: true,
+        name: true,
+      }
     });
   }
 
   async getDoctorAppointment(doctorId: string) {
-    const appointment =  this.prisma.appointment.findMany({
+    const appointment = this.prisma.appointment.findMany({
       where: {
         userId: doctorId
       },
@@ -303,7 +302,7 @@ export class AppointmentService {
         },
       },
     });
-    
+
     (await appointment).forEach(appointment => {
       appointment.firstName = `${appointment.firstName} ${appointment.lastName}`;
     })

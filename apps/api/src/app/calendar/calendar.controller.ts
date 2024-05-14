@@ -10,15 +10,14 @@ import {
   Res,
 } from '@nestjs/common';
 import { CalendarService } from './calendar.service';
-import { CreateCalendarDto } from './dto/create-calendar.dto';
 import { UpdateCalendarDto } from './dto/update-calendar.dto';
 
 @Controller('calendar')
 export class CalendarController {
-  constructor(private readonly calendarService: CalendarService) {}
+  constructor(private readonly calendarService: CalendarService) { }
 
   @Post('/create')
-  create(@Req() req , @Res() res) {
+  create(@Req() req, @Res() res) {
     return this.calendarService.createEvent(req, res);
   }
 

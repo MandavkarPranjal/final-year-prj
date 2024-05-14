@@ -1,9 +1,9 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { BadRequestException, ForbiddenException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto
+import { BadRequestException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  UpdateAuthDto
   , UpdatePasswordDto
-  , UpdateRoleDto 
+  , UpdateRoleDto
 } from './dto/update-auth.dto';
 import { PrismaService } from '../../../../../prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
@@ -15,13 +15,13 @@ import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService, private jwt: JwtService) {}
-  
+  constructor(private prisma: PrismaService, private jwt: JwtService) { }
+
   async createUser(req, res) {
     const email = req.email;
-    const foundUser = await this.prisma.user.findUnique({where: {email}})
+    const foundUser = await this.prisma.user.findUnique({ where: { email } })
 
-    if(foundUser) {
+    if (foundUser) {
       throw new BadRequestException('Email already exists')
     }
     const hashedPassword = await this.hashPassword(req.password);
@@ -43,16 +43,16 @@ export class AuthService {
     res.status(201).send({ message: 'User created successfully' });
   }
 
-  async signin(data: LoginDto):Promise<ViewUserDto> {
-    const user = await this.prisma.user.findFirst({where: {email: data.email}})
-    if(!user){
-        throw new NotFoundException({
-            message:'Couldnt find user'
-        })
+  async signin(data: LoginDto): Promise<ViewUserDto> {
+    const user = await this.prisma.user.findFirst({ where: { email: data.email } })
+    if (!user) {
+      throw new NotFoundException({
+        message: 'Couldnt find user'
+      })
     }
 
-    const isMatch = await this.comparePasswords({password: data.password, hash: user.hashedPassword})
-    if(!isMatch){
+    const isMatch = await this.comparePasswords({ password: data.password, hash: user.hashedPassword })
+    if (!isMatch) {
       throw new BadRequestException('Invalid credentials');
     }
     return user
@@ -60,19 +60,19 @@ export class AuthService {
 
   async signout(req: Request, res: Response) {
     res.clearCookie('token')
-    return res.send({message: 'Logged out successfully'})
+    return res.send({ message: 'Logged out successfully' })
   }
 
-  async updateUser(id: string, updateAuthDto: UpdateAuthDto){
-    const { name, email, phoneNumber, address_1,address_2, role} = updateAuthDto;
-    const foundUser = await this.prisma.user.findUnique({where: {id}})
+  async updateUser(id: string, updateAuthDto: UpdateAuthDto) {
+    const { name, email, phoneNumber, address_1, address_2, role } = updateAuthDto;
+    const foundUser = await this.prisma.user.findUnique({ where: { id } })
 
-    if(!foundUser) {
+    if (!foundUser) {
       throw new BadRequestException('User not found')
     }
 
     await this.prisma.user.update({
-      where: {id},
+      where: { id },
       data: {
         name,
         email,
@@ -84,16 +84,16 @@ export class AuthService {
     })
   }
 
-  async updateRole(id: string, updateRoleDto: UpdateRoleDto){
+  async updateRole(id: string, updateRoleDto: UpdateRoleDto) {
     const { role } = updateRoleDto;
-    const foundUser = await this.prisma.user.findUnique({where: {id}})
+    const foundUser = await this.prisma.user.findUnique({ where: { id } })
 
-    if(!foundUser) {
+    if (!foundUser) {
       throw new BadRequestException('User not found')
     }
 
     await this.prisma.user.update({
-      where: {id},
+      where: { id },
       data: {
         role
         // role: [role],
@@ -101,70 +101,70 @@ export class AuthService {
     })
   }
 
-  async updatePassword(id: string, updatePasswordDto: UpdatePasswordDto){
+  async updatePassword(id: string, updatePasswordDto: UpdatePasswordDto) {
     const { password } = updatePasswordDto;
-    const foundUser = await this.prisma.user.findUnique({where: {id}})
+    const foundUser = await this.prisma.user.findUnique({ where: { id } })
 
-    if(!foundUser) {
+    if (!foundUser) {
       throw new BadRequestException('User not found')
     }
 
     const hashedPassword = await this.hashPassword(password);
 
     await this.prisma.user.update({
-      where: {id},
+      where: { id },
       data: {
         hashedPassword
       }
     })
   }
 
-  async deleteUser(id: string){
-    const foundUser = await this.prisma.user.findUnique({where: {id}})
+  async deleteUser(id: string) {
+    const foundUser = await this.prisma.user.findUnique({ where: { id } })
 
-    if(!foundUser) {
+    if (!foundUser) {
       throw new BadRequestException('User not found')
     }
 
-    await this.prisma.user.delete({where: {id}})
+    await this.prisma.user.delete({ where: { id } })
   }
 
-  async hashPassword(password: string){
+  async hashPassword(password: string) {
     const saltOrRounds = 10;
     return await bcrypt.hash(password, saltOrRounds);
   }
 
-  async comparePasswords(args: {password: string, hash: string}) {
+  async comparePasswords(args: { password: string, hash: string }) {
     return await bcrypt.compare(args.password, args.hash);
   }
 
-  async signToken(args: {id: string, email: string}) {
+  async signToken(args: { id: string, email: string }) {
     const payload = args;
 
-    return this.jwt.signAsync(payload, {secret: jwtSecret})
+    return this.jwt.signAsync(payload, { secret: jwtSecret })
   }
 
 
 
   //-------------------------Update Team --------------------
 
-  async updateTeam(id: string, data: UpdateAuthDto){
+  async updateTeam(id: string, data: UpdateAuthDto) {
     console.log(" updated team");
     // check if appointment exists
     const tempTeam = await this.prisma.user.findFirst({
-      where:{
+      where: {
         id: id
       }
     })
 
     const hashedPassword = await this.hashPassword(data.password);
 
-    if(tempTeam){
+    if (tempTeam) {
       const updatedAppointment = await this.prisma.user.update({
-        where:{
+        where: {
           id: id
         },
-        data : {
+        data: {
           name: data.name,
           email: data.email,
           phoneNumber: data.phoneNumber,
@@ -181,16 +181,16 @@ export class AuthService {
     throw new HttpException("Appointment does not exist", HttpStatus.BAD_REQUEST);
   }
 
-  async deleteTeam(id : string){
+  async deleteTeam(id: string) {
     console.log(" Deleted Team");
     const team = await this.prisma.user.findFirst({
-      where:{
+      where: {
         id: id // Convert id to number type
       }
     })
-    if(team){
+    if (team) {
       const deletedTeam = await this.prisma.user.delete({
-        where:{
+        where: {
           id: id // Convert id to number type
         }
       })
@@ -201,20 +201,20 @@ export class AuthService {
   }
 
 
-  async getTeam(id: string){
-    const team= await this.prisma.user.findFirst({
-      where:{
+  async getTeam(id: string) {
+    const team = await this.prisma.user.findFirst({
+      where: {
         id: id
       }
     })
-    if(team){
+    if (team) {
       return team;
     }
     throw new HttpException("Appointment does not exist", HttpStatus.BAD_REQUEST);
   }
 
 
-  }
+}
 
 
 
