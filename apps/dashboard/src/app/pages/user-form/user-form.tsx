@@ -6,8 +6,8 @@ import Header from "../../components/header/header";
 import { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { __values } from "tslib";
-  import Select from '@mui/material/Select';
-  import { yupResolver } from '@hookform/resolvers/yup';
+import Select from '@mui/material/Select';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, set, useForm } from 'react-hook-form';
 import { SnackbarProvider, useSnackbar } from 'notistack'
 
@@ -24,7 +24,7 @@ type UserFormProps = {
   role: string[];
   password: string;
   specialty?: string;
-}    
+}
 
 
 const phoneRegExp =
@@ -37,7 +37,7 @@ const initialValues = {
   phoneNumber: "",
   address_1: "",
   address_2: "",
-  role : "",
+  role: "",
   password: "",
 };
 
@@ -61,11 +61,11 @@ const userSchema = yup.object().shape({
 //   'ADMIN',
 //   'DOCTOR',
 //   'RECEPTIONIST',
-  
+
 // ];
 const RoleOptions = [
   { value: 'ADMIN', label: 'Admin' },
-  { value: 'USER', label: 'User' },
+  { value: 'RECEPTIONIST', label: 'Receptionist' },
   { value: 'DOCTOR', label: 'Doctor' },
 ];
 
@@ -118,14 +118,14 @@ const Form = () => {
 
   const onSubmit: SubmitHandler<UserFormProps> = async (data) => {
     // console.log(data);
-    
+
     try {
       // Include the selected role in the data
       const userData = { ...data, role: [data.role], }
       const response = await axios.post('http://localhost:3000/auth/create-user', userData);
-  
+
       setStatus(response.status.toString());
-  
+
       if (response.status === 201) {
         enqueueSnackbar('User Created Successfully', { variant: 'success' });
       } else {
@@ -139,23 +139,23 @@ const Form = () => {
       setRes(error.response?.data?.message || 'Error creating user');
       enqueueSnackbar(res, { variant: 'error' });
     }
-    
-   
+
+
   }
 
- 
+
 
   return (
     <Box m="20px" >
-    <Header title="CREATE USER" subtitle="Create a New User Profile"/>
+      <Header title="CREATE USER" subtitle="Create a New User Profile" />
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-        >
-      <Stack spacing={3}sx={{width: "100%"}}>
-          {/* <Box 
-            display="inline-grid" 
-            gap="30px" 
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Stack spacing={3} sx={{ width: "100%" }}>
+          {/* <Box
+            display="inline-grid"
+            gap="30px"
             gridTemplateColumns="repeat(4, minmax(0, 1fr))"
             sx={{
               "& > div": {
@@ -166,9 +166,9 @@ const Form = () => {
               }
             }}
           > */}
-            <Stack direction="row" spacing={3} >
+          <Stack direction="row" spacing={3} >
 
-            <TextField 
+            <TextField
               // fullWidth
               variant="filled"
               autoComplete="off"
@@ -181,8 +181,8 @@ const Form = () => {
               sx={{
                 gridColumn: "span 1"
               }}
-              />
-            <TextField 
+            />
+            <TextField
               // fullWidth
               variant="filled"
               autoComplete="off"
@@ -195,12 +195,12 @@ const Form = () => {
               sx={{
                 gridColumn: "span 1"
               }}
-              />
-              </Stack>
+            />
+          </Stack>
 
-              <Stack direction="row" spacing={3} >
-            
-            <TextField 
+          <Stack direction="row" spacing={3} >
+
+            <TextField
               // fullWidth
               variant="filled"
               autoComplete="off"
@@ -214,7 +214,7 @@ const Form = () => {
                 gridColumn: "span 4"
               }}
             />
-            <TextField 
+            <TextField
               fullWidth
               variant="filled"
               autoComplete="off"
@@ -222,19 +222,19 @@ const Form = () => {
               label="Contact Number"
               id="phoneNumber"
               {...register('phoneNumber')}
-              error={!!errors.phoneNumber }
+              error={!!errors.phoneNumber}
               helperText={errors.phoneNumber?.message}
               sx={{
                 gridColumn: "span 4"
               }}
             />
-            </Stack>
+          </Stack>
 
-            {/* </Box> */}
-            
-            {/* <Box 
-            display="inline-grid" 
-            gap="30px" 
+          {/* </Box> */}
+
+          {/* <Box
+            display="inline-grid"
+            gap="30px"
             gridTemplateColumns="repeat(4, minmax(0, 1fr))"
             sx={{
               "& > div": {
@@ -246,8 +246,8 @@ const Form = () => {
               }
             }}
           > */}
-            <Stack direction="row" spacing={3} >
-            <TextField 
+          <Stack direction="row" spacing={3} >
+            <TextField
               // fullWidth
               variant="filled"
               autoComplete="off"
@@ -255,13 +255,13 @@ const Form = () => {
               label="Address 1"
               id="address_1"
               {...register('address_1')}
-              error={!!errors.address_1 }
+              error={!!errors.address_1}
               helperText={errors.address_1?.message}
               sx={{
                 gridColumn: "span 4"
               }}
             />
-            <TextField 
+            <TextField
               // fullWidth
               variant="filled"
               autoComplete="off"
@@ -269,14 +269,14 @@ const Form = () => {
               label="Address 2"
               id="address_2"
               {...register('address_2')}
-              error={!!errors.address_2 }
-              helperText={errors.address_2 ?.message}
+              error={!!errors.address_2}
+              helperText={errors.address_2?.message}
               sx={{
                 gridColumn: "span 4"
               }}
             />
-            </Stack>
-             {/* <TextField 
+          </Stack>
+          {/* <TextField
               // fullWidth
               variant="filled"
               type="text"
@@ -292,37 +292,37 @@ const Form = () => {
               }}
               /> */}
 
-              <Stack direction="row" spacing={3} >
-             
-             <FormControl
-              // sx={{
-              //   marginRight: 6,
-              //   marginLeft: 4
-              // }}
-              >
-                <InputLabel id="roleLabel">Role</InputLabel>
-                <Select
-                  variant="filled"
-                  labelId="roleLabel"
-                  label="Role"
-                  id="role"
-                  {...register('role')} // Provide a default value
-                  error={!!errors.role}
-                  onChange={handleRoleChange} 
-                >
-                  <MenuItem value="" disabled>
-                    Select Role
-                  </MenuItem>
-                  {RoleOptions.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </Select>
-                <FormHelperText error>{errors.role?.message}</FormHelperText>
-              </FormControl>
+          <Stack direction="row" spacing={3} >
 
-            <TextField 
+            <FormControl
+            // sx={{
+            //   marginRight: 6,
+            //   marginLeft: 4
+            // }}
+            >
+              <InputLabel id="roleLabel">Role</InputLabel>
+              <Select
+                variant="filled"
+                labelId="roleLabel"
+                label="Role"
+                id="role"
+                {...register('role')} // Provide a default value
+                error={!!errors.role}
+                onChange={handleRoleChange}
+              >
+                <MenuItem value="" disabled>
+                  Select Role
+                </MenuItem>
+                {RoleOptions.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </Select>
+              <FormHelperText error>{errors.role?.message}</FormHelperText>
+            </FormControl>
+
+            <TextField
               // fullWidth
               variant="filled"
               autoComplete="off"
@@ -330,40 +330,40 @@ const Form = () => {
               label="Password"
               id="password"
               {...register('password')}
-              error={!!errors.password }
+              error={!!errors.password}
               helperText={errors.password?.message}
               sx={{
                 gridColumn: "span 4"
               }}
             />
-            </Stack>
+          </Stack>
 
-            {/* Display specialty input if showSpecialtyInput is true */}
-        {showSpecialtyInput && (
-          <FormControl>
-            <InputLabel id="specialtyLabel">Specialty</InputLabel>
-            <Select
-              variant="filled"
-              labelId="specialtyLabel"
-              label="Specialty"
-              id="specialty"
-              {...register('specialty')} // Assuming you're using useForm hook here
+          {/* Display specialty input if showSpecialtyInput is true */}
+          {showSpecialtyInput && (
+            <FormControl>
+              <InputLabel id="specialtyLabel">Specialty</InputLabel>
+              <Select
+                variant="filled"
+                labelId="specialtyLabel"
+                label="Specialty"
+                id="specialty"
+                {...register('specialty')} // Assuming you're using useForm hook here
               // error={!!errors.specialty}
-            >
-              <MenuItem value="" disabled>
-                Select Specialty
-              </MenuItem>
-              {/* Assuming you have an array of specialties like RoleOptions */}
-              {SpecializationOptions.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
+              >
+                <MenuItem value="" disabled>
+                  Select Specialty
                 </MenuItem>
-              ))}
-            </Select>
-            {/* <FormHelperText error>{errors.specialty?.message}</FormHelperText> */}
-          </FormControl>
-        )}
-            
+                {/* Assuming you have an array of specialties like RoleOptions */}
+                {SpecializationOptions.map((option) => (
+                  <MenuItem key={option} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </Select>
+              {/* <FormHelperText error>{errors.specialty?.message}</FormHelperText> */}
+            </FormControl>
+          )}
+
           {/* </Box> */}
           <Box display="flex" justifyContent="center" mt="20px" ml="-35px">
             <Button type="submit" color="secondary" variant="contained" size="large"
@@ -371,8 +371,8 @@ const Form = () => {
               Create New User
             </Button>
           </Box>
-          </Stack>
-        </form>
+        </Stack>
+      </form>
 
     </Box>
   )

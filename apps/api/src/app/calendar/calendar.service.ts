@@ -38,7 +38,6 @@ export class CalendarService {
         id: id
       }
     })
-    console.log("Inside delete api", id)
     if (Event) {
       const deletedEvent = await prisma.event.delete({
         where: {

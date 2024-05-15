@@ -91,7 +91,7 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
   // const RoleOptions = ['Admin', 'Doctor', 'Receptionist'];
   const RoleOptions = [
     { value: 'ADMIN', label: 'Admin' },
-    { value: 'USER', label: 'User' },
+    { value: 'RECEPTIONIST', label: 'Receptionist' },
     { value: 'DOCTOR', label: 'Doctor' },
   ];
 
@@ -112,7 +112,7 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
     }
   };
 
-  
+
   const handleFormSubmit: SubmitHandler<Team> = async (values) => {
     try {
       const userData = { ...values, role: [values.role], }
@@ -147,178 +147,178 @@ const EditTeamModal: React.FC<Props> = ({ open, onClose, appId }) => {
           }}
         >
           <Stack spacing={3}
-          sx={{ width: '100%'}}
-        
-        >
-           <Stack direction="row" spacing={2}>
-          <TextField
-            // fullWidth
-            sx={{ flex: 1 }}
-            variant="filled"
-            type="text"
-            label="Name"
-            defaultValue={""}
-            id="firstName"
-            {...register('name')}
-            error={!!errors.name}
-            helperText={errors.name?.message}
-            //   sx={{
-            //     gridColumn: "span 1"
-            //   }}
-          />
+            sx={{ width: '100%' }}
 
-          </Stack>
-
-          <Stack direction="row" spacing={2}>
-          <TextField
-            // fullWidth
-            sx={{ flex: 1 }}
-            variant="filled"
-            type="text"
-            label="email"
-            id="email"
-            defaultValue={""}
-            {...register('email')}
-            error={!!errors.email}
-            helperText={errors.email?.message}
-            //   sx={{
-            //     gridColumn: "span 4"
-            //   }}
-          />
-          <TextField
-            //   fullWidth
-            sx={{ flex: 1 }}
-            variant="filled"
-            type="text"
-            label="Contact Number"
-            defaultValue={""}
-            id="phoneNumber"
-            {...register('phoneNumber')}
-            error={!!errors.phoneNumber}
-            helperText={errors.phoneNumber?.message}
-            //   sx={{
-            //     gridColumn: "span 4"
-            //   }}
-          />
-          </Stack>
-
-          <Stack direction="row" spacing={2}>
-          <TextField
-            // fullWidth
-            sx={{ flex: 1 }}
-            variant="filled"
-            type="text"
-            label="Address 1"
-            defaultValue={""}
-            id="address_1"
-            {...register('address_1')}
-            error={!!errors.address_1}
-            helperText={errors.address_1?.message}
-            //   sx={{
-            //     gridColumn: "span 4"
-            //   }}
-          />
-          <TextField
-            // fullWidth
-            sx={{ flex: 1 }}
-            variant="filled"
-            type="text"
-            label="Address 2"
-            defaultValue={""}
-            id="address_2"
-            {...register('address_2')}
-            error={!!errors.address_2}
-            helperText={errors.address_2?.message}
-            //   sx={{
-            //     gridColumn: "span 4"
-            //   }}
-          />
-          </Stack>
-
-          <Stack direction="row" spacing={2}>
-          <FormControl
-          sx={{ flex: 1 }}
-          // sx={{
-          //   marginRight: 6,
-          //   marginLeft: 4
-          // }}
           >
-            <InputLabel id="roleLabel">Role</InputLabel>
-            <Select
-              variant="filled"
-              labelId="roleLabel"
-              label="Role"
-              defaultValue={""}
-              id="role"
-              {...register('role')} // Provide a default value
-              error={!!errors.role}
-              onChange={handleRoleChange}
-            >
-              <MenuItem value="" disabled>
-                Select Role
-              </MenuItem>
-              {RoleOptions.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-                // <MenuItem key={option} value={option}>
-                //   {option}
-                // </MenuItem>
-              ))}
-            </Select>
-            <FormHelperText error>{errors.role?.message}</FormHelperText>
-          </FormControl>
+            <Stack direction="row" spacing={2}>
+              <TextField
+                // fullWidth
+                sx={{ flex: 1 }}
+                variant="filled"
+                type="text"
+                label="Name"
+                defaultValue={""}
+                id="firstName"
+                {...register('name')}
+                error={!!errors.name}
+                helperText={errors.name?.message}
+              //   sx={{
+              //     gridColumn: "span 1"
+              //   }}
+              />
 
-          <TextField
-            // fullWidth
-            sx={{ flex: 1 }}
-            variant="filled"
-            type="text"
-            label="Password"
-            defaultValue={""}
-            id="password"
-            {...register('password')}
-            error={!!errors.password}
-            helperText={errors.password?.message}
-            //   sx={{
-            //     gridColumn: "span 4"
-            //   }}
-          />
-          </Stack>
-          {showSpecialtyInput && (
-          <FormControl>
-            <InputLabel id="specialtyLabel">Specialty</InputLabel>
-            <Select
-              variant="filled"
-              labelId="specialtyLabel"
-              label="Specialty"
-              id="specialty"
-              {...register('specialty')} // Assuming you're using useForm hook here
-              // error={!!errors.specialty}
-            >
-              <MenuItem value="" disabled>
-                Select Specialty
-              </MenuItem>
-              {/* Assuming you have an array of specialties like RoleOptions */}
-              {SpecializationOptions.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
-            {/* <FormHelperText error>{errors.specialty?.message}</FormHelperText> */}
-          </FormControl>
-        )}
-            
-
-          <Box display="flex" justifyContent="center" mt="20px" ml="-35px"
-          >
-            <Button variant="contained" type="submit"
-            sx={{ flex: 1 }}>
-              Edit Team
-            </Button>
-          </Box>
             </Stack>
+
+            <Stack direction="row" spacing={2}>
+              <TextField
+                // fullWidth
+                sx={{ flex: 1 }}
+                variant="filled"
+                type="text"
+                label="email"
+                id="email"
+                defaultValue={""}
+                {...register('email')}
+                error={!!errors.email}
+                helperText={errors.email?.message}
+              //   sx={{
+              //     gridColumn: "span 4"
+              //   }}
+              />
+              <TextField
+                //   fullWidth
+                sx={{ flex: 1 }}
+                variant="filled"
+                type="text"
+                label="Contact Number"
+                defaultValue={""}
+                id="phoneNumber"
+                {...register('phoneNumber')}
+                error={!!errors.phoneNumber}
+                helperText={errors.phoneNumber?.message}
+              //   sx={{
+              //     gridColumn: "span 4"
+              //   }}
+              />
+            </Stack>
+
+            <Stack direction="row" spacing={2}>
+              <TextField
+                // fullWidth
+                sx={{ flex: 1 }}
+                variant="filled"
+                type="text"
+                label="Address 1"
+                defaultValue={""}
+                id="address_1"
+                {...register('address_1')}
+                error={!!errors.address_1}
+                helperText={errors.address_1?.message}
+              //   sx={{
+              //     gridColumn: "span 4"
+              //   }}
+              />
+              <TextField
+                // fullWidth
+                sx={{ flex: 1 }}
+                variant="filled"
+                type="text"
+                label="Address 2"
+                defaultValue={""}
+                id="address_2"
+                {...register('address_2')}
+                error={!!errors.address_2}
+                helperText={errors.address_2?.message}
+              //   sx={{
+              //     gridColumn: "span 4"
+              //   }}
+              />
+            </Stack>
+
+            <Stack direction="row" spacing={2}>
+              <FormControl
+                sx={{ flex: 1 }}
+              // sx={{
+              //   marginRight: 6,
+              //   marginLeft: 4
+              // }}
+              >
+                <InputLabel id="roleLabel">Role</InputLabel>
+                <Select
+                  variant="filled"
+                  labelId="roleLabel"
+                  label="Role"
+                  defaultValue={""}
+                  id="role"
+                  {...register('role')} // Provide a default value
+                  error={!!errors.role}
+                  onChange={handleRoleChange}
+                >
+                  <MenuItem value="" disabled>
+                    Select Role
+                  </MenuItem>
+                  {RoleOptions.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                    // <MenuItem key={option} value={option}>
+                    //   {option}
+                    // </MenuItem>
+                  ))}
+                </Select>
+                <FormHelperText error>{errors.role?.message}</FormHelperText>
+              </FormControl>
+
+              <TextField
+                // fullWidth
+                sx={{ flex: 1 }}
+                variant="filled"
+                type="text"
+                label="Password"
+                defaultValue={""}
+                id="password"
+                {...register('password')}
+                error={!!errors.password}
+                helperText={errors.password?.message}
+              //   sx={{
+              //     gridColumn: "span 4"
+              //   }}
+              />
+            </Stack>
+            {showSpecialtyInput && (
+              <FormControl>
+                <InputLabel id="specialtyLabel">Specialty</InputLabel>
+                <Select
+                  variant="filled"
+                  labelId="specialtyLabel"
+                  label="Specialty"
+                  id="specialty"
+                  {...register('specialty')} // Assuming you're using useForm hook here
+                // error={!!errors.specialty}
+                >
+                  <MenuItem value="" disabled>
+                    Select Specialty
+                  </MenuItem>
+                  {/* Assuming you have an array of specialties like RoleOptions */}
+                  {SpecializationOptions.map((option) => (
+                    <MenuItem key={option} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </Select>
+                {/* <FormHelperText error>{errors.specialty?.message}</FormHelperText> */}
+              </FormControl>
+            )}
+
+
+            <Box display="flex" justifyContent="center" mt="20px" ml="-35px"
+            >
+              <Button variant="contained" type="submit"
+                sx={{ flex: 1 }}>
+                Edit Team
+              </Button>
+            </Box>
+          </Stack>
         </Box>
       </form>
     </Modal>

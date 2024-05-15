@@ -29,7 +29,7 @@ model appointment {
 
 enum Role {
   ADMIN
-  USER
+  RECEPTIONIST
   DOCTOR
 }
 model user {
