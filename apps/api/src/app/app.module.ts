@@ -6,7 +6,6 @@ import { PrismaModule } from '../../../../prisma/prisma.module'; // Import the m
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { AppointmentModule } from './appointment/appointment.module';
-import { ExpensesModule } from './expenses/expenses.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { PieModule } from './pie/pie.module';
 import { LchartModule } from './lchart/lchart.module';
@@ -19,10 +18,9 @@ import { LchartModule } from './lchart/lchart.module';
     AuthModule,
     UsersModule,
     AppointmentModule,
-    ExpensesModule,
     CalendarModule,
     PieModule,
     LchartModule,
   ], // Add the imported module to the imports array
 })
-export class AppModule {}
+export class AppModule { }
